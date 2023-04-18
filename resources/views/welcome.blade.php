@@ -45,8 +45,8 @@
                     <h1>Sherby Pizzeria</h1>
                     <p>Amélie Fréchette</p>
                     <p>Claudio Cruz</p>
+                    <p>Sarah</p>
                 </div>
-
             </div>
         </div>
     </body>
