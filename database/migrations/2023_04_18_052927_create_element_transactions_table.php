@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('id_employe')->unsigned();
             $table->bigInteger('id_produit')->unsigned();
             $table->bigInteger('id_transaction')->unsigned();
-            $table->int('quantite')->unsigned();
+            $table->integer('quantite')->unsigned();
             $table->decimal('prix', 10, 2);
             $table->decimal('total_taxes', 10, 2);
             $table->decimal('total_rabais', 10, 2);
