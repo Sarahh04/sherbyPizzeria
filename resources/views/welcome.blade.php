@@ -47,7 +47,6 @@
                     <p>Claudio Cruz</p>
                     <p>Sarah</p>
                 </div>
-
             </div>
         </div>
     </body>

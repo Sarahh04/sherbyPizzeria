@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class note_dossier extends Model
 {
     use HasFactory;
+
+    protected $table = 'notes_dossiers';
+    protected $primaryKey = 'id_note_dossier';
+    public $timestamps = false;
 }
