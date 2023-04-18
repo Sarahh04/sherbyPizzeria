@@ -44,6 +44,7 @@
                     </svg>
                     <h1>Sherby Pizzeria</h1>
                     <p>Amélie Fréchette</p>
+                    <p>Claudio Cruz</p>
                 </div>
 
             </div>
