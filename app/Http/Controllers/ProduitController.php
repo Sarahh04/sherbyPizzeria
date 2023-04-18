@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ElementTransaction;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 
-class ElementTransactionController extends Controller
+class ProduitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ElementTransactionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ElementTransaction  $elementTransaction
+     * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function show(ElementTransaction $elementTransaction)
+    public function show(Produit $produit)
     {
         //
     }
@@ -52,10 +52,10 @@ class ElementTransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ElementTransaction  $elementTransaction
+     * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function edit(ElementTransaction $elementTransaction)
+    public function edit(Produit $produit)
     {
         //
     }
@@ -64,10 +64,10 @@ class ElementTransactionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ElementTransaction  $elementTransaction
+     * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ElementTransaction $elementTransaction)
+    public function update(Request $request, Produit $produit)
     {
         //
     }
@@ -75,10 +75,10 @@ class ElementTransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ElementTransaction  $elementTransaction
+     * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ElementTransaction $elementTransaction)
+    public function destroy(Produit $produit)
     {
         //
     }
