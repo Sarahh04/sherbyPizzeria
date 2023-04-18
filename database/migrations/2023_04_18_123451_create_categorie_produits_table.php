@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categorie_produits', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id_categorie'); // Clé primaire automatiquement créée avec "bigIncrements()".
+            $table->string('nom');
+            $table->string('description');
         });
     }
 
