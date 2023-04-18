@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('note_dossiers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB'; // Pour pouvoir utiliser les clés étrangères et les transactions
+            $table->bigIncrements('id_note_dossier'); // Clé primaire automatiquement créée avec "bigIncrements()".
+            // "usigned()" nécessaire pour éventuellement pouvoir définir une clé étrangère sur cette colonne.
+            $table->string('titre');
+            $table->string('commentaire');
         });
     }
 
