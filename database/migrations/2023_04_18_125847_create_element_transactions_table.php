@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('element_transactions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id_element_transation');
-            $table->bigInteger('id_employe')->unsigned();
+            $table->bigInteger('id_user')->unsigned();
             $table->bigInteger('id_produit')->unsigned();
             $table->bigInteger('id_transaction')->unsigned();
             $table->integer('quantite')->unsigned();
@@ -25,6 +25,11 @@ return new class extends Migration
             $table->decimal('total_rabais', 10, 2);
         });
 
+        Schema::table('element_transactions', function (Blueprint $table) {
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_produit')->references('id_produit')->on('produits');
+            $table->foreign('id_transaction')->references('id')->on('transactions');
+        });
     }
 
     /**
