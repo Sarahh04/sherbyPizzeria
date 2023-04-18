@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('description');
             $table->bigInteger('id_categorie')->unsigned();
             });
+
+            Schema::table('produits', function (Blueprint $table) {
+                $table->foreign('id_categorie')->references('id_categorie')->on('categorie_produits');
+                });
     }
 
     /**
