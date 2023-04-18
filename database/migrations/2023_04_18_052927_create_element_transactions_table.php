@@ -14,9 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('element_transactions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id_elment_transation');
+            $table->bigInteger('id_employe')->unsigned();
+            $table->bigInteger('id_produit')->unsigned();
+            $table->bigInteger('id_transactio')->unsigned();
+            $table->int('quantite')->unsigned();
+            $table->decimal('prix', 10, 2);
+            $table->decimal('total_taxes', 10, 2);
+            $table->decimal('total_rabais', 10, 2);
         });
+
     }
 
     /**
