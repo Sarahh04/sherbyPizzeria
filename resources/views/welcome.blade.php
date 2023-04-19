@@ -45,6 +45,7 @@
                     <h1>Sherby Pizzeria</h1>
                     <p>Amélie Fréchette</p>
                     <p>Claudio Cruz</p>
+                    <p>Charles-Antoine Lavoie</p>
                     <p>Sarah</p>
                 </div>
             </div>
