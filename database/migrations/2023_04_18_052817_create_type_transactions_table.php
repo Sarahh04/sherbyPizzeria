@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('type_transactions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id_type_transation');
+            $table->string('nom');
+            $table->string('description');
         });
     }
 

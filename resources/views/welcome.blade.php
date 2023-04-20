@@ -48,7 +48,6 @@
                     <p>Charles-Antoine Lavoie</p>
                     <p>Sarah</p>
                 </div>
-
             </div>
         </div>
     </body>
