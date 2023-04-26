@@ -16,6 +16,16 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <div class = "mt-4">
+            <x-input-label for="roles" :value="__('Role(s)')" />
+            <select name="roles[]" id="roles" class="block mt-1 w-full" multiple>
+                @foreach ($roles as $role)
+                    <option value="{{ $role->id_role }}">{{ $role->nom }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('roles')" class="mt-2" />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
