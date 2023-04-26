@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             // Vous pouvez ajouter d’autres "seeders" en les séparant par des virgules.
-            roleSeeder::class,
+            RoleSeeder::class,
             modePaiementSeeder::class
 
             ]);
