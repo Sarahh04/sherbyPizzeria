@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            // Vous pouvez ajouter d’autres "seeders" en les séparant par des virgules.
+            roleSeeder::class
+
+            ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
