@@ -11,4 +11,15 @@ class Produit extends Model
     protected $table = 'produits';
     protected $primaryKey = 'id_produit';
     public $timestamps = false;
+
+    protected $fillable = [
+        'nom',
+        'prix',
+        'delais',
+        'quantite',
+        'promo_courante',
+        'description',
+        'id_categorie'
+    ];
 }
+

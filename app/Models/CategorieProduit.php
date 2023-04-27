@@ -11,4 +11,9 @@ class CategorieProduit extends Model
     protected $table = 'categorie_produits';
     protected $primaryKey = 'id_categorie';
     public $timestamps = false;
+
+    protected $fillable = [
+        'nom',
+        'description'
+    ];
 }
