@@ -1,5 +1,16 @@
+.welc_nav {
+    display: flex !important;
+}
+
 .welc_log {
-    color: #464646;
+    filter: invert(19%) sepia(0%) saturate(6067%) hue-rotate(168deg) brightness(100%) contrast(75%);
+    width: 50px;
+    height: 50px;
+}
+
+.welc_log:hover {
+    filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
+
 }
 
 .img-preview-page {
@@ -42,8 +53,7 @@
     filter: hue-rotate(180deg);
 }
 
-
-a:hover {
+main a:hover {
     filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
 }
 
