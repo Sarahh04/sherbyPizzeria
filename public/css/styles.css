@@ -1,3 +1,4 @@
+/* PAGE WELCOME */
 .welc_nav {
     display: flex !important;
 }
@@ -52,12 +53,71 @@
     filter: hue-rotate(180deg);
 }
 
-a:hover {
+/* a:hover {
     filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
-}
+} */
 
 .main-container-center {
     border: 1px solid lightgray;
     box-shadow: 0px 0 6px 1px gray;
     font-size: 10;
+}
+
+/* NAV */
+
+.nav_all{
+    background-color: #464646;
+}
+
+.img_commande{
+    width: 30px;
+    height: 30px;
+}
+.img_menu{
+    width: 30px;
+    height: 30px;
+}
+.img_inventaire{
+    width: 30px;
+    height: 30px;
+}
+.img_employes{
+    width: 30px;
+    height: 30px;
+}
+.img_login{
+    width: 30px;
+    height: 30px;
+}
+
+.nav_btn_user:hover{
+    background-color: #ea0f08;
+    margin-bottom: -10px;
+}
+
+.nav_btn_user:hover img{
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(102%) contrast(102%);
+}
+
+.nav_op:hover{
+    background-color: #ea0f08;
+    margin-bottom: -10px;
+}
+
+.nav_op:hover img{
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(102%) contrast(102%);
+}
+
+.nav_deroule{
+    background-color: #464646;
+    color: black;
+}
+
+.nav_deroule:hover{
+    background-color: #ea0f08;
+    color: white;
+}
+
+.nav_all_deroule{
+    background-color: #464646;
 }
