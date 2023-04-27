@@ -29,7 +29,7 @@
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class = "welc_log"><i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i></a>
+                        <a href="{{ route('login') }}" class = "text-gray-700 dark:text-gray-500"><i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i></a>
 
 
                         {{-- a cacher lorsquon ne fera plus de fresh de la bd --}}
