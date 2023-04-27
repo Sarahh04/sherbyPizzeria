@@ -416,13 +416,13 @@
 
             <div class="main-container-preview flex flex-row items-center">
                 <div class="flex flex-row fit-content">
-                    <img class="img-preview-page" src="{{ asset('img/3595458.png') }}" alt="">
+                    <img class="img-preview-page" src="{{ asset('img/logoSherbyPizzeria.png') }}" alt="">
                     <h1 class="title-preview font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">Sherby
                         Pizza</h1>
                 </div>
                 <div class="login-container-main">
                     <p class="login-container"><a href="{{ route('login') }}"
-                            class="text-gray-700 dark:text-gray-500"><img src="{{ asset('img/user-solid.svg') }}"
+                            class="text-gray-700 dark:text-gray-500"><img src="{{ asset('img/login.svg') }}"
                                 alt=""><span class="login-text">Connectez-vous</span></a>
                     </p>
                     <p class="login-container"><a href="{{ route('login') }}"
