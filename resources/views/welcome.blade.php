@@ -25,11 +25,11 @@
     <body class="antialiased">
         <div class="relative flex justify-center min-h-screen py-4 bg-gray-100 items-top sm:items-center sm:pt-0">
             @if (Route::has('login'))
-                <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block">
+                <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block welc_nav">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class = "text-gray-700 dark:text-gray-500"><i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i></a>
+                        <a href="{{ route('login') }}" class = "welc_log"><img src="{{ asset('img/login.svg') }}" alt="login"></a>
 
 
                         {{-- a cacher lorsquon ne fera plus de fresh de la bd --}}
