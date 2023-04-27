@@ -1,0 +1,53 @@
+.welc_log {
+    color: #464646;
+}
+
+.img-preview-page {
+    width: 180px !important;
+    height: auto;
+}
+
+.title-preview {
+    font-size: 64px;
+}
+
+.main-container-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fit-content {
+    width: fit-content;
+}
+
+.login-text {
+    font-size: 18px;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.login-container {
+    display: flex;
+    filter: hue-rotate(30deg);
+}
+
+.login-container>a>img {
+    width: 50px;
+    height: 50px;
+}
+
+.login-container>a>img:hover {
+    filter: hue-rotate(180deg);
+}
+
+
+a:hover {
+    filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
+}
+
+.main-container-center {
+    border: 1px solid lightgray;
+    box-shadow: 0px 0 6px 1px gray;
+}
