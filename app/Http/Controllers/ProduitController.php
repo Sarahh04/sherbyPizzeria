@@ -12,9 +12,15 @@ class ProduitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->routeIs('promotions'))
+        {
+            return view('promotion/promotions', [
+                // D’autres paramètres peuvent être passés à la vue en les séparant par une virgule.
+                //'produits' => Produit::All()
+            ]);
+        }
     }
 
     /**

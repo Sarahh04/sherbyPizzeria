@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center pr-48">
+                <div class="shrink-0 flex items-center pr-32">
                     <a href="{{ route('dashboard') }}">
                         <img src="{{ asset('img/logoSherbyPizzeria.png') }}" alt="logoPizza" class="block h-9 w-auto fill-current">
                     </a>
@@ -21,9 +21,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         <img src="{{ asset('img/inventaire.svg') }}" alt="nav_inventaire" class = "img_inventaire">
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        <img src="{{ asset('img/employes.svg') }}" alt="nav_employes" class = "img_employes">
-                    </x-nav-link>
+                    <?php
+                    /* $user = Auth::check()
+                    if ($user->roles()->where('role', 'like', 'Administrateur')->count() > 0){
+                     */?>
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            <img src="{{ asset('img/employes.svg') }}" alt="nav_employes" class = "img_employes">
+                        </x-nav-link>
+                        <x-nav-link :href="route('promotions')" :active="request()->routeIs('promotions')">
+                            <img src="{{ asset('img/promo.svg') }}" alt="nav_promo" class = "img_promo">
+                        </x-nav-link>
+                    <?php
+                    /* } */
+                    ?>
                 </div>
             </div>
 
