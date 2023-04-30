@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProduitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::controller(ProduitController::class)->group(function () {
+    Route::get('/gestion/produits', 'store')->name('gestionProduits');
+    Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
+});
+
+require __DIR__ . '/auth.php';

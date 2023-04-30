@@ -14,7 +14,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        //
+        return view('gestionInventaire');
     }
 
     /**
@@ -35,7 +35,7 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('gestionMenu');
     }
 
     /**

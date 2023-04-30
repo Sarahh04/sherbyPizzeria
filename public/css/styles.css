@@ -55,6 +55,7 @@
 
 a:hover {
     filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
+
 }
 
 .main-container-center {
@@ -62,3 +63,122 @@ a:hover {
     box-shadow: 0px 0 6px 1px gray;
     font-size: 10;
 }
+
+table.GeneratedTable {
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: lightgray;
+    border-style: solid;
+    color: #000000;
+    height: 40%;
+}
+
+table.GeneratedTable td,
+table.GeneratedTable th {
+    border-width: 2px;
+    border-color: lightgray;
+    border-style: solid;
+    padding: 3px;
+    width: 33%;
+    text-align: center;
+}
+
+table.GeneratedTable thead {
+    background-color: #ff0000;
+}
+
+.main-container-menu {
+    width: 100%;
+    display: flex;
+}
+
+.main-container-menu>section {}
+
+.h-gestion-prod {
+    width: 100%;
+    height: 15vh;
+    background-color: gray;
+
+}
+
+body {
+    margin: 0 !important;
+}
+
+.navigation-menu>ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.navigation-menu>ul>li {
+    background-color: #ff0000;
+    list-style: none;
+    padding: 50px;
+    border: 1px solid black;
+}
+
+.product-menu-container {
+    display: flex;
+    flex-basis: 60%;
+    height: 60vh;
+    margin: 35px;
+    overflow: scroll;
+}
+
+.product-form-container {
+    flex-basis: 40%;
+    margin: 35px;
+}
+
+
+
+.container-button-modif {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-button-modif>button {
+    width: 200px;
+    height: 80px;
+    background-color: #440801;
+    color: #ffffff;
+}
+
+.nom-prix-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 20px 0px;
+}
+
+.date-in-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 20px 0px;
+}
+
+.description-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.form-hidden {
+    display: none;
+}
+
+.data-inv {
+    width: 25% !important;
+    height: 80px;
+}
+
+.submit-container {}
