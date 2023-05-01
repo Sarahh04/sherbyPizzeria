@@ -427,3 +427,7 @@ input[value="Search inventory"] {
     align-items: center;
     justify-content: center;
 }
+
+img{
+    cursor:pointer;
+}

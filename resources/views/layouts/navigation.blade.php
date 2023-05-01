@@ -25,7 +25,7 @@
                     /* $user = Auth::check()
                     if ($user->roles()->where('role', 'like', 'Administrateur')->count() > 0){
                      */?>
-                        <x-nav-link :href="route('employes')" :active="request()->routeIs('employes')">
+                        <x-nav-link :href="route('indexUser')" :active="request()->routeIs('indexUser')">
                             <img src="{{ asset('img/employes.svg') }}" alt="nav_employes" class = "img_employes">
                         </x-nav-link>
                         <x-nav-link :href="route('promotions')" :active="request()->routeIs('promotions')">

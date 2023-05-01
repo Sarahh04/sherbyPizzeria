@@ -68,16 +68,13 @@
 
                     </form>
                     <div class="flex flex-row justify-center gap-4 mt-5" >
-                        <button type="submit" name="add" value="Ajouter" >
-                            <div class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
+                        <button  class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
                                 Modifier
-                            </div>
+
                         </button>
 
-                        <button type="submit" name="back" value="Retour" >
-                            <div class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
+                        <button class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
                                 Retour
-                            </div>
                         </button>
                     </div>
 
