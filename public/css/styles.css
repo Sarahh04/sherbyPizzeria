@@ -127,7 +127,7 @@ body {
     flex-basis: 60%;
     height: 60vh;
     margin: 35px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .product-form-container {
@@ -182,3 +182,53 @@ body {
 }
 
 .submit-container {}
+
+.search-bar {
+    width: 30%;
+    border-radius: 50px;
+    height: 50px;
+    font-size: 22px;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.form-ajout-int {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.form-ajout-int>div {
+    width: fit-content;
+
+}
+
+.add-int {
+    color: white;
+    background-color: #91491A;
+    width: 100%;
+    height: 30px;
+}
+
+input[value="Search inventory"] {
+    color: white;
+    background-color: #91491A;
+
+    height: 30px;
+}
+
+.product-form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
