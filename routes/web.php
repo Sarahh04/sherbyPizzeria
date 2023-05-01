@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DelaiCeuilletteController;
 use App\Http\Controllers\ProduitController;
-
+use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,5 +53,13 @@ Route::controller(DelaiCeuilletteController::class)->group(function () {
 });
 
 
+
+
+Route::controller(ClientController::class)->group(function() {
+    Route::get('/listeClient', 'index')->name('consulterClient');
+    Route::get('/modifier/client', 'edit')->name('modifierClient');
+    Route::get('/ajouter/client', 'create')->name('ajouterClient');
+    Route::get('/client', 'show')->name('detailClient');
+    });
 
 require __DIR__ . '/auth.php';
