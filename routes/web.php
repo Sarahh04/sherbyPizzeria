@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\DelaiCeuilletteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,9 @@ Route::controller(ProduitController::class)->group(function() {
     Route::get('/promotions', 'index')->name('promotions');
    });
 
+Route::controller(DelaiCeuilletteController::class)->group(function() {
+Route::get('/delais', 'index')->name('delais');
+Route::get('/modifier/delais', 'edit')->name('modifierDelais');
+Route::get('/definir/delais', 'create')->name('definirDelais');
+});
 require __DIR__.'/auth.php';
