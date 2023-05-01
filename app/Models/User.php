@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Http\Controllers\Registered;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -30,6 +31,12 @@ class User extends Authenticatable
         'specimen_cheque',
     ];
 
+    public function role(): BelongsTo
+    {
+        // Il faut préciser la classe (le modèle) avec laquelle la relation s’établit.
+        return $this->belongsTo(Role::class, 'id_role');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -48,9 +55,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'roles_users', 'id_user', 'id_role');
-    }
 }

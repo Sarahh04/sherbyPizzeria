@@ -25,8 +25,16 @@
                 <input type="text" name = "poste" class = "rounded-md" value = "{{ $user->poste }}"></p>
             <p class="font-normal"><span class="font-semibold span_embauche"> Date d'embauche :</span>
                 <input type="text" name = "embauche" class = "rounded-md" value = "{{ $user->date_embauche }}"></p>
-            <p class="font-normal"><span class="font-semibold mr-40">État :</span>
-            {{-- {{ $user->adresse }} --}}</p>
+
+            <p class="font-normal"><span class="font-semibold span_role">Role :</span>
+            <select name="role" id="role" class = "rounded-md">
+                <option value="{{ $user->id_role }}">{{ $user->role->nom }}</option>
+                @foreach ($roles as $role)
+                    @if ($role->id_role != $user->id_role)
+                        <option value="{{ $role->id_role }}">{{ $role->nom }}</option>
+                    @endif
+                @endforeach
+            </select></p>
             <p class="font-normal"><span class="font-semibold mr-12">Spécimen de chèque :</span>
                 <input type="text" name = "specimen" class = "rounded-md" value = "{{ $user->specimen_cheque }}"></p>
         </div>
