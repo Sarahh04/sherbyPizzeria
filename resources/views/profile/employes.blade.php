@@ -1,36 +1,43 @@
 <x-app-layout>
     <div class = "flex flex-row w-full justify-center mt-24">
         <h1 class="font-bold text-3xl underline decoration-double ml-52">
-            {{ __('Gestion des promotions') }}
+            {{ __('Gestion des employés') }}
         </h1>
-        <a href="{{ route('newPromotion') }}" >
-            <img type="image" src="{{ asset('img/ajouterPromo.svg') }}" alt="Ajouter une promotion" class = "img_ajoutPromo" />
+        <a href="{{ route('newEmploye') }}">
+            <img type="image" src="{{ asset('img/user_plus.svg') }}" alt="Ajouter une promotion" class = "img_addUser" />
         </a>
     </div>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-                        <div class="flex flex-row justify-center mt-8 mb-20">
-                            <label for="filtre_promo" class = "mr-16 mt-2">Filtré : </label>
-                            <input type="text" name = "filtre_promo_nom" class = "mr-16 rounded w-1/5" placeholder="Nom de la promo">
-                            <select name="filtre_promo_en_cours" class="mr-16 rounded w-1/5">
-                                <option value="temp">promo 1</option>
-                                <option value="temp1">promo 2</option>
-                            </select>
-                            <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver une promotion" class = " mt-2 img_filtrePromo" />
+                <div class="flex flex-row justify-center mt-8 mb-20">
+                    <label for="filtre_emp" class = "mr-8 mt-2">Filtré : </label>
+                    <input type="text" name = "filtre_emp_nom" class = "mr-8 rounded w-1/5" placeholder="Nom">
+                    <input type="text" name = "filtre_emp_prenom" class = "mr-8 rounded w-1/5" placeholder="Prenom">
+                    <select name="filtre_emp_actif" class="mr-8 rounded w-1/5">
+                        <option value="actif">Actif</option>
+                        <option value="noActif">Non actif</option>
+                    </select>
+                    <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
+                </div>
+
+                <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
+
+                @foreach ($users as $user)
+                    <a  href="{{ route('employe', ['id' => $user->id]) }}">
+                        <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
+                            <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
+                            <div class=" mr-48">
+                                <p>Nom : {{ $user->name }}</p>
+                                <p>Courriel : {{ $user->email }}</p>
+                                <p>Téléphone : {{ $user->telephone }}</p>
+                            </div>
+                            <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
+                            <img type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                         </div>
-
-                        <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
-
-
-                        <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-24 py-6">
-                            <img type="image" src="{{ asset('img/image.svg') }}" alt="trouver une promotion" class = "mr-28 img_imgPromo" />
-                            <p class="mt-8 mr-28">Nom de la promotion</p>
-                            <p class="mt-8 mr-28">Description de la promotion</p>
-                            <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit promotion" class = "mt-8 mr-6 img_editPromo">
-                            <img type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver promotion" class = "mt-6 img_desactivePromo">
-                        </div>
+                    </a>
+                @endforeach
                         {{--  @if (Session::has('succes'))
                              <div role="alert">
                             <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">Succès</div>

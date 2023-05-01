@@ -17,8 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('telephone');
+            $table->string('adresse');
+            $table->date('naissance');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('poste');
+            $table->date('date_embauche');
+            $table->string('specimen_cheque', 255)->nullable();
+            $table->boolean('actif')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

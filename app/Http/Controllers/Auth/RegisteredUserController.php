@@ -24,7 +24,6 @@ class RegisteredUserController extends Controller
         return view('auth/register', [
             'roles' => Role::All()
         ]);
-
     }
 
     /**
@@ -37,15 +36,29 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'telephone' =>['required', 'string', 'phone', 'max:255',],
+            'adresse' => ['required', 'string', 'max:255'],
+            'naissance' => ['required', 'string', 'date'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'poste' => ['required', 'string', 'max:255'],
+            'date_embauche' => ['required', 'string', 'date'],
+            'specimen_cheque' => ['string', 'max:255'],
             'roles' => ['required', 'array', 'min:1'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'telephone' => $request->telephone,
+            'adresse' => $request->adresse,
+            'naissance' => $request->naissance,
             'password' => Hash::make($request->password),
+            'poste' => $request->poste,
+            'date_embauche' => $request->embauche,
+            'specimen_cheque' => $request->specimen,
         ]);
+
+        $user->roles()->attach($request->roles);
 
         event(new Registered($user));
 

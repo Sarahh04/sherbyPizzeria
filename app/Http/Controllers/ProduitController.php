@@ -28,9 +28,14 @@ class ProduitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if ($request->routeIs('newPromotion'))
+        {
+            return view('promotion/newPromotion', [
+
+            ]);
+        }
     }
 
     /**
@@ -41,7 +46,7 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

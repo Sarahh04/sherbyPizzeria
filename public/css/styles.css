@@ -164,3 +164,84 @@
     height: 40px;
     filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
 }
+
+/* PAGE AJOUT PRODUIT */
+
+.img_plusProd{
+    width: 15px;
+    height: 15px;
+}
+
+.img_moinProd{
+    width: 15px;
+    height: 15px;
+}
+
+.btn_sup{
+    margin-left: 69%;
+}
+
+#addPromo_btnEnv{
+    margin-top: 4%;
+    margin-left: 70%;
+    margin-bottom: 4%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 30px;
+    background-color: #ea0f08;
+    color: white;
+}
+
+/* PAGE GESTION EMPLOYES */
+
+.img_addUser
+{
+    width: 60px;
+    height: 60px;
+    filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
+    margin-left: 240px;
+    margin-top: 40px;
+}
+
+/* PAGE ADD EMPLOYE */
+
+#addEmp_btnEnv{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 30px;
+    background-color: #ea0f08;
+    color: white;
+}
+
+/* PAGE EMPLOYE */
+
+.img_imgEmploye{
+    width: 130px;
+    height: 130px;
+}
+
+.span_tel{
+    margin-right: 42px;
+}
+
+.span_naissance{
+    margin-right: 72px;
+}
+
+.span_embauche{
+    margin-right: 74px;
+}
+
+/* PAGE MODIFICATION EMPLOYE */
+
+#btnModif{
+    margin-left: 45%;
+    margin-bottom: 4%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 30px;
+    background-color: #ea0f08;
+    color: white;
+}
