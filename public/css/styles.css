@@ -1,3 +1,4 @@
+/* PAGE WELCOME */
 .welc_nav {
     display: flex !important;
 }
@@ -58,11 +59,198 @@ a:hover {
 
 }
 
+
 .main-container-center {
     border: 1px solid lightgray;
     box-shadow: 0px 0 6px 1px gray;
     font-size: 10;
 }
+
+/* NAV */
+
+.nav_all {
+    background-color: #464646;
+}
+
+.img_commande {
+    width: 30px;
+    height: 30px;
+}
+
+.img_menu {
+    width: 30px;
+    height: 30px;
+}
+
+.img_inventaire {
+    width: 30px;
+    height: 30px;
+}
+
+.img_employes {
+    width: 30px;
+    height: 30px;
+}
+
+.img_login {
+    width: 30px;
+    height: 30px;
+}
+
+.img_promo {
+    width: 30px;
+    height: 30px;
+}
+
+.nav_btn_user:hover {
+    background-color: #ea0f08;
+    margin-bottom: -10px;
+}
+
+.nav_btn_user:hover img {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(102%) contrast(102%);
+}
+
+.nav_op:hover {
+    background-color: #ea0f08;
+    margin-bottom: -10px;
+}
+
+.nav_op:hover img {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(102%) contrast(102%);
+}
+
+.nav_deroule {
+    background-color: #464646;
+    color: black;
+}
+
+.nav_deroule:hover {
+    background-color: #ea0f08;
+    color: white;
+}
+
+.nav_all_deroule {
+    background-color: #464646;
+}
+
+/* PAGE CONNEXION */
+
+.btn_connexion {
+    background-color: #ea0f08 !important;
+}
+
+/* PAGE GESTION DE PROMO */
+.img_ajoutPromo {
+    width: 60px;
+    height: 60px;
+    filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
+    margin-left: 240px;
+    margin-top: 40px;
+}
+
+.img_filtrePromo {
+    width: 30px;
+    height: 30px;
+}
+
+.img_imgPromo {
+    width: 80px;
+    height: 80px;
+}
+
+.img_editPromo {
+    width: 30px;
+    height: 30px;
+    filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
+}
+
+.img_desactivePromo {
+    width: 40px;
+    height: 40px;
+    filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
+}
+
+/* PAGE AJOUT PRODUIT */
+
+.img_plusProd {
+    width: 15px;
+    height: 15px;
+}
+
+.img_moinProd {
+    width: 15px;
+    height: 15px;
+}
+
+.btn_sup {
+    margin-left: 69%;
+}
+
+#addPromo_btnEnv {
+    margin-top: 4%;
+    margin-left: 70%;
+    margin-bottom: 4%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 30px;
+    background-color: #ea0f08;
+    color: white;
+}
+
+/* PAGE GESTION EMPLOYES */
+
+.img_addUser {
+    width: 60px;
+    height: 60px;
+    filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
+    margin-left: 240px;
+    margin-top: 40px;
+}
+
+/* PAGE ADD EMPLOYE */
+
+#addEmp_btnEnv {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 30px;
+    background-color: #ea0f08;
+    color: white;
+}
+
+/* PAGE EMPLOYE */
+
+.img_imgEmploye {
+    width: 130px;
+    height: 130px;
+}
+
+.span_tel {
+    margin-right: 42px;
+}
+
+.span_naissance {
+    margin-right: 72px;
+}
+
+.span_embauche {
+    margin-right: 74px;
+}
+
+/* PAGE MODIFICATION EMPLOYE */
+
+#btnModif {
+    margin-left: 45%;
+    margin-bottom: 4%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 30px;
+    background-color: #ea0f08;
+    color: white;
+}
+
 
 table.GeneratedTable {
     width: 100%;
