@@ -33,6 +33,18 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                <!--Modal de suppression -->
+                <div id="modal" class=" hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
+                    <h1 class="text-2xl font-semibold">Confirmer la suppression </h1>
+                    <div class="py-5 border-t border-b border-gray-300">
+                        <p>Êtes vous sûr de vouloir supprimer le compte?</p>
+                    </div>
+                    <div class="flex flex row gap-4 justify-end">
+                        <button id="delete" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">Supprimer</button>
+                        <button id="close" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">Fermer</button>
+                    </div>
+                </div>
+
             </main>
         </div>
     </body>
