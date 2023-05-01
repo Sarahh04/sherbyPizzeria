@@ -23,6 +23,10 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->routeIs('indexUser'))
+        {
+            return view('/indexUser');
+        }
         if ($request->routeIs('employes'))
         {
             return view('profile/employes', [
