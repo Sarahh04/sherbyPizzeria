@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
 Route::controller(ProduitController::class)->group(function () {
     Route::get('/promotions', 'index')->name('promotions');
     Route::get('/newPromotion', 'create')->name('newPromotion');
+    Route::get('/gestion/produits', 'store')->name('gestionProduits');
+    Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
 });
 
 Route::controller(ProfileController::class)->group(function () {
@@ -50,9 +52,6 @@ Route::controller(DelaiCeuilletteController::class)->group(function () {
     Route::get('/definir/delais', 'create')->name('definirDelais');
 });
 
-Route::controller(ProduitController::class)->group(function () {
-    Route::get('/gestion/produits', 'store')->name('gestionProduits');
-    Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
-});
+
 
 require __DIR__ . '/auth.php';
