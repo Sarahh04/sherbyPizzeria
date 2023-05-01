@@ -164,3 +164,10 @@
     height: 40px;
     filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
 }
+
+/*css Sarah*/
+
+.labelClient{
+    width: 100px;
+    text-align: right;
+}
