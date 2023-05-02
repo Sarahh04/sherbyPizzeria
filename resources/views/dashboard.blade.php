@@ -4,14 +4,40 @@
             Bienvenu {{ Auth::check() ? Auth::user()->name : "Utilisateur anonyme" }}
         </h2>
     </x-slot>
+    <div>
+        <div>
+            <a href="{{ route('dashboard') }}"><p>
+                <img src="{{ asset('img/commande.svg') }}" alt="acc_commande" class = "img_commande">Gestion de commande</p>
+            </a>
+        </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+        <div>
+            <a href="{{ route('dashboard') }}"><p>
+                <img src="{{ asset('img/menu.png') }}" alt="acc_menu" class = "img_menu">Gestion du menu</p>
+            </a>
+        </div>
+
+        <div>
+            <a href="{{ route('dashboard') }}"><p>
+                <img src="{{ asset('img/inventaire.svg') }}" alt="acc_inventaire" class = "img_inventaire">Gestion de l'inventaire</p>
+            </a>
+        </div>
+
+        <?php
+        /* $user = Auth::check()
+        if ($user->roles()->where('role', 'like', 'Administrateur')->count() > 0){
+        */?>
+
+        <div>
+            <a href="{{ route('indexUser') }}"><p>
+                <img src="{{ asset('img/employes.svg') }}" alt="acc_employes" class = "img_employes">Gestion des utilisateurs</p>
+            </a>
+        </div>
+
+        <div>
+            <a href="{{ route('promotions') }}"><p>
+                <img src="{{ asset('img/promo.svg') }}" alt="acc_promo" class = "img_promo">Gestion des promotions</p>
+            </a>
         </div>
     </div>
 </x-app-layout>

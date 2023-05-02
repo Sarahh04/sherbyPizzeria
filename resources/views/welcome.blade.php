@@ -401,14 +401,7 @@
                         class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-500"><i
-                            class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i></a>
-
-
-                    {{-- a cacher lorsquon ne fera plus de fresh de la bd --}}
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="ml-4 text-sm text-gray-700 underline dark:text-gray-500">Register</a>
-                    @endif
+                        class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i></a>
                 @endauth
             </div>
         @endif
