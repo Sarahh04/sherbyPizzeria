@@ -26,10 +26,10 @@
             {{ $user->poste }}</p>
         <p class="font-normal"><span class="font-semibold span_embauche"> Date d'embauche :</span>
             {{ $user->date_embauche }}</p>
-        <p class="font-normal"><span class="font-semibold mr-40">État :</span>
-        {{-- {{ $user->adresse }} --}}</p>
+        <p class="font-normal"><span class="font-semibold span_role">Role :</span>
+            {{ $user->role->nom }}</p>
         <p class="font-normal"><span class="font-semibold mr-12">Spécimen de chèque :</span>
-        {{ $user->specimen_cheque }}</p>
+            {{ $user->specimen_cheque }}</p>
     </div>
 
     <div class="ml-96 mb-2 p-6">

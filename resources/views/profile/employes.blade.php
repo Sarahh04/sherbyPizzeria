@@ -27,13 +27,17 @@
                 @foreach ($users as $user)
                     <a  href="{{ route('employe', ['id' => $user->id]) }}">
                         <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
-                            <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
+                            <div class = "flex flex-row">
+                                <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
                             <div class=" mr-48">
                                 <p>Nom : {{ $user->name }}</p>
                                 <p>Courriel : {{ $user->email }}</p>
                                 <p>Téléphone : {{ $user->telephone }}</p>
                             </div>
-                            <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
+                        </div>
+                            <a href="{{ route('modificationEmploye', ['id' => $user->id]) }}">
+                                <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
+                            </a>
                             <img type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                         </div>
                     </a>
