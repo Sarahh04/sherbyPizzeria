@@ -68,4 +68,3 @@
     </article>
 
 </x-app-layout>
-<script src="{{ asset('js/script.js') }}"></script>
