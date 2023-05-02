@@ -68,31 +68,31 @@
 
 /* PAGE ACCEUIL */
 
-.acc_view{
+.acc_view {
     margin-left: 35%;
 }
 
-.img_accCommande{
+.img_accCommande {
     width: 60px;
     height: 60px;
 }
 
-.img_accMenu{
+.img_accMenu {
     width: 60px;
     height: 60px;
 }
 
-.img_accInventaire{
+.img_accInventaire {
     width: 60px;
     height: 60px;
 }
 
-.img_accEmployes{
+.img_accEmployes {
     width: 60px;
     height: 60px;
 }
 
-.img_accPromo{
+.img_accPromo {
     width: 60px;
     height: 60px;
 }
@@ -469,6 +469,21 @@ img {
     cursor: pointer;
 }
 
-.inputWitdh{
-    width: 3rem!important;
+.inputWitdh {
+    width: 3rem !important;
+}
+
+.logo img,
+.logo a {
+    width: 50px !important;
+    height: auto !important;
+    display: block;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
