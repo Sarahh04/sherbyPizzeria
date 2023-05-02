@@ -59,7 +59,6 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
     }
 
     /**
@@ -82,9 +81,10 @@ class ProduitController extends Controller
      */
     public function update(Request $request, Produit $produit)
     {
-        //
+        if ($request->routeIs('search')) {
+            return Produit::find($_REQUEST['nom']);
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      *

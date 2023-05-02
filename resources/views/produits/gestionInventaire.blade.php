@@ -2,9 +2,9 @@
 <x-app-layout>
     <article class="search-main">
         <section class="search-container">
-            <form action="" class="search-form">
+            <form action="" method="POST" class="search-form">
                 <input type="text" class="search-bar">
-                <input type="submit" value="Search inventory">
+                <input type="submit" value="Search inventory" class="search-button">
             </form>
         </section>
     </article>
