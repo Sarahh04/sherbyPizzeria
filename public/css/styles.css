@@ -173,7 +173,7 @@
 
 /*css Sarah*/
 
-.labelClient{
+.labelClient {
     width: 100px;
     text-align: right;
 }
@@ -246,7 +246,7 @@
     margin-right: 74px;
 }
 
-.span_role{
+.span_role {
     margin-right: 170px;
 }
 
@@ -262,7 +262,7 @@
     color: white;
 }
 
-
+/* Css Hugo*/
 table.GeneratedTable {
     width: 100%;
     background-color: #ffffff;
@@ -432,7 +432,8 @@ input[value="Search inventory"] {
     justify-content: center;
 }
 
-img{
-    cursor:pointer;
-}
+/* Fin Css Hugo */
 
+img {
+    cursor: pointer;
+}
