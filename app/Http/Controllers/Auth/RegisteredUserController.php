@@ -37,13 +37,13 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'telephone' =>['required', 'string', 'phone', 'max:255',],
-            'adresse' => ['required', 'string', 'max:255'],
-            'naissance' => ['required', 'string', 'date'],
+            'adresse' => ['string', 'max:255'],
+            'naissance' => ['string', 'date'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'poste' => ['required', 'string', 'max:255'],
-            'date_embauche' => ['required', 'string', 'date'],
+            'poste' => ['string', 'max:255'],
+            'date_embauche' => ['string', 'date'],
             'specimen_cheque' => ['string', 'max:255'],
-            'roles' => ['required', 'array', 'min:1'],
+            'role' => ['required'],
         ]);
 
         $user = User::create([
@@ -56,6 +56,7 @@ class RegisteredUserController extends Controller
             'poste' => $request->poste,
             'date_embauche' => $request->embauche,
             'specimen_cheque' => $request->specimen,
+            'role' => $request->role,
         ]);
 
         $user->roles()->attach($request->roles);
