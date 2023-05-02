@@ -32,7 +32,7 @@
 
                         <tr>
                             <td class="data-inv">{{ $item->nom }}</td>
-                            <td class="data-inv">Cell</td>
+                            <td class="data-inv">{{ $item->quantite }}</td>
                             <td class="data-inv">Cell</td>
                             <td class="data-inv">Cell</td>
                         </tr>

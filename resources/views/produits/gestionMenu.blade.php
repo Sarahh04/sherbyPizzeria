@@ -66,5 +66,6 @@
             </div>
         </section>
     </article>
+
 </x-app-layout>
-<script src="{{ asset('js/scriptHugo.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
