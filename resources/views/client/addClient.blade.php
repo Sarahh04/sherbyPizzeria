@@ -12,7 +12,7 @@
                     <form id="form" method="post">
                         @csrf
                         <div class="mb-4 flex flex-row ">
-                            <label class="block text-gray-700 text-sm mx-1 labelClient font-bold mb-2" for="nom">
+                            <label class="block text-gray-700 text-sm mx-1 labelClient font-bold mb-2 " for="nom">
                             Nom:
                             </label>
                             <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="nom">

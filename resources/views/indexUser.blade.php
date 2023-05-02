@@ -14,7 +14,7 @@
                     </button>
 
                 </a>
-                <a href="{{ route('consulterClient')}}">
+                <a href="{{ route('employes')}}">
                     <button class="py-6 px-36 mb-24 text-2xl text-white bg-rouge rounded border border-solid border-black">
                             Voir employés
                     </button>
