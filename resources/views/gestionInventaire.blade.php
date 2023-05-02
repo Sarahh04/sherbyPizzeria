@@ -21,12 +21,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="data-inv">Cell</td>
-                        <td class="data-inv">Cell</td>
-                        <td class="data-inv">Cell</td>
-                        <td class="data-inv">Cell</td>
-                    </tr>
+                    @foreach ($produits as $item)
+                        <tr>
+                            <td>{{ $item->nom }}</td>
+                            <td>{{ $item->prix }}</td>
+                            <td><a href="produit/modif/{{ $item->id_produit }}">Modifier</a>
+                                <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="data-inv">{{ $item->nom }}</td>
+                            <td class="data-inv">Cell</td>
+                            <td class="data-inv">Cell</td>
+                            <td class="data-inv">Cell</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </section>
