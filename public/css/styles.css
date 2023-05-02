@@ -54,10 +54,10 @@
     filter: hue-rotate(180deg);
 }
 
-a:hover {
+/*a:hover {
     filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
 
-}
+}*/
 
 
 .main-container-center {
@@ -204,7 +204,7 @@ a:hover {
 
 /*css Sarah*/
 
-.labelClient{
+.labelClient {
     width: 100px;
     text-align: right;
 }
@@ -277,7 +277,7 @@ a:hover {
     margin-right: 74px;
 }
 
-.span_role{
+.span_role {
     margin-right: 170px;
 }
 
@@ -293,7 +293,7 @@ a:hover {
     color: white;
 }
 
-
+/* Css Hugo*/
 table.GeneratedTable {
     width: 100%;
     background-color: #ffffff;
@@ -463,7 +463,8 @@ input[value="Search inventory"] {
     justify-content: center;
 }
 
-img{
-    cursor:pointer;
-}
+/* Fin Css Hugo */
 
+img {
+    cursor: pointer;
+}
