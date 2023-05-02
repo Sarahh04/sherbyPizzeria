@@ -66,6 +66,37 @@
     font-size: 10;
 }
 
+/* PAGE ACCEUIL */
+
+.acc_view{
+    margin-left: 35%;
+}
+
+.img_accCommande{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accMenu{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accInventaire{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accEmployes{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accPromo{
+    width: 60px;
+    height: 60px;
+}
+
 /* NAV */
 
 .nav_all {
@@ -436,4 +467,8 @@ input[value="Search inventory"] {
 
 img {
     cursor: pointer;
+}
+
+.inputWitdh{
+    width: 3rem!important;
 }
