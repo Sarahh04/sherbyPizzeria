@@ -1,17 +1,51 @@
 
-let openButton = document.getElementById('open');
+let openButton = document.querySelectorAll('#open');
 let modal = document.getElementById('modal');
-let closeButton = document.getElementById('close');
+let closeButton = document.querySelectorAll('#close');
 
-// show the overlay and the dialog
-openButton.addEventListener('click', function () {
-    modal.classList.remove('hidden');
+openButton.forEach(element => {
+    element.addEventListener('click', function () {
+        modal.classList.remove('hidden');
+    });
 });
 
 // hide the overlay and the dialog
-closeButton.addEventListener('click', function () {
-    modal.classList.add('hidden');
+closeButton.forEach(element => {
+    element.addEventListener('click', function () {
+        modal.classList.add('hidden');
+    });
 });
+
+//////////////// Fetch inventory search bar //////////////////////
+
+
+let search = document.querySelector(".search-button");
+
+
+search.addEventListener("click", fetchSearch);
+
+
+
+async function fetchSearch(e) {
+e.preventDefault();
+console.log(e.target.previousElementSibling);
+let response = await fetch("/gestion/inventaire/"+e.target.previousElementSibling.value, {
+  method: "post",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body:
+    "name="+e.target.previousElementSibling.value+"",
+});
+
+if (response.status === 200) {
+    console.log('test')
+}
+ else if (response.status === 400) {
+  alert("failed attempt");
+}
+}
+
 
 
 let switchBtn = document.querySelector('.container-button-modif>button');
@@ -25,3 +59,5 @@ let buttonMenu = document.querySelector('.container-button-modif')
 formMenu.classList.toggle('form-hidden');
 buttonMenu.classList.toggle('form-hidden');
 }
+
+
