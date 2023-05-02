@@ -82,7 +82,8 @@ class ProduitController extends Controller
     public function update(Request $request, Produit $produit)
     {
         if ($request->routeIs('search')) {
-            return Produit::find($_REQUEST['nom']);
+            $produit = Produit::find($request->nom);
+            return response()->json($produit);
         }
     }
     /**
