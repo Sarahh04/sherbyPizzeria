@@ -54,10 +54,10 @@
     filter: hue-rotate(180deg);
 }
 
-a:hover {
+/*a:hover {
     filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
 
-}
+}*/
 
 
 .main-container-center {
