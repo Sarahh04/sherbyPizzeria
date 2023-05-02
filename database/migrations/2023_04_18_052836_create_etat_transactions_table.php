@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('etat_transactions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id_etat_transaction');
+            $table->string('nom');
+            $table->string('description');
         });
     }
 

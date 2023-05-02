@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class = "flex flex-row w-full justify-center mt-24">
-        <h1 class="font-bold text-3xl underline decoration-double ml-52">
+        <h1 class="font-bold text-3xl underline ml-52">
             {{ __('Gestion des employés') }}
         </h1>
         <a href="{{ route('newEmploye') }}">
@@ -15,10 +15,7 @@
                     <label for="filtre_emp" class = "mr-8 mt-2">Filtré : </label>
                     <input type="text" name = "filtre_emp_nom" class = "mr-8 rounded w-1/5" placeholder="Nom">
                     <input type="text" name = "filtre_emp_prenom" class = "mr-8 rounded w-1/5" placeholder="Prenom">
-                    <select name="filtre_emp_actif" class="mr-8 rounded w-1/5">
-                        <option value="actif">Actif</option>
-                        <option value="noActif">Non actif</option>
-                    </select>
+                    <input type="text" name = "filtre_emp_email" class = "mr-8 rounded w-1/5" placeholder="Courriel">
                     <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
                 </div>
 
@@ -27,13 +24,17 @@
                 @foreach ($users as $user)
                     <a  href="{{ route('employe', ['id' => $user->id]) }}">
                         <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
-                            <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
+                            <div class = "flex flex-row">
+                                <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
                             <div class=" mr-48">
                                 <p>Nom : {{ $user->name }}</p>
                                 <p>Courriel : {{ $user->email }}</p>
                                 <p>Téléphone : {{ $user->telephone }}</p>
                             </div>
-                            <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
+                        </div>
+                            <a href="{{ route('modificationEmploye', ['id' => $user->id]) }}">
+                                <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
+                            </a>
                             <img type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                         </div>
                     </a>

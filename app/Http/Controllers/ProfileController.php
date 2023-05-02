@@ -23,6 +23,10 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->routeIs('indexUser'))
+        {
+            return view('/indexUser');
+        }
         if ($request->routeIs('employes'))
         {
             return view('profile/employes', [
@@ -63,7 +67,7 @@ class ProfileController extends Controller
             'poste' => 'required', 'max:255',
             'embauche' => 'required', 'date',
             'specimen' => 'max:255',
-            'roles' => 'required', 'array', 'min:1',
+            'role' => 'required',
         ],
         [
             // Vous pouvez écrire un message d’erreur distinct par règle de validation fournie plus haut.
@@ -99,13 +103,12 @@ class ProfileController extends Controller
             $user->adresse = $contenuFormulaire['adresse'];
             $user->naissance = $contenuFormulaire['naissance'];
             $user->password = $passHash;
+            $user->id_role = $contenuFormulaire['role'];
             $user->poste = $contenuFormulaire['poste'];
             $user->date_embauche = $contenuFormulaire['embauche'];
             $user->specimen_cheque = $contenuFormulaire['specimen'];
 
             $user->save();
-
-            $user->roles()->attach($request->roles);
 
 
             return view('profile/confirmAddEmploye', [
@@ -143,12 +146,14 @@ class ProfileController extends Controller
         if($request->routeIs('modificationEmploye')) {
 
             $user = User::find($id);
+            $roles = Role::All();
 
             if (is_null($user))
                 return abort(404); // Redirige automatiquement vers la page "404 – Not found".
 
             return view('profile/editEmploye', [
-                'user' => $user
+                'user' => $user,
+                'roles' => $roles
             ]);
 
         }
@@ -162,7 +167,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $requestP, Request $request, int $id): RedirectResponse
+    public function update(Request $request, int $id)
     {
         if($request->routeIs('enregistrementEmploye')){
 
@@ -194,7 +199,6 @@ class ProfileController extends Controller
 
             if ($validation->fails())
             {
-                console.log("validation fail!!");
                 return back()->withErrors($validation->errors())->withInput();
             }
 
@@ -211,6 +215,7 @@ class ProfileController extends Controller
                 $user->adresse = $contenuFormulaire['adresse'];
                 $user->naissance = $contenuFormulaire['naissance'];
                 $user->poste = $contenuFormulaire['poste'];
+                $user->id_role = $contenuFormulaire['role'];
                 $user->date_embauche = $contenuFormulaire['embauche'];
                 $user->specimen_cheque = $contenuFormulaire['specimen'];
 
@@ -226,13 +231,13 @@ class ProfileController extends Controller
         }
         else{
 
-            $requestP->user()->fill($requestP->validated());
+            $request->user()->fill($request->validated());
 
-            if ($requestP->user()->isDirty('email')) {
-                $requestP->user()->email_verified_at = null;
+            if ($request->user()->isDirty('email')) {
+                $request->user()->email_verified_at = null;
             }
 
-            $requestP->user()->save();
+            $request->user()->save();
 
             return Redirect::route('profile.edit')->with('status', 'profile-updated');
         }

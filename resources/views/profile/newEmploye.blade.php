@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <h1 class="flex justify-center font-bold text-3xl underline decoration-double my-12">
         {{ __('Ajouter un employé(e)') }}
@@ -36,13 +37,13 @@
             </div>
 
             <div class = "mt-4">
-                <x-input-label for="roles" :value="__('Role(s)')" />
-                <select name="roles[]" id="roles" class="block mt-1 w-full" multiple>
+                <x-input-label for="role" :value="__('Role')" />
+                <select name="role" id="role" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                     @foreach ($roles as $role)
                         <option value="{{ $role->id_role }}">{{ $role->nom }}</option>
                     @endforeach
                 </select>
-                <x-input-error :messages="$errors->get('roles')" class="mt-2" />
+                <x-input-error :messages="$errors->get('role')" class="mt-2" />
             </div>
 
             <div class="mt-4">

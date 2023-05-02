@@ -22,10 +22,10 @@ class roleSeeder extends Seeder
             'nom' => 'Client',
             'description' => 'Client du restaurant'],
             [
-                'nom' => 'Employé',
-                'description' => 'Cuisinier,commis au comptoir']
+            'nom' => 'Employé',
+            'description' => 'Cuisinier,commis au comptoir']
 
-            ]);
+        ]);
 
     }
 }

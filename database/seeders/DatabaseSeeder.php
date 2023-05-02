@@ -17,7 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // Vous pouvez ajouter d’autres "seeders" en les séparant par des virgules.
             RoleSeeder::class,
-            modePaiementSeeder::class
+            modePaiementSeeder::class,
+            ProfileSeeder::class,
+            CategorieProduitSeeder::class,
+            ProduitSeeder::class
+
 
             ]);
         // \App\Models\User::factory(10)->create();

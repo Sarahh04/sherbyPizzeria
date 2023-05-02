@@ -171,6 +171,13 @@
     filter: invert(16%) sepia(100%) saturate(3807%) hue-rotate(3deg) brightness(89%) contrast(114%);
 }
 
+/*css Sarah*/
+
+.labelClient{
+    width: 100px;
+    text-align: right;
+}
+
 /* PAGE AJOUT PRODUIT */
 
 .img_plusProd {
@@ -237,6 +244,10 @@
 
 .span_embauche {
     margin-right: 74px;
+}
+
+.span_role{
+    margin-right: 170px;
 }
 
 /* PAGE MODIFICATION EMPLOYE */
@@ -420,3 +431,8 @@ input[value="Search inventory"] {
     align-items: center;
     justify-content: center;
 }
+
+img{
+    cursor:pointer;
+}
+
