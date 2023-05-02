@@ -20,7 +20,9 @@ class ProduitController extends Controller
                 //'produits' => Produit::All()
             ]);
         } else {
-            return view('gestionInventaire');
+            return view('gestionInventaire', [
+                'produits' => Produit::all()
+            ]);
         }
     }
 
@@ -44,7 +46,9 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        return view('gestionMenu');
+        return view('gestionMenu', [
+            'produits' => Produit::all()
+        ]);
     }
 
     /**
