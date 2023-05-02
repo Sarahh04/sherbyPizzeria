@@ -61,7 +61,6 @@ class ClientController extends Controller
 
         $contenuFormulaire = $validation->validated();
 
-        $request->role = 2;
         $user = User::create([
             'name' => $request->nom,
             'email' => $request->courriel,
@@ -75,8 +74,7 @@ class ClientController extends Controller
 
         if(event(new Registered($user)))
         {
-            $clients = User::Where('id_role',2)->get();
-            return view('client/listeClients',['clients' => $clients]);
+            return redirect()->route('consulterClient');
         }
 
     }
@@ -87,9 +85,10 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(client $client)
+    public function show(client $client, int $id)
     {
-        return view('client/detailClient');
+        $client = User::find($id);
+        return view('client/detailClient',[ 'client' => $client]);
     }
 
     /**

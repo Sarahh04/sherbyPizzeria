@@ -72,7 +72,7 @@ Route::controller(ClientController::class)->group(function () {
     Route::get('/modifier/client/{id}', 'edit')->name('modifierClient');
     Route::post('/update', 'update')->name('updateClient');
     Route::get('/ajouter/client', 'create')->name('ajouterClient');
-    Route::get('/client', 'show')->name('detailClient');
+    Route::get('/client/{id}', 'show')->name('detailClient');
     Route::post('/enregistrerClient', 'store')->name('enregistrementClient');
 });
 

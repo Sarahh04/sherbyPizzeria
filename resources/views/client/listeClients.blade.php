@@ -24,7 +24,7 @@
 
                 <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
                     @foreach ($clients as $client)
-                    <a  href="{{ route('detailClient')}}">
+                    <a  href="{{ route('detailClient',['id'=>$client->id])}}">
                         <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
                             <div class="flex flex-row">
                                 <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
