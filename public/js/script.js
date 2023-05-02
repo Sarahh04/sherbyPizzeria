@@ -12,3 +12,5 @@ openButton.addEventListener('click', function () {
 closeButton.addEventListener('click', function () {
     modal.classList.add('hidden');
 });
+
+
