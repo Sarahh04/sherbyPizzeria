@@ -79,7 +79,8 @@ class ClientController extends Controller
 
         if(event(new Registered($user)))
         {
-            return view('client/listeClients');
+            $clients = User::Where('id_role',2)->get();
+            return view('client/listeClients',['clients' => $clients]);
         }
 
     }
