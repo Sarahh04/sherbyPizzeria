@@ -175,7 +175,7 @@ class ProfileController extends Controller
             $validation = Validator::make($request->all(), [
                 'name' => 'required', 'max:255',
                 'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
-                'telephone' => 'required|regex:/^([0-9]{3}[0-9]{3}[0-9]{4})|([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}|([0-9]{3})[0-9]{3}-[0-9]{4}|[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/|min:10',
+                'telephone' => 'required',
                 'adresse' => 'required', 'max:255',
                 'naissance' => 'required', 'date',
                 'poste' => 'required', 'max:255',
@@ -220,8 +220,6 @@ class ProfileController extends Controller
                 $user->date_embauche = $contenuFormulaire['embauche'];
                 $user->specimen_cheque = $contenuFormulaire['specimen'];
 
-                // On enregistre les informations dans la base de données à partir de l’instance
-                // du modèle (de la classe) "Commentaire" créée précédemment.
                 $user->save();
 
                 return view('profile/employes', [
