@@ -35,13 +35,14 @@
                                 </div>
                             </div>
 
-                            <a href="{{ route('modifierClient') }}">
+                            <a href="{{ route('modifierClient', ['id' => $client->id]) }}">
                                 <img  type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
                             </a>
                                 <img id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                          </div>
                     </a>
-                </div>
+
                 @endforeach
+            </div>
         </div>
     </x-app-layout>

@@ -44,9 +44,7 @@ class ClientController extends Controller
         $validation = Validator::make($request->all(), [
             'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'nom' => 'required',
-            'prenom' => 'required',
             'adresse' => 'required',
-            'adresseFact' => 'required',
             'courriel' => 'required',
             'points' => 'required',
             ], [
@@ -54,10 +52,8 @@ class ClientController extends Controller
             'tel.required' => 'Veuillez entrer un numéro de téléphone.',
             'tel.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
             'courriel.required' => 'Veuillez entrer un courriel.',
-            'prenom.required' => 'Veuillez entrer un prenom.',
             'nom.required' => 'Veuillez entrer un nom.',
             'adresse.required' => 'Veuillez entrer une adresse.',
-            'adresseFact.required' => 'Veuillez entrer une adresse de facturation',
             'ponts.required' => 'Veuillez attribuer des points.',
             ]);
             if ($validation->fails())
@@ -102,9 +98,10 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(client $client)
+    public function edit(client $client, int $id)
     {
-        return view('client/editClient');
+        $client = User::find($id);
+        return view('client/editClient',['client' =>$client]);
     }
 
     /**
@@ -116,7 +113,46 @@ class ClientController extends Controller
      */
     public function update(Request $request, client $client)
     {
-        //
+        $validation = Validator::make($request->all(), [
+            'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'nom' => 'required',
+            'adresse' => 'required',
+            'courriel' => 'required',
+            'points' => 'required',
+            'idClient' => 'required',
+            ], [
+            // Vous pouvez écrire un message d’erreur distinct par règle de validation fournie plus haut.
+            'tel.required' => 'Veuillez entrer un numéro de téléphone.',
+            'tel.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
+            'courriel.required' => 'Veuillez entrer un courriel.',
+            'nom.required' => 'Veuillez entrer un nom.',
+            'adresse.required' => 'Veuillez entrer une adresse.',
+            'ponts.required' => 'Veuillez attribuer des points.',
+            ]);
+            if ($validation->fails())
+            return back()->withErrors($validation->errors())->withInput();
+
+        $contenuFormulaire = $validation->validated();
+
+        $client = User::find($contenuFormulaire['idClient']);
+
+        $client->name = $contenuFormulaire['nom'];
+        $client->telephone = $contenuFormulaire['tel'];
+        $client->adresse = $contenuFormulaire['adresse'];
+        $client->email = $contenuFormulaire['courriel'];
+
+        if ($client->save())
+        {
+           $request->session()->flash('succes', 'La modification du client a bien fonctionné.');
+
+            return redirect()->route('consulterClient');
+
+        }
+        else
+        {
+            $request->session()->flash('erreur', 'La modification du client n\'a pas fonctionné.');
+            redirect()->route('consulterClient');
+        }
     }
 
     /**

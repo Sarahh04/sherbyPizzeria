@@ -45,7 +45,7 @@
                         <button id="close" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">Fermer</button>
                     </div>
                 </div>
-                <footer class="mt-2 fixed bottom-4 inset-x-2 text-center">
+                <footer class="mb-2 mt1 bottom-4 inset-x-2 text-center">
                     Copyright © 2023 Sherby pizzeria
                 </footer>
 

@@ -68,7 +68,8 @@ Route::controller(DelaiCeuilletteController::class)->group(function () {
 
 Route::controller(ClientController::class)->group(function() {
     Route::get('/clients', 'index')->name('consulterClient');
-    Route::get('/modifier/client', 'edit')->name('modifierClient');
+    Route::get('/modifier/client/{id}', 'edit')->name('modifierClient');
+    Route::post('/update', 'update')->name('updateClient');
     Route::get('/ajouter/client', 'create')->name('ajouterClient');
     Route::get('/client', 'show')->name('detailClient');
     Route::post('/enregistrerClient', 'store')->name('enregistrementClient');
