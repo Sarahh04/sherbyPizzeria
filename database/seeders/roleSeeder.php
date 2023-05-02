@@ -25,7 +25,7 @@ class roleSeeder extends Seeder
             'type' => 'Employé',
             'description' => 'Cuisinier,commis au comptoir']
 
-            ]);
+        ]);
 
     }
 }

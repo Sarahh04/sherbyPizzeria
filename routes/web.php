@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DelaiCeuilletteController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,4 +43,34 @@ Route::controller(TransactionController::class)->group(function() {
 });
 
 
-require __DIR__.'/auth.php';
+Route::controller(ProduitController::class)->group(function () {
+    Route::get('/promotions', 'index')->name('promotions');
+    Route::get('/newPromotion', 'create')->name('newPromotion');
+    Route::get('/gestion/produits', 'store')->name('gestionProduits');
+    Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
+});
+
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/index', 'index')->name('indexUser');
+    Route::get('/employes', 'index')->name('employes');
+    Route::get('/newEmploye', 'create')->name('newEmploye');
+    Route::post('/confirmAddEmploye', 'store')->name('insertEmploye');
+    Route::get('/employe/{id}', 'show')->name('employe');
+    Route::get('/modificationEmploye/{id}', 'edit')->name('modificationEmploye');
+    Route::post('/modificationEmploye/{id}', 'update')->name('enregistrementEmploye');
+});
+
+Route::controller(DelaiCeuilletteController::class)->group(function () {
+    Route::get('/delais', 'index')->name('delais');
+    Route::get('/modifier/delais', 'edit')->name('modifierDelais');
+    Route::get('/definir/delais', 'create')->name('definirDelais');
+});
+
+Route::controller(ClientController::class)->group(function() {
+    Route::get('/clients', 'index')->name('consulterClient');
+    Route::get('/modifier/client', 'edit')->name('modifierClient');
+    Route::get('/ajouter/client', 'create')->name('ajouterClient');
+    Route::get('/client', 'show')->name('detailClient');
+    });
+
+require __DIR__ . '/auth.php';

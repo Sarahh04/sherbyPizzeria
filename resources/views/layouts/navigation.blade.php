@@ -1,25 +1,39 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="border-b border-gray-100 nav_all">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="/">
-                    <img class="block h-9 w-auto fill-current text-gray-800" src="{{ asset('image/logoSherbyPizzeria.png') }}" alt="logo">
-                        {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> --}}
+                <div class="shrink-0 flex items-center pr-32">
+                    <a href="{{ route('dashboard') }}">
+                        <img src="{{ asset('img/logoSherbyPizzeria.png') }}" alt="logoPizza" class="block h-9 w-auto fill-current">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('gestionCommandes')" :active="request()->routeIs('gestionCommandes')
-                    ">
-                        <div class="bg-red-500 p-6 text-white">
-                            Commandes
-                        </div>
-
+                <div class="hidden space-x-8 sm:-my-px sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <img src="{{ asset('img/commande.svg') }}" alt="nav_commande" class = "img_commande">
                     </x-nav-link>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <img src="{{ asset('img/menu.png') }}" alt="nav_menu" class = "img_menu">
+                    </x-nav-link>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <img src="{{ asset('img/inventaire.svg') }}" alt="nav_inventaire" class = "img_inventaire">
+                    </x-nav-link>
+                    <?php
+                    /* $user = Auth::check()
+                    if ($user->roles()->where('role', 'like', 'Administrateur')->count() > 0){
+                     */?>
+                        <x-nav-link :href="route('indexUser')" :active="request()->routeIs('indexUser')">
+                            <img src="{{ asset('img/employes.svg') }}" alt="nav_employes" class = "img_employes">
+                        </x-nav-link>
+                        <x-nav-link :href="route('promotions')" :active="request()->routeIs('promotions')">
+                            <img src="{{ asset('img/promo.svg') }}" alt="nav_promo" class = "img_promo">
+                        </x-nav-link>
+                    <?php
+                    /* } */
+                    ?>
                 </div>
             </div>
 
@@ -27,8 +41,8 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::check() ? Auth::user()->name : "Utilisateur anonyme" }}</div>
+                        <button class="inline-flex items-center px-12 py-6 text-sm leading-4 font-medium focus:outline-none transition ease-in-out duration-150 nav_btn_user">
+                            <div><img src="{{ asset('img/login.svg') }}" alt="nav_login" class = "img_login"></div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -59,7 +73,7 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out nav_all_deroule">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -69,7 +83,7 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
+    {{-- <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -101,5 +115,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 </nav>

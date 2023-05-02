@@ -10,6 +10,9 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+        <script src="js/script.js" defer></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,9 +30,22 @@
                 </header>
             @endif
 
+            @include('messageFlash')
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                <!--Modal de suppression -->
+                <div id="modal" class=" hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
+                    <h1 class="text-2xl font-semibold">Confirmer la suppression </h1>
+                    <div class="py-5 border-t border-b border-gray-300">
+                        <p>Êtes vous sûr de vouloir supprimer le compte?</p>
+                    </div>
+                    <div class="flex flex row gap-4 justify-end">
+                        <button id="delete" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">Supprimer</button>
+                        <button id="close" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">Fermer</button>
+                    </div>
+                </div>
+
             </main>
         </div>
     </body>
