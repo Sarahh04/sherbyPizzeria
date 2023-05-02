@@ -22,8 +22,13 @@
                         <tr>
                             <td>{{ $item->nom }}</td>
                             <td>{{ $item->prix }}</td>
-                            <td><a href="produit/modif/{{ $item->id_produit }}">Modifier</a>
-                                <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
+                            <td>
+                                <div class="logo">
+                                    <a href="produit/modif/{{ $item->id_produit }}">
+                                        <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
+                                    </a>
+                                    <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -66,5 +71,5 @@
             </div>
         </section>
     </article>
+
 </x-app-layout>
-<script src="{{ asset('js/scriptHugo.js') }}"></script>
