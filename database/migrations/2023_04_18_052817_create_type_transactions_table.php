@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('type_transactions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id_type_transation');
+            $table->bigIncrements('id_type_transaction');
             $table->string('nom');
             $table->string('description');
         });
