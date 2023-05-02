@@ -54,16 +54,47 @@
     filter: hue-rotate(180deg);
 }
 
-a:hover {
+/*a:hover {
     filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
 
-}
+}*/
 
 
 .main-container-center {
     border: 1px solid lightgray;
     box-shadow: 0px 0 6px 1px gray;
     font-size: 10;
+}
+
+/* PAGE ACCEUIL */
+
+.acc_view{
+    margin-left: 35%;
+}
+
+.img_accCommande{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accMenu{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accInventaire{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accEmployes{
+    width: 60px;
+    height: 60px;
+}
+
+.img_accPromo{
+    width: 60px;
+    height: 60px;
 }
 
 /* NAV */
@@ -173,7 +204,7 @@ a:hover {
 
 /*css Sarah*/
 
-.labelClient{
+.labelClient {
     width: 100px;
     text-align: right;
 }
@@ -246,7 +277,7 @@ a:hover {
     margin-right: 74px;
 }
 
-.span_role{
+.span_role {
     margin-right: 170px;
 }
 
@@ -262,7 +293,7 @@ a:hover {
     color: white;
 }
 
-
+/* Css Hugo*/
 table.GeneratedTable {
     width: 100%;
     background-color: #ffffff;
@@ -432,8 +463,10 @@ input[value="Search inventory"] {
     justify-content: center;
 }
 
-img{
-    cursor:pointer;
+/* Fin Css Hugo */
+
+img {
+    cursor: pointer;
 }
 
 .inputWitdh{
