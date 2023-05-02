@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
             // Vous pouvez ajouter d’autres "seeders" en les séparant par des virgules.
             RoleSeeder::class,
             modePaiementSeeder::class,
-            ProfileSeeder::class
+            ProfileSeeder::class,
+            CategorieProduitSeeder::class,
+            ProduitSeeder::class
+
 
             ]);
         // \App\Models\User::factory(10)->create();

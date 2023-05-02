@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class element_transaction extends Model
+class Element_transaction extends Model
 {
     use HasFactory;
 }
