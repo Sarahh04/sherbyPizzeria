@@ -468,3 +468,7 @@ input[value="Search inventory"] {
 img {
     cursor: pointer;
 }
+
+.inputWitdh{
+    width: 3rem!important;
+}

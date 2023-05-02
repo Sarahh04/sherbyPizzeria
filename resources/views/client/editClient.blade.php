@@ -15,55 +15,55 @@
                             <label class="block text-gray-700 text-sm mx-1 labelClient font-bold mb-2" for="nom">
                             Nom:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="nom">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="nom">
                         </div>
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prenom">
                             Prénom:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="prénom">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="prénom">
                         </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="tel">
                             Téléphone:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="xxx-xxx-xxxx">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="xxx-xxx-xxxx">
                         </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
                             Courriel:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="client@gmail.com">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="client@gmail.com">
                         </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
                             Adresse:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="240 rue sherby">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="240 rue sherby">
                         </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
                             Adresse de facturation:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="240 rue sherby">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="240 rue sherby">
                         </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
                             Carte de crédit:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="xxxx xxxx xxxx xxxx">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="xxxx xxxx xxxx xxxx">
                         </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
                             Points:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="0">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="0">
                         </div>
 
                     </form>
