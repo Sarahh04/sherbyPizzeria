@@ -71,6 +71,7 @@ Route::controller(ClientController::class)->group(function() {
     Route::get('/modifier/client', 'edit')->name('modifierClient');
     Route::get('/ajouter/client', 'create')->name('ajouterClient');
     Route::get('/client', 'show')->name('detailClient');
+    Route::post('/enregistrerClient', 'store')->name('enregistrementClient');
     });
 
 require __DIR__ . '/auth.php';

@@ -29,6 +29,7 @@ class User extends Authenticatable
         'poste',
         'date_embauche',
         'specimen_cheque',
+        'id_role'
     ];
 
     public function role(): BelongsTo

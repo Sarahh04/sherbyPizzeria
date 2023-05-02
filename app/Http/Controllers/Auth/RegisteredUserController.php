@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             'poste' => ['required', 'string', 'max:255'],
             'date_embauche' => ['required', 'string', 'date'],
             'specimen_cheque' => ['string', 'max:255'],
-            'roles' => ['required', 'array', 'min:1'],
+            'role' => ['required'],
         ]);
 
         $user = User::create([
@@ -56,9 +56,8 @@ class RegisteredUserController extends Controller
             'poste' => $request->poste,
             'date_embauche' => $request->embauche,
             'specimen_cheque' => $request->specimen,
+            'role' =>$request->role,
         ]);
-
-        $user->roles()->attach($request->roles);
 
         event(new Registered($user));
 
