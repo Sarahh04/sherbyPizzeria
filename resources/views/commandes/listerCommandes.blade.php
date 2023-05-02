@@ -1,33 +1,39 @@
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">
-            <a class="hover:bg-red-800 hover:text-white p-2 text-gray-400" href="/gestionCommandes">Gesiton de Commandes</a> >>
-            <a class="hover:bg-red-800 hover:text-white p-2 text-gray-400" href="/consulterCommande">Consulter Commande</a>
+            <a class="p-2 text-gray-400" href="/gestionCommandes">Gesiton de Commandes</a> >>
+            <a class="p-2 text-gray-400" href="/consulterCommande">Consulter Commande</a>
             >>  Lister Commande
         </p>
     </x-slot>
 
     <div class="py-12">
+        <h1 class="font-bold text-center text-3xl underline decoration-double mb-20">
+            {{ __('Lister commandes') }}
+        </h1>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div  href="">
-                <div class="flex flex-row justify-content border-2 border-solid border-gray-950 mx-36 py-10 mb-4 bg-white">
+                <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4 bg-white">
                     <img type="image" class="block h-9 mx-9 my-5 w-auto fill-current text-gray-800" src="{{ asset('image/fichier-icone.png') }}" alt="fichier commande" />
                     <div class=" mr-98">
                         <p><span class="font-semibold text-lg">Commande :</span> 1234</p>
                         <p><span class="font-semibold text-lg">Date :</span> 2023-05-01</p>
                         <p><span class="font-semibold text-lg">Téléphone :</span> 819 123 4567</p>
                     </div>
-                    <a href="/detaillerCommande" class="p-4 text-gray-900 flex hover:bg-red-800">
+                    <div class="mr-98 md:w-1/4"></div>
+                    <a href="/detaillerCommande" class="p-4 text-gray-900 flex">
                         <img class="block h-9 w-auto fill-current text-gray-800" type="image" src="{{ asset('image/lister-icon.png') }}" alt="detailler une comande" />
                     </a>
-                    <a href="/editerCommande" class="p-4 text-gray-900 flex hover:bg-red-800">
-                        <img class="block h-9 w-auto fill-current text-gray-800" src="{{ asset('image/editer-icon.png') }}" alt="editer commande" />
+                    <a href="/editerCommande" class="p-4 text-gray-900 flex">
+                        <img class="block h-9 w-auto fill-current text-gray-800" src="{{ asset('img/edit.svg') }}" alt="editer commande" />
                 </a>
-                <a href="/supprimerCommande" class="p-4 text-gray-900 flex hover:bg-red-800">
-                    <img class="block h-9 w-auto fill-current text-gray-800" type="image" src="{{ asset('image/supprimer-icon.png') }}" alt="supprimer un produit" />
+                <a href="/supprimerCommande" class="p-4 text-gray-900 flex">
+                    <img class="block h-9 w-auto fill-current text-gray-800" type="image" src="{{ asset('img/desactiver.svg') }}" alt="supprimer un produit" />
                 </a>
             </div>
-
+            <button class="md:w-1/5 mx-10 my-10 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="reset">
+                <a href="/consulterCommande">Retourner</a>
+            </button>
 {{--
             @foreach ($commandes as $commande)
                 <a  href="{{ route('employe', ['id' => $commande->id]) }}">

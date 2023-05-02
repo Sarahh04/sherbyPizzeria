@@ -39,7 +39,7 @@ Route::controller(TransactionController::class)->group(function() {
     Route::get('/detaillerCommande', 'show')->name('detaillerCommande');
     Route::get('/extraitCommande', 'show')->name('extraitCommande');
     Route::get('/editerCommande', 'edit')->name('editerCommande');
-    Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
+    // Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
 });
 
 

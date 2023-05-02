@@ -15,17 +15,15 @@ return new class extends Migration
     {
         Schema::create('element_transactions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id_element_transaction');
+            $table->bigInteger('id_elemt_trans');
             $table->bigInteger('id_produit')->unsigned();
+            $table->bigInteger('id_transaction')->unsigned();
             $table->integer('quantite')->unsigned();
-            $table->decimal('prix', 10, 2);
-            $table->decimal('taxe_provincial', 10, 2);
-            $table->decimal('taxe_federal', 10, 2);
-            $table->decimal('rabais', 10, 2);
         });
 
         Schema::table('element_transactions', function (Blueprint $table) {
             $table->foreign('id_produit')->references('id_produit')->on('produits');
+            $table->foreign('id_transaction')->references('id_transaction')->on('transactions');
         });
     }
 

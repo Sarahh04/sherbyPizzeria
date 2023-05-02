@@ -1,10 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">
-            <a class="hover:bg-red-800 hover:text-white p-2 text-gray-400" href="/gestionCommandes">Gesiton de Commandes</a> >> Consulter Commande
+            <a class="p-2 text-gray-400" href="/gestionCommandes">Gesiton de Commandes</a> >> Consulter Commande
         </p>
     </x-slot>
     <div class="py-12 overflow-hidden">
+        <h1 class="font-bold text-center text-3xl underline decoration-double mb-20">
+            {{ __('Consulter commande') }}
+        </h1>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 text-gray-900 space-y-4">
                 <form class="w-full max-w-sm m-auto" method="get" action="/listerCommandes">
