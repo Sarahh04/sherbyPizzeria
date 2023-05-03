@@ -263,6 +263,7 @@
 .img_imgEmploye {
     width: 130px;
     height: 130px;
+    margin-right: 35%;
 }
 
 .span_tel {
@@ -290,6 +291,16 @@
     border-radius: 5px;
     padding: 8px 30px;
     background-color: #ea0f08;
+    color: white;
+}
+
+.btnAddNote{
+    margin-left: 6%;
+    margin-bottom: 4%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 20px;
+    background-color: #ea0f08 !important;
     color: white;
 }
 
