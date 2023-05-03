@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\role;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +21,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        return view('auth/register', [
+            'roles' => Role::All()
+        ]);
     }
 
     /**
@@ -33,13 +36,27 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'telephone' =>['required', 'string', 'phone', 'max:255',],
+            'adresse' => ['string', 'max:255'],
+            'naissance' => ['string', 'date'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'poste' => ['string', 'max:255'],
+            'date_embauche' => ['string', 'date'],
+            'specimen_cheque' => ['string', 'max:255'],
+            'role' => ['required'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'telephone' => $request->telephone,
+            'adresse' => $request->adresse,
+            'naissance' => $request->naissance,
             'password' => Hash::make($request->password),
+            'poste' => $request->poste,
+            'date_embauche' => $request->embauche,
+            'specimen_cheque' => $request->specimen,
+            'role' => $request->role,
         ]);
 
         event(new Registered($user));

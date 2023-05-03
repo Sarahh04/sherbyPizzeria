@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\ProduitTransaction;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            // Vous pouvez ajouter d’autres "seeders" en les séparant par des virgules.
+            RoleSeeder::class,
+            modePaiementSeeder::class,
+            TypeTransactionSeeder::class,
+            EtatTransactionSeeder::class,
+            ProfileSeeder::class,
+            CategorieProduitSeeder::class,
+            ProduitSeeder::class,
+            TypeTransactionSeeder::class,
+            TransactionSeeder::class,
+            ProduitTransactionSeeder::class
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

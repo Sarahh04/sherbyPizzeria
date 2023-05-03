@@ -12,9 +12,18 @@ class ProduitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->routeIs('promotions')) {
+            return view('promotion/promotions', [
+                // D’autres paramètres peuvent être passés à la vue en les séparant par une virgule.
+                //'produits' => Produit::All()
+            ]);
+        } else {
+            return view('produits/gestionInventaire', [
+                'produits' => Produit::all()
+            ]);
+        }
     }
 
     /**
@@ -22,9 +31,11 @@ class ProduitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if ($request->routeIs('newPromotion')) {
+            return view('promotion/newPromotion', []);
+        }
     }
 
     /**
@@ -35,7 +46,9 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('produits/gestionMenu', [
+            'produits' => Produit::all()
+        ]);
     }
 
     /**
@@ -46,7 +59,6 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
     }
 
     /**
@@ -69,9 +81,10 @@ class ProduitController extends Controller
      */
     public function update(Request $request, Produit $produit)
     {
-        //
+        if ($request->routeIs('search')) {
+            return Produit::find($_REQUEST['nom']);
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      *
