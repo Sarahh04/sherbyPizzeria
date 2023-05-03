@@ -2,11 +2,10 @@
 let openButton = document.querySelectorAll('#open');
 let modal = document.getElementById('modal');
 let closeButton = document.querySelectorAll('#close');
+let deleteButton = document.querySelectorAll('#delete');
 
 openButton.forEach(element => {
-    element.addEventListener('click', function () {
-        modal.classList.remove('hidden');
-    });
+    element.addEventListener('click',getElement)
 });
 
 // hide the overlay and the dialog
@@ -16,10 +15,40 @@ closeButton.forEach(element => {
     });
 });
 
+deleteButton.forEach(element => {
+    element.addEventListener('click',deleteElement);
+});
+
+let idElement;
+let element;
+
+ function getElement(evt)
+{
+    modal.classList.remove('hidden');
+    idElement = evt.target.previousElementSibling.id;
+    element = evt.target.parentElement;
+}
+async function deleteElement()
+{
+    let response = await fetch("../supprimerClient", {
+		method  : "post",
+		headers : {
+					"Content-Type" : "application/x-www-form-urlencoded",
+                    "X-CSRF-Token": document.querySelector('input[name=_token]').value,
+				  },
+		body    : "id="+idElement
+	  });
+
+    if (response.status === 200)
+	{
+        modal.classList.add('hidden');
+        element.remove();
+    }
+}
 //////////////// Fetch inventory search bar //////////////////////
 
 
-let search = document.querySelector(".search-button");
+/*let search = document.querySelector(".search-button");
 
 
 search.addEventListener("click", fetchSearch);
@@ -58,6 +87,6 @@ let buttonMenu = document.querySelector('.container-button-modif')
 
 formMenu.classList.toggle('form-hidden');
 buttonMenu.classList.toggle('form-hidden');
-}
+}*/
 
 

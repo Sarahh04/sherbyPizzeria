@@ -19,7 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = User::Where('id_role',2)->get();
+        $clients = User::Where(['id_role' => 2, 'actif' => 1])->get();
         return view('client/listeClients',['clients' => $clients]);
     }
 
@@ -160,8 +160,23 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(client $client)
+    public function destroy(client $client, Request $request)
     {
-        //
+        $id = $request->input('id');
+
+        $client = User::find($id);
+        $client->actif = 0;
+
+        if ($client->save())
+        {
+            http_response_code(200);
+        }
+        else
+        {
+
+            http_response_code(400);
+        }
+
+
     }
 }
