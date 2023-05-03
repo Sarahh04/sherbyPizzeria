@@ -17,14 +17,14 @@ class TypeTransactionSeeder extends Seeder
     {
         DB::table('type_transactions')->insert([
             [
-            'nom' => 'Vente',
-            'description' => 'Vente de produits aux clients.'],
+                'nom' => 'Vente',
+                'description' => 'Vente de produits aux clients.'],
             [
-            'nom' => 'Remboursement',
-            'description' => 'Remboursement de la valeur d\'un ou plusiers itens de la commande.'],
+                'nom' => 'Remboursement',
+                'description' => 'Remboursement de la valeur d\'un ou plusiers itens de la commande.'],
             [
-            'nom' => 'Achat',
-            'description' => 'Achat de produits pour la pizzeria.']
+                'nom' => 'Achat',
+                'description' => 'Achat de produits pour la pizzeria.']
 
         ]);
     }

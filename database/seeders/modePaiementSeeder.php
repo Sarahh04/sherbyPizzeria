@@ -16,14 +16,15 @@ class modePaiementSeeder extends Seeder
     public function run()
     {
         DB::table('mode_paiements')->insert([
-            ['nom' => 'Comptant',
-            'description' => 'Argent comptant'],
             [
-            'nom' => 'Débit',
-            'description' => 'Carte de débit'],
+                'nom' => 'Comptant',
+                'description' => 'Argent comptant'],
             [
-            'nom' => 'Visa',
-            'description' => 'Carte de crédit visa'],
+                'nom' => 'Débit',
+                'description' => 'Carte de débit'],
+            [
+                'nom' => 'Visa',
+                'description' => 'Carte de crédit visa'],
             [
                 'nom' => 'Mastercard',
                 'description' => 'Carte de crédit mastercard']

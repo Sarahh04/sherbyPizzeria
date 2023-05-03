@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigInteger('id_transaction');
+            $table->bigIncrements('id_transaction');
             $table->bigInteger('id_user')->unsigned();
             $table->bigInteger('id_etat_transaction')->unsigned();
             $table->bigInteger('id_mode_paiement')->unsigned();

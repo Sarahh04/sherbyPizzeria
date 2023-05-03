@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\ProduitTransaction;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,9 +25,10 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             CategorieProduitSeeder::class,
             ProduitSeeder::class,
-            TypeTransactionSeeder::class
-
-            ]);
+            TypeTransactionSeeder::class,
+            TransactionSeeder::class,
+            ProduitTransactionSeeder::class
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
