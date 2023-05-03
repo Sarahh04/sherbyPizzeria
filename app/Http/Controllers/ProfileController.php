@@ -13,6 +13,7 @@ use App\Models\Role;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -30,7 +31,9 @@ class ProfileController extends Controller
         if ($request->routeIs('employes'))
         {
             return view('profile/employes', [
-                'users' => User::All()
+                'users' => User::where('id_role', '<>', 2)
+                                ->where('actif', '=', 1)
+                                ->get()
             ]);
         }
     }
@@ -60,7 +63,7 @@ class ProfileController extends Controller
         $validation = Validator::make($request->all(), [
             'name' => 'required', 'max:255',
             'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
-            'telephone' => 'required|regex:/^([0-9]{3}[0-9]{3}[0-9]{4})|([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}|([0-9]{3})[0-9]{3}-[0-9]{4}|[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/|min:10',
+            'telephone' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
             'adresse' => 'required', 'max:255',
             'naissance' => 'required', 'date',
             'password' => 'required', 'confirmed', Rules\Password::defaults(),
@@ -173,14 +176,15 @@ class ProfileController extends Controller
         if($request->routeIs('enregistrementEmploye')){
 
             $validation = Validator::make($request->all(), [
-                'name' => 'required', 'max:255',
-                'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
-                'telephone' => 'required',
-                'adresse' => 'required', 'max:255',
-                'naissance' => 'required', 'date',
-                'poste' => 'required', 'max:255',
-                'embauche' => 'required', 'date',
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255',
+                'telephone' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
+                'adresse' => 'required|max:255',
+                'naissance' => 'required|date',
+                'poste' => 'required|max:255',
+                'embauche' => 'required|date',
                 'specimen' => 'max:255',
+                'role' => 'required'
             ],
             [
                 'name.required' => 'Veuillez entrer le nom de employé.',

@@ -4,9 +4,9 @@
 
         <input type="hidden" name="id_produit" value="{{ $user->id }}"/>
 
-        <div class = "flex justify-center mt-24">
+        <div class = "flex justify-end mt-24">
             <input type = "text" name = "name" class="text-5xl mt-12 rounded-md" value="{{ $user->name }}">
-            <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = " img_imgEmploye ml-48" />
+            <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = " img_imgEmploye ml-12" />
         </div>
 
         <div class="ml-96 mb-2 p-6">
@@ -45,6 +45,7 @@
             <div class="ml-24 mb-2 p-6">
                 <p>Aucune note au dossier</p>
             </div>
+            <button type="submit" class="btnAddNote">Ajouté une note au dosier</button>
         </div>
 
         <div>

@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class = "flex justify-center mt-24">
+    <div class = "flex justify-end mt-24">
         <h1 class="font-bold text-5xl mt-12">{{ $user->name }}</h1>
-        <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = " img_imgEmploye ml-48" />
+        <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = " img_imgEmploye ml-40" />
     </div>
     <div class = "flex justify-center ml-80">
         <a href="{{ route('modificationEmploye', ['id' => $user->id]) }}">
@@ -38,5 +38,6 @@
         <div class="ml-24 mb-2 p-6">
             <p>Aucune note au dossier</p>
         </div>
+        <button type="submit" class="btnAddNote">Ajouté une note au dosier</button>
     </div>
 </x-app-layout>
