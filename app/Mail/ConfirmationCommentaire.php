@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Commentaire;
 
 class ConfirmationCommentaire extends Mailable
 {
@@ -15,44 +16,45 @@ class ConfirmationCommentaire extends Mailable
 
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
-    public function __construct()
+    public function __construct(protected User $client)
     {
         //
     }
 
     /**
      * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
      */
-    public function envelope()
+    public function envelope(): Envelope
     {
+
         return new Envelope(
-            subject: 'Confirmation Commentaire',
+            subject: "Création de compte chex Sherby Pizzeria",
         );
     }
 
     /**
      * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
+    public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'confirmCommentMail',
+            with:[
+                'nom' => $this->client->name,
+                'telephone' => $this->client->telephone,
+                'courriel' => $this->client->email,
+                'adresse' => $this->client->adresse,
+            ],
         );
     }
 
     /**
      * Get the attachments for the message.
      *
-     * @return array
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments()
+    public function attachments(): array
     {
         return [];
     }
