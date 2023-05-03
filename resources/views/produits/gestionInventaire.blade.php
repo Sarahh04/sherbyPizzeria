@@ -2,9 +2,9 @@
 <x-app-layout>
     <article class="search-main">
         <section class="search-container">
-            <form action="" class="search-form">
+            <form action="" method="POST" class="search-form">
                 <input type="text" class="search-bar">
-                <input type="submit" value="Search inventory">
+                <input type="submit" value="Search inventory" class="search-button">
             </form>
         </section>
     </article>
@@ -21,12 +21,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="data-inv">Cell</td>
-                        <td class="data-inv">Cell</td>
-                        <td class="data-inv">Cell</td>
-                        <td class="data-inv">Cell</td>
-                    </tr>
+                    @foreach ($produits as $item)
+                        <tr>
+                            <td class="data-inv">{{ $item->nom }}</td>
+                            <td class="data-inv">{{ $item->quantite }}</td>
+                            <td class="data-inv"></td>
+                            <td class="data-inv">
+                                <div class="logo">
+                                    <a href="produit/modif/{{ $item->id_produit }}">
+                                        <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
+                                    </a>
+                                    <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </section>

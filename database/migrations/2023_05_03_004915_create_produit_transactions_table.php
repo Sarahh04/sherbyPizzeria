@@ -13,19 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('element_transactions', function (Blueprint $table) {
+        Schema::create('produit_transactions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id_element_transaction');
+            $table->bigIncrements('id_produit_transaction');
             $table->bigInteger('id_produit')->unsigned();
-            $table->integer('quantite')->unsigned();
-            $table->decimal('prix', 10, 2);
-            $table->decimal('taxe_provincial', 10, 2);
-            $table->decimal('taxe_federal', 10, 2);
-            $table->decimal('rabais', 10, 2);
+            $table->bigInteger('id_transaction')->unsigned();
+            $table->integer('quantite');
+
         });
 
-        Schema::table('element_transactions', function (Blueprint $table) {
+        Schema::table('produit_transactions', function (Blueprint $table) {
             $table->foreign('id_produit')->references('id_produit')->on('produits');
+            $table->foreign('id_transaction')->references('id_transaction')->on('transactions');
         });
     }
 
@@ -36,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('element_transactions');
+        Schema::dropIfExists('produit_transactions');
     }
 };

@@ -15,16 +15,13 @@
                     <label for="filtre_emp" class = "mr-8 mt-2">Filtré : </label>
                     <input type="text" name = "filtre_emp_nom" class = "mr-8 rounded w-1/5" placeholder="Nom">
                     <input type="text" name = "filtre_emp_prenom" class = "mr-8 rounded w-1/5" placeholder="Prenom">
-                    <select name="filtre_emp_actif" class="mr-8 rounded w-1/5">
-                        <option value="actif">Actif</option>
-                        <option value="noActif">Non actif</option>
-                    </select>
+                    <input type="text" name = "filtre_emp_email" class = "mr-8 rounded w-1/5" placeholder="Courriel">
                     <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
                 </div>
 
                 <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
                     @foreach ($clients as $client)
-                    <a  href="{{ route('detailClient')}}">
+                    <a  href="{{ route('detailClient',['id'=>$client->id])}}">
                         <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
                             <div class="flex flex-row">
                                 <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
@@ -35,13 +32,15 @@
                                 </div>
                             </div>
 
-                            <a href="{{ route('modifierClient') }}">
+                            <a href="{{ route('modifierClient', ['id' => $client->id]) }}">
                                 <img  type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
                             </a>
+                                <div id="{{$client->id}}" name="deleteClient" class="hidden"></div>
                                 <img id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                          </div>
                     </a>
-                </div>
+
                 @endforeach
+            </div>
         </div>
     </x-app-layout>

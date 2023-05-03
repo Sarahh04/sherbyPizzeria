@@ -1,14 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">
-            <a class="hover:bg-red-800 hover:text-white p-2 text-gray-400" href="/gestionCommandes">Gesiton de Commandes</a> >>
-            <a class="hover:bg-red-800 hover:text-white p-2 text-gray-400" href="/consulterCommande">Consulter Commande</a> >>
-            <a class="hover:bg-red-800 hover:text-white p-2 text-gray-400" href="/listerCommandes">Lister Commande</a> >>
+            <a class="p-2 text-gray-400" href="/gestionCommandes">Gesiton de Commandes</a> >>
+            <a class="p-2 text-gray-400" href="/consulterCommande">Consulter Commande</a> >>
+            <a class="p-2 text-gray-400" href="/listerCommandes">Lister Commande</a> >>
             Detailler Commande
         </p>
     </x-slot>
 
     <div class="py-12 overflow-hidden">
+        <h1 class="font-bold text-center text-3xl underline decoration-double mb-20">
+            {{ __('Detailler commande') }}
+        </h1>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 text-gray-900 space-y-4">
                 <div class="md:flex md:items-center">
@@ -124,19 +127,22 @@
               </tr>
             </tbody>
           </table>
-        <div class="md:flex md:items-center">
-            <div class="md:w-1/3"></div>
-            <div class="md:w-2/3 md:items-end">
-                <button class="md:w-1/3 mx-10 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="reset">
-                    <a href="/listerCommandes">Retourner</a>
-                </button>
+        <div class="md:flex md:items-center my-5">
 
-                <button class="md:w-1/3 mx-10 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
-                    <a href="/editerCommande">Editer</a>
-                </button>
-            </div>
+            <button class="md:w-1/3 mx-20 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="reset">
+                <a href="/listerCommandes">Retourner</a>
+            </button>
+
+            <button class="md:w-1/3 mx-20 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+                <a href="/editerCommande">Editer</a>
+            </button>
+
+            <button class="md:w-1/3 mx-20 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+                <a href="/listerCommandes">Supprimer</a>
+            </button>
+
         </div>
-        </div>
-        </div>
+
     </div>
+
 </x-app-layout>

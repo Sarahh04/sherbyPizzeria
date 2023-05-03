@@ -17,12 +17,6 @@
                             </label>
                             <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nom" id="nom" type="text" placeholder="nom">
                         </div>
-                        <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prenom">
-                                Prénom:
-                            </label>
-                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="prenom" id="prenom" type="text" placeholder="prénom">
-                        </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="tel">
@@ -46,13 +40,6 @@
                         </div>
 
                         <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="adresseFact">
-                                Adresse de facturation:
-                            </label>
-                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  name="adresseFact" id="carteCredit" type="text" placeholder="240 rue sherby">
-                        </div>
-
-                        <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="points">
                             Points:
                             </label>
@@ -65,9 +52,11 @@
                                 Ajouter
                         </button>
 
-                        <button class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
-                            Retour
-                        </button>
+                        <a href="{{route('consulterClient')}}">
+                            <button type="button" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
+                                Retour
+                            </button>
+                        </a>
                     </div>
                 </form>
 

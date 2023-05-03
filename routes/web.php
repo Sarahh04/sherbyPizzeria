@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(TransactionController::class)->group(function() {
+Route::controller(TransactionController::class)->group(function () {
     Route::get('/gestionCommandes', 'index')->name('gestionCommandes');
     Route::get('/ajouterCommande', 'create')->name('ajouterCommande');
     Route::get('/consulterCommande', 'show')->name('consulterCommande');
@@ -39,7 +39,7 @@ Route::controller(TransactionController::class)->group(function() {
     Route::get('/detaillerCommande', 'show')->name('detaillerCommande');
     Route::get('/extraitCommande', 'show')->name('extraitCommande');
     Route::get('/editerCommande', 'edit')->name('editerCommande');
-    Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
+    // Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
 });
 
 
@@ -48,6 +48,7 @@ Route::controller(ProduitController::class)->group(function () {
     Route::get('/newPromotion', 'create')->name('newPromotion');
     Route::get('/gestion/produits', 'store')->name('gestionProduits');
     Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
+    Route::post('/gestion/inventaire/{nom}', 'update')->name('search');
 });
 
 Route::controller(ProfileController::class)->group(function () {
@@ -66,12 +67,14 @@ Route::controller(DelaiCeuilletteController::class)->group(function () {
     Route::get('/definir/delais', 'create')->name('definirDelais');
 });
 
-Route::controller(ClientController::class)->group(function() {
+Route::controller(ClientController::class)->group(function () {
     Route::get('/clients', 'index')->name('consulterClient');
-    Route::get('/modifier/client', 'edit')->name('modifierClient');
+    Route::get('/modifier/client/{id}', 'edit')->name('modifierClient');
+    Route::post('/update', 'update')->name('updateClient');
     Route::get('/ajouter/client', 'create')->name('ajouterClient');
-    Route::get('/client', 'show')->name('detailClient');
+    Route::get('/client/{id}', 'show')->name('detailClient');
     Route::post('/enregistrerClient', 'store')->name('enregistrementClient');
-    });
+    Route::post('/supprimerClient', 'destroy')->name('supprimerUnClient');
+});
 
 require __DIR__ . '/auth.php';

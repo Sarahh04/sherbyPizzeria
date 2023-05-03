@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigInteger('id_transaction');
-            $table->bigIncrements('id_element_transaction')->unsigned();
+            $table->bigIncrements('id_transaction');
             $table->bigInteger('id_user')->unsigned();
             $table->bigInteger('id_etat_transaction')->unsigned();
             $table->bigInteger('id_mode_paiement')->unsigned();
@@ -26,7 +25,6 @@ return new class extends Migration
         });
 
         Schema::table('transactions', function (Blueprint $table) {
-            $table->foreign('id_element_transaction')->references('id_element_transaction')->on('element_transactions');
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_etat_transaction')->references('id_etat_transaction')->on('etat_transactions');
             $table->foreign('id_mode_paiement')->references('id_mode_paiement')->on('mode_paiements');
