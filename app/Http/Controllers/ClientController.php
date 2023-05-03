@@ -19,7 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = User::Where('id_role',2)->get();
+        $clients = User::Where(['id_role' => 2, 'actif' => 1])->get();
         return view('client/listeClients',['clients' => $clients]);
     }
 
