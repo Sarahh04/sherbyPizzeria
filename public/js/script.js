@@ -21,16 +21,20 @@ deleteButton.forEach(element => {
 
 let idElement;
 let element;
+let type;
 
- function getElement(evt)
+function getElement(evt)
 {
     modal.classList.remove('hidden');
     idElement = evt.target.previousElementSibling.id;
+    type = evt.target.previousElementSibling.innerHTML;
     element = evt.target.parentElement;
 }
 async function deleteElement()
 {
-    let response = await fetch("../supprimerClient", {
+    if(type === "deleteClient")
+    {
+        let response = await fetch("../supprimerClient", {
 		method  : "post",
 		headers : {
 					"Content-Type" : "application/x-www-form-urlencoded",
@@ -38,6 +42,29 @@ async function deleteElement()
 				  },
 		body    : "id="+idElement
 	  });
+    }
+    elif(type === "deleteEmploye")
+    {
+        let response = await fetch("../supprimerEmploye", {
+            method  : "post",
+            headers : {
+                        "Content-Type" : "application/x-www-form-urlencoded",
+                        "X-CSRF-Token": document.querySelector('input[name=_token]').value,
+                      },
+            body    : "id="+idElement
+          });
+    }
+    elif(type === "deleteProduit")
+    {
+        let response = await fetch("../supprimerProduit", {
+            method  : "post",
+            headers : {
+                        "Content-Type" : "application/x-www-form-urlencoded",
+                        "X-CSRF-Token": document.querySelector('input[name=_token]').value,
+                      },
+            body    : "id="+idElement
+          });
+    }
 
     if (response.status === 200)
 	{
