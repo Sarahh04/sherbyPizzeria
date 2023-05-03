@@ -6,6 +6,7 @@ use App\Models\transaction;
 use App\Models\Transaction as ModelsTransaction;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\User;
 
 class TransactionController extends Controller
 {
@@ -50,7 +51,8 @@ class TransactionController extends Controller
     {
         if ($request->routeIs('listerCommandes')) {
             return view('commandes/listerCommandes',[
-                'commandes' => Transaction::All()]);
+                'commandes' => Transaction::All(),
+                'users'=> User::All() ]);
         }
         if ($request->routeIs('consulterCommande')) {
             return view('commandes/consulterCommande');
