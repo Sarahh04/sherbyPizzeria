@@ -20,7 +20,9 @@ class ProduitController extends Controller
                 //'produits' => Produit::All()
             ]);
         } else {
-            return view('gestionInventaire');
+            return view('produits/gestionInventaire', [
+                'produits' => Produit::all()
+            ]);
         }
     }
 
@@ -44,7 +46,9 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        return view('gestionMenu');
+        return view('produits/gestionMenu', [
+            'produits' => Produit::all()
+        ]);
     }
 
     /**
@@ -55,7 +59,6 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
     }
 
     /**
@@ -78,9 +81,10 @@ class ProduitController extends Controller
      */
     public function update(Request $request, Produit $produit)
     {
-        //
+        if ($request->routeIs('search')) {
+            return Produit::find($_REQUEST['nom']);
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      *

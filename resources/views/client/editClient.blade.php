@@ -1,84 +1,66 @@
 <x-app-layout>
     <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg grid justify-items-center">
-            <div class = "flex flex-row w-full justify-center mt-24">
+            <div class="flex flex-row w-full justify-center mt-24">
                 <h1 class="font-bold text-3xl underline">
-                    {{ __('Modifier un client') }}
+                    {{ __('Modifier le client') }}
                 </h1>
             </div>
 
             <div class="py-12">
                 <div class="mx-auto sm:px-6 lg:px-8">
-                    <form id="form" method="post">
+                    <form id="form" method="post" action="{{route('updateClient')}}">
                         @csrf
+                        <input class="hidden" name="idClient" id="idClient" type="text" value="{{$client->id}}">
                         <div class="mb-4 flex flex-row ">
-                            <label class="block text-gray-700 text-sm mx-1 labelClient font-bold mb-2" for="nom">
-                            Nom:
+                            <label class="block text-gray-700 text-sm mx-1 labelClient font-bold mb-2 " for="nom">
+                                Nom:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="nom">
-                        </div>
-                        <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prenom">
-                            Prénom:
-                            </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="prénom">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nom" id="nom" type="text" value="{{$client->name}}">
                         </div>
 
                         <div class="mb-4 flex flex-row">
                             <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="tel">
-                            Téléphone:
+                                Téléphone:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="xxx-xxx-xxxx">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="tel" id="tel" type="text" value="{{$client->telephone}}">
                         </div>
 
                         <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
-                            Courriel:
+                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="courriel">
+                                Courriel:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="client@gmail.com">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="courriel" id="courriel" type="text" value="{{$client->email}}">
                         </div>
 
                         <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
-                            Adresse:
+                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="adresse">
+                                Adresse:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="240 rue sherby">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="adresse"  id="adresse" type="text" value="{{$client->adresse}}">
                         </div>
 
                         <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
-                            Adresse de facturation:
-                            </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="240 rue sherby">
-                        </div>
-
-                        <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
-                            Carte de crédit:
-                            </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="xxxx xxxx xxxx xxxx">
-                        </div>
-
-                        <div class="mb-4 flex flex-row">
-                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="prénom">
+                            <label class="block text-gray-700 text-sm mx-1 font-bold mb-2 labelClient " for="points">
                             Points:
                             </label>
-                            <input class="shadow appearance-none border rounded w-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="0">
+                            <input class="shadow appearance-none border rounded inputWidth py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="points" id="points" type="text" placeholder="0">
                         </div>
 
-                    </form>
+
                     <div class="flex flex-row justify-center gap-4 mt-5" >
-                        <button  class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
+                        <button type="submit" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
                                 Modifier
-
                         </button>
-
-                        <button class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
+                        <a href="{{route('consulterClient')}}">
+                            <button type="button" class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
                                 Retour
-                        </button>
+                            </button>
+                        </a>
                     </div>
+                </form>
 
                 </div>
             </div>
         </div>
-    </x-app-layout>
+</x-app-layout>

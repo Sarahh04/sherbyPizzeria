@@ -23,24 +23,26 @@
                 </div>
 
                 <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
-
-                    <a  href="{{ route('detailClient')}}">
+                    @foreach ($clients as $client)
+                    <a  href="{{ route('detailClient',['id'=>$client->id])}}">
                         <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
                             <div class="flex flex-row">
                                 <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
                                 <div class=" mr-48">
-                                    <p>Nom : Sarah</p>
-                                    <p>Courriel : sarah@gmail.com</p>
-                                    <p>Téléphone : 819-123-9445</p>
+                                    <p>Nom : {{$client->name}}</p>
+                                    <p>Courriel : {{$client->email}}</p>
+                                    <p>Téléphone : {{$client->telephone}}</p>
                                 </div>
                             </div>
 
-                            <a href="{{ route('modifierClient') }}">
+                            <a href="{{ route('modifierClient', ['id' => $client->id]) }}">
                                 <img  type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
                             </a>
                                 <img id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                          </div>
                     </a>
+
+                @endforeach
             </div>
         </div>
     </x-app-layout>

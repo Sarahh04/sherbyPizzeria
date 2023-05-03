@@ -60,7 +60,7 @@ class ProfileController extends Controller
         $validation = Validator::make($request->all(), [
             'name' => 'required', 'max:255',
             'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
-            'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telephone' => 'required|regex:/^([0-9]{3}[0-9]{3}[0-9]{4})|([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}|([0-9]{3})[0-9]{3}-[0-9]{4}|[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/|min:10',
             'adresse' => 'required', 'max:255',
             'naissance' => 'required', 'date',
             'password' => 'required', 'confirmed', Rules\Password::defaults(),
@@ -74,6 +74,7 @@ class ProfileController extends Controller
             'name.required' => 'Veuillez entrer le nom de employé.',
             'name.max' => 'Le nom ne peut pas dépasser 255 caractères.',
             'email.required' => 'Veuillez entrer un courriel.',
+            'email.regex' => 'Ladresse courriel ne respecte pas le format attendu.',
             'email.max' => 'Le courriel ne peut pas dépasser 255 caractères.',
             'telephone.required' => 'Veuillez entrer un numéro de téléphone.',
             'telephone.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
@@ -174,7 +175,7 @@ class ProfileController extends Controller
             $validation = Validator::make($request->all(), [
                 'name' => 'required', 'max:255',
                 'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
-                'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+                'telephone' => 'required',
                 'adresse' => 'required', 'max:255',
                 'naissance' => 'required', 'date',
                 'poste' => 'required', 'max:255',
@@ -219,8 +220,6 @@ class ProfileController extends Controller
                 $user->date_embauche = $contenuFormulaire['embauche'];
                 $user->specimen_cheque = $contenuFormulaire['specimen'];
 
-                // On enregistre les informations dans la base de données à partir de l’instance
-                // du modèle (de la classe) "Commentaire" créée précédemment.
                 $user->save();
 
                 return view('profile/employes', [
