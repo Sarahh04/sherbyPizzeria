@@ -24,6 +24,20 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->routeIs('filtrerEmployer'))
+        {
+            $nom = $request->input('nom');
+            $tel = $request->input('tel');
+            $courriel = $request->input('courriel');
+
+
+            return view('profile/employes', [
+                'users' => User::where('id_role', '<>', 2)
+                                ->where('actif', '=', 1)
+                                ->where('name','=',$nom)
+                                ->get()
+            ]);
+        }
         if ($request->routeIs('indexUser'))
         {
             return view('/indexUser');

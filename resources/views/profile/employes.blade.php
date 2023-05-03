@@ -13,10 +13,10 @@
 
                 <div class="flex flex-row justify-center mt-8 mb-20">
                     <label for="filtre_emp" class = "mr-8 mt-2">Filtré : </label>
-                    <input type="text" name = "filtre_emp_nom" class = "mr-8 rounded w-1/5" placeholder="Nom">
-                    <input type="text" name = "filtre_emp_prenom" class = "mr-8 rounded w-1/5" placeholder="Prenom">
-                    <input type="text" name = "filtre_emp_email" class = "mr-8 rounded w-1/5" placeholder="Courriel">
-                    <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
+                    <input type="text" id ="filtreNom" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Nom">
+                    <input type="text" id ="filtreTel" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Telephone">
+                    <input type="text" id ="filtreCourriel" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Courriel">
+                    <img type="image" id="filtrer" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
                 </div>
 
                 <div class="border-b-4 border-solid border-gray-950 mb-12"></div>

@@ -3,6 +3,7 @@ let openButton = document.querySelectorAll('#open');
 let modal = document.getElementById('modal');
 let closeButton = document.querySelectorAll('#close');
 let deleteButton = document.querySelectorAll('#delete');
+let filterButton = document.getElementById('filtrer');
 
 openButton.forEach(element => {
     element.addEventListener('click',getElement)
@@ -18,6 +19,11 @@ closeButton.forEach(element => {
 deleteButton.forEach(element => {
     element.addEventListener('click',deleteElement);
 });
+
+if(filterButton != null)
+{
+    filterButton.addEventListener('click',filtreur)
+}
 
 let idElement;
 let element;
@@ -72,6 +78,29 @@ async function deleteElement()
         modal.classList.add('hidden');
         element.remove();
     }
+}
+
+async function filtreur(evt)
+{
+    let nom = document.getElementById('filtreNom');
+    let tel = document.getElementById('filtreTel');
+    let courriel = document.getElementById('filtreCourriel');
+
+    let response;
+    let typeFiltre = evt.target.previousElementSibling.name;
+
+    if(typeFiltre === "filtreEmp")
+    {
+        response = await fetch("../filtrerEmp", {
+		method  : "post",
+		headers : {
+					"Content-Type" : "application/x-www-form-urlencoded",
+                    "X-CSRF-Token": document.querySelector('input[name=_token]').value,
+				  },
+		body    : "nom="+nom.value&"tel="+tel.value&"courriel="+courriel.value
+	  });
+    }
+
 }
 //////////////// Fetch inventory search bar //////////////////////
 
