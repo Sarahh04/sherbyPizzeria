@@ -251,19 +251,39 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+        if($request->routeis("supprimerUnEmploye"))
+        {
+            $id = $request->input('id');
 
-        $user = $request->user();
+            $user = User::find($id);
+            $user->actif = 0;
 
-        Auth::logout();
+            if ($user->save())
+            {
+                http_response_code(200);
+            }
+            else
+            {
 
-        $user->delete();
+                http_response_code(400);
+            }
+        }
+        else
+        {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current-password'],
+            ]);
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $user = $request->user();
 
-        return Redirect::to('/');
+            Auth::logout();
+
+            $user->delete();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return Redirect::to('/');
+        }
     }
 }

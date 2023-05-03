@@ -32,9 +32,10 @@ function getElement(evt)
 }
 async function deleteElement()
 {
+    let response;
     if(type === "deleteClient")
     {
-        let response = await fetch("../supprimerClient", {
+        response = await fetch("../supprimerClient", {
 		method  : "post",
 		headers : {
 					"Content-Type" : "application/x-www-form-urlencoded",
@@ -43,9 +44,9 @@ async function deleteElement()
 		body    : "id="+idElement
 	  });
     }
-    elif(type === "deleteEmploye")
+    else if(type === "deleteEmploye")
     {
-        let response = await fetch("../supprimerEmploye", {
+        response = await fetch("../supprimerEmploye", {
             method  : "post",
             headers : {
                         "Content-Type" : "application/x-www-form-urlencoded",
@@ -54,9 +55,9 @@ async function deleteElement()
             body    : "id="+idElement
           });
     }
-    elif(type === "deleteProduit")
+    else if(type === "deleteProduit")
     {
-        let response = await fetch("../supprimerProduit", {
+        response = await fetch("../supprimerProduit", {
             method  : "post",
             headers : {
                         "Content-Type" : "application/x-www-form-urlencoded",
