@@ -30,13 +30,35 @@ class ProfileController extends Controller
             $tel = $request->input('tel');
             $courriel = $request->input('courriel');
 
+            $users = User::where('id_role', '<>', 2)
+                        ->where('actif', '=', 1);
 
-            return view('profile/employes', [
-                'users' => User::where('id_role', '<>', 2)
-                                ->where('actif', '=', 1)
-                                ->where('name','=',$nom)
-                                ->get()
-            ]);
+            if($nom != null )
+            {
+                $users->where('name','=',$nom);
+            }
+
+            if( $tel != null )
+            {
+                $users->where('telephone','=',$tel);
+            }
+
+            if( $courriel != null)
+            {
+                $users->where('email','=',$courriel);
+            }
+
+            $results = $users->get();
+
+            if($results != null)
+            {
+                return response()->json(['users' => $results], 200);
+            }
+            else
+            {
+                return response()->json("Aucun employé trouvé", 200);
+            }
+
         }
         if ($request->routeIs('indexUser'))
         {
