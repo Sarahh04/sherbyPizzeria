@@ -1,3 +1,9 @@
+{{-- /*****************************************************************************
+ Fichier : employe
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Affiche les informations de l'employé sélectionner.
+*****************************************************************************/ --}}
+
 <x-app-layout>
     <div class = "flex justify-end mt-24">
         <h1 class="font-bold text-5xl mt-12">{{ $user->name }}</h1>

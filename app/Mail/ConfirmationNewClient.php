@@ -1,4 +1,10 @@
 <?php
+/*****************************************************************************
+ Fichier : ConfirmationNewClient
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Gère l'envoi d'un courriel lorsqu'on ajoute un client a
+ partir de cette endroit.
+*****************************************************************************/
 
 namespace App\Mail;
 
@@ -8,9 +14,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Commentaire;
+use App\Models\User;
 
-class ConfirmationCommentaire extends Mailable
+class ConfirmationNewClient extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +35,7 @@ class ConfirmationCommentaire extends Mailable
     {
 
         return new Envelope(
-            subject: "Création de compte chex Sherby Pizzeria",
+            subject: "Création de compte chez Sherby Pizzeria",
         );
     }
 
@@ -39,7 +45,7 @@ class ConfirmationCommentaire extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'confirmCommentMail',
+            view: 'courriel/mail',
             with:[
                 'nom' => $this->client->name,
                 'telephone' => $this->client->telephone,

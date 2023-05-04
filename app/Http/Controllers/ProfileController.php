@@ -1,10 +1,17 @@
 <?php
+/*****************************************************************************
+ Fichier : ProfileController
+ Auteur : Amélie Fréchette
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ employer.
+*****************************************************************************/
 
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Request\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -62,7 +69,7 @@ class ProfileController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'name' => 'required', 'max:255',
-            'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
+            'email' => ['required', 'regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/', 'max:255', 'unique:'.User::class],
             'telephone' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
             'adresse' => 'required', 'max:255',
             'naissance' => 'required', 'date',
@@ -112,11 +119,15 @@ class ProfileController extends Controller
             $user->date_embauche = $contenuFormulaire['embauche'];
             $user->specimen_cheque = $contenuFormulaire['specimen'];
 
-            $user->save();
+            if ($user->save())
+                $request->session()->now('succes', 'L\'ajout de l\'employé a bien fonctionné.');
+            else
+                $request->session()->now('erreur', 'L\'ajout de l\'employé n\'a pas fonctionné.');
 
-
-            return view('profile/confirmAddEmploye', [
-                'user' => $user
+            return view('profile/employes', [
+                'users' => User::where('id_role', '<>', 2)
+                                ->where('actif', '=', 1)
+                                ->get()
             ]);
         }
 
@@ -145,7 +156,7 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request, int $id): View
+    public function edit(Request $request, ?int $id = null): View
     {
         if($request->routeIs('modificationEmploye')) {
 
@@ -168,16 +179,30 @@ class ProfileController extends Controller
         }
     }
 
+    public function updateProfile(ProfileUpdateRequest $requestP)
+    {
+        $requestP->user()->fill($requestP->validated());
+
+        if ($requestP->user()->isDirty('email')) {
+            $requestP->user()->email_verified_at = null;
+        }
+
+        $requestP->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
     /**
      * Update the user's profile information.
      */
     public function update(Request $request, int $id)
     {
+
         if($request->routeIs('enregistrementEmploye')){
 
             $validation = Validator::make($request->all(), [
                 'name' => 'required|max:255',
-                'email' => 'required|email|max:255',
+                'email' => ['required', 'regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/', 'max:255'],
                 'telephone' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
                 'adresse' => 'required|max:255',
                 'naissance' => 'required|date',
@@ -224,25 +249,17 @@ class ProfileController extends Controller
                 $user->date_embauche = $contenuFormulaire['embauche'];
                 $user->specimen_cheque = $contenuFormulaire['specimen'];
 
-                $user->save();
+                if ($user->save())
+                    $request->session()->now('succes', 'La modification de l\'employé a bien fonctionné.');
+                else
+                    $request->session()->now('erreur', 'La modification de l\'employé n\'a pas fonctionné.');
 
                 return view('profile/employes', [
-                    'users' => User::All()
+                    'users' => User::where('id_role', '<>', 2)
+                                    ->where('actif', '=', 1)
+                                    ->get()
                 ]);
             }
-
-        }
-        else{
-
-            $request->user()->fill($request->validated());
-
-            if ($request->user()->isDirty('email')) {
-                $request->user()->email_verified_at = null;
-            }
-
-            $request->user()->save();
-
-            return Redirect::route('profile.edit')->with('status', 'profile-updated');
         }
     }
 

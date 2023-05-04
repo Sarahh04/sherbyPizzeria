@@ -1,3 +1,9 @@
+{{-- /*****************************************************************************
+ Fichier : editEmploye
+ Auteur : Amélie Fréchette
+ Fonctionnalité : affiche le formulaire pour faire la modification d'un employe.
+*****************************************************************************/ --}}
+
 <x-app-layout>
     <form method="post" action="{{ route('enregistrementEmploye', ['id' => $user->id]) }}">
         @csrf

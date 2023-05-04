@@ -1,4 +1,11 @@
 <?php
+/*****************************************************************************
+ Fichier : RegisteredUserController
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Cette page permaitait d'ajouter un utilisateur mais de la
+ manière a laravel avec le lien register. ce lien a été cacher par la suite
+ puisqu'il ne correspondait pas a ce que l'on voulais pour le site
+*****************************************************************************/
 
 namespace App\Http\Controllers\Auth;
 

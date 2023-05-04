@@ -1,4 +1,9 @@
 <?php
+/*****************************************************************************
+ Fichier : Create_user_table
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Créé la table et ses colonnes de users dans la base de donnée.
+*****************************************************************************/
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

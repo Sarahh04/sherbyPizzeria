@@ -54,17 +54,18 @@
     filter: hue-rotate(180deg);
 }
 
-/*a:hover {
-    filter: invert(23%) sepia(83%) saturate(6715%) hue-rotate(355deg) brightness(93%) contrast(119%);
-
-}*/
-
-
 .main-container-center {
     border: 1px solid lightgray;
     box-shadow: 0px 0 6px 1px gray;
     font-size: 10;
 }
+
+/*****************************************************************************
+ Fichier : Styles
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Gère le css de mes pages qui ne pouvais pas être fait
+ avec tailwindcss.
+*****************************************************************************/
 
 /* PAGE ACCEUIL */
 

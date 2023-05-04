@@ -1,3 +1,9 @@
+{{-- /*****************************************************************************
+ Fichier : employes
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Affiche une liste de tout les employer actif de la base de donnée.
+*****************************************************************************/ --}}
+
 <x-app-layout>
     <div class = "flex flex-row w-full justify-center mt-24">
         <h1 class="font-bold text-3xl underline ml-52">
@@ -14,7 +20,7 @@
                 <div class="flex flex-row justify-center mt-8 mb-20">
                     <label for="filtre_emp" class = "mr-8 mt-2">Filtré : </label>
                     <input type="text" name = "filtre_emp_nom" class = "mr-8 rounded w-1/5" placeholder="Nom">
-                    <input type="text" name = "filtre_emp_prenom" class = "mr-8 rounded w-1/5" placeholder="Prenom">
+                    <input type="text" name = "filtre_emp_telephone" class = "mr-8 rounded w-1/5" placeholder="Telephone">
                     <input type="text" name = "filtre_emp_email" class = "mr-8 rounded w-1/5" placeholder="Courriel">
                     <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
                 </div>

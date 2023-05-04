@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class = "flex flex-row w-full justify-center mt-24">
-        <h1 class="font-bold text-3xl underline decoration-double ml-52">
+        <h1 class="font-bold text-3xl underline ml-52">
             {{ __('Liste des clients') }}
         </h1>
         <a href="{{ route('ajouterClient') }}">

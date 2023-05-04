@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmationNewClient;
 
 class ClientController extends Controller
 {
@@ -42,21 +44,22 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'nom' => 'required',
+            'tel' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
             'adresse' => 'required',
-            'courriel' => 'required',
+            'courriel' => 'required|regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/',
             'points' => 'required',
-            ], [
+        ], [
             // Vous pouvez écrire un message d’erreur distinct par règle de validation fournie plus haut.
             'tel.required' => 'Veuillez entrer un numéro de téléphone.',
             'tel.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
             'courriel.required' => 'Veuillez entrer un courriel.',
+            'courriel.regex' => 'Le courriel ne respecte pas le format attendu.',
             'nom.required' => 'Veuillez entrer un nom.',
             'adresse.required' => 'Veuillez entrer une adresse.',
             'ponts.required' => 'Veuillez attribuer des points.',
-            ]);
-            if ($validation->fails())
+        ]);
+
+        if ($validation->fails())
             return back()->withErrors($validation->errors())->withInput();
 
         $contenuFormulaire = $validation->validated();
@@ -71,11 +74,12 @@ class ClientController extends Controller
             'id_role' => 2
         ]);
 
+        $clients = User::Where(['id_role' => 2, 'actif' => 1])->get();
 
-        if(event(new Registered($user)))
-        {
-            return redirect()->route('consulterClient');
-        }
+        Mail::to($request->user())->send(new ConfirmationNewClient($user));
+
+        return view('client/listeClients',['clients' => $clients]);
+
 
     }
 
@@ -113,10 +117,10 @@ class ClientController extends Controller
     public function update(Request $request, client $client)
     {
         $validation = Validator::make($request->all(), [
-            'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'tel' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
             'nom' => 'required',
             'adresse' => 'required',
-            'courriel' => 'required',
+            'courriel' => 'required|regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/',
             'points' => 'required',
             'idClient' => 'required',
             ], [
@@ -124,6 +128,7 @@ class ClientController extends Controller
             'tel.required' => 'Veuillez entrer un numéro de téléphone.',
             'tel.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
             'courriel.required' => 'Veuillez entrer un courriel.',
+            'courriel.regex' => 'Le courriel ne respecte pas le format attendu.',
             'nom.required' => 'Veuillez entrer un nom.',
             'adresse.required' => 'Veuillez entrer une adresse.',
             'ponts.required' => 'Veuillez attribuer des points.',

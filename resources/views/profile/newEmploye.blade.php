@@ -1,3 +1,8 @@
+{{-- /*****************************************************************************
+ Fichier : newEmploye
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Affiche un formulaire pour la création d'un nouveau employe.
+*****************************************************************************/ --}}
 
 <x-app-layout>
     <h1 class="flex justify-center font-bold text-3xl underline my-12">

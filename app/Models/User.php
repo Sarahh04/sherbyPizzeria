@@ -1,4 +1,9 @@
 <?php
+/*****************************************************************************
+ Fichier : User
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Classe des Users du site.
+*****************************************************************************/
 
 namespace App\Models;
 
