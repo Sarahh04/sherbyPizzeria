@@ -24,14 +24,14 @@
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
 
         @include('messageFlash')
         <!-- Page Content -->
@@ -51,7 +51,7 @@
                         class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">Fermer</button>
                 </div>
             </div>
-            <footer class="mt-2 fixed bottom-4 inset-x-2 text-center">
+            <footer class="mb-2 mt1 bottom-4 inset-x-2 text-center">
                 Copyright © 2023 Sherby pizzeria
             </footer>
 
