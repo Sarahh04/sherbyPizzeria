@@ -59,6 +59,8 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/employe/{id}', 'show')->name('employe');
     Route::get('/modificationEmploye/{id}', 'edit')->name('modificationEmploye');
     Route::post('/modificationEmploye/{id}', 'update')->name('enregistrementEmploye');
+    Route::post('/supprimerEmploye', 'destroy')->name('supprimerUnEmploye');
+    Route::post('/filtrerEmp', 'index')->name('filtrerEmployer');
 });
 
 Route::controller(DelaiCeuilletteController::class)->group(function () {

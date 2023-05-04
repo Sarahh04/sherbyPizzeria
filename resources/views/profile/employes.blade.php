@@ -18,33 +18,42 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <div class="flex flex-row justify-center mt-8 mb-20">
-                    <label for="filtre_emp" class = "mr-8 mt-2">Filtré : </label>
-                    <input type="text" name = "filtre_emp_nom" class = "mr-8 rounded w-1/5" placeholder="Nom">
-                    <input type="text" name = "filtre_emp_telephone" class = "mr-8 rounded w-1/5" placeholder="Telephone">
-                    <input type="text" name = "filtre_emp_email" class = "mr-8 rounded w-1/5" placeholder="Courriel">
-                    <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
+                    <form id="filtrer">
+                        <label for="filtre_emp" class = "mr-8 mt-2">Filtré : </label>
+                        <input type="text" id ="filtreNom" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Nom">
+                        <input type="text" id ="filtreTel" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Telephone">
+                        <input type="text" id ="filtreCourriel" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Courriel">
+                        <span type="submit" id="submit">
+                        <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
+                        </span>
+                    </form>
                 </div>
 
                 <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
-
-                @foreach ($users as $user)
-                    <a  href="{{ route('employe', ['id' => $user->id]) }}">
-                        <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
-                            <div class = "flex flex-row">
-                                <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
-                            <div class=" mr-48">
-                                <p>Nom : {{ $user->name }}</p>
-                                <p>Courriel : {{ $user->email }}</p>
-                                <p>Téléphone : {{ $user->telephone }}</p>
+                <div id="divRepere" >
+                    @foreach ($users as $user)
+                            <div  class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
+                                <div class = "flex flex-row">
+                                    <a href="{{ route('employe', ['id' => $user->id]) }}">
+                                        <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
+                                    </a>
+                                     <div class=" mr-48">
+                                        <p>Nom : {{ $user->name }}</p>
+                                        <p>Courriel : {{ $user->email }}</p>
+                                        <p>Téléphone : {{ $user->telephone }}</p>
+                                    </div>
+                                </div>
+                                <a href="{{ route('modificationEmploye', ['id' => $user->id]) }}">
+                                    <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
+                                </a>
+                                <div id="{{$user->id}}"  class="hidden">deleteEmploye</div>
+                                <img id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                             </div>
-                        </div>
-                            <a href="{{ route('modificationEmploye', ['id' => $user->id]) }}">
-                                <img type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
-                            </a>
-                            <img id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
-                        </div>
-                    </a>
-                @endforeach
+
+
+                    @endforeach
+                </div>
+
                         {{--  @if (Session::has('succes'))
                              <div role="alert">
                             <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">Succès</div>

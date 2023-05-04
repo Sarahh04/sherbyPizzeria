@@ -31,6 +31,42 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->routeIs('filtrerEmployer'))
+        {
+            $nom = $request->input('nom');
+            $tel = $request->input('tel');
+            $courriel = $request->input('courriel');
+
+            $users = User::where('id_role', '<>', 2)
+                        ->where('actif', '=', 1);
+
+            if($nom != null )
+            {
+                $users->where('name','=',$nom);
+            }
+
+            if( $tel != null )
+            {
+                $users->where('telephone','=',$tel);
+            }
+
+            if( $courriel != null)
+            {
+                $users->where('email','=',$courriel);
+            }
+
+            $results = $users->get();
+
+            if($results != null)
+            {
+                return response()->json(['users' => $results], 200);
+            }
+            else
+            {
+                return response()->json("Aucun employé trouvé", 200);
+            }
+
+        }
         if ($request->routeIs('indexUser'))
         {
             return view('/indexUser');
@@ -268,19 +304,39 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+        if($request->routeis("supprimerUnEmploye"))
+        {
+            $id = $request->input('id');
 
-        $user = $request->user();
+            $user = User::find($id);
+            $user->actif = 0;
 
-        Auth::logout();
+            if ($user->save())
+            {
+                http_response_code(200);
+            }
+            else
+            {
 
-        $user->delete();
+                http_response_code(400);
+            }
+        }
+        else
+        {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current-password'],
+            ]);
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $user = $request->user();
 
-        return Redirect::to('/');
+            Auth::logout();
+
+            $user->delete();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return Redirect::to('/');
+        }
     }
 }
