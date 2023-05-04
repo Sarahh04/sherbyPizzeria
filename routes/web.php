@@ -49,6 +49,7 @@ Route::controller(ProduitController::class)->group(function () {
     Route::get('/gestion/produits', 'store')->name('gestionProduits');
     Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
     Route::post('/gestion/inventaire/{nom}', 'update')->name('search');
+    Route::post('/gestion/inventaire/insertion', 'store')->name('insertionInventaire');
 });
 
 Route::controller(ProfileController::class)->group(function () {

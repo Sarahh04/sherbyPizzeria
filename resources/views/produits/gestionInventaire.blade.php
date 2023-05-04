@@ -2,7 +2,7 @@
 <x-app-layout>
     <article class="search-main">
         <section class="search-container">
-            <form action="" method="POST" class="search-form">
+            <form action="{{ route('search') }}" method="POST" class="search-form">
                 <input type="text" class="search-bar">
                 <input type="submit" value="Search inventory" class="search-button">
             </form>
@@ -41,15 +41,16 @@
         </section>
         <section class="product-form-container">
             <div class=" form-gestion">
-                <form action="" class="form-ajout-int">
+                <form action="{{ route('insertionInventaire') }}" method="post" class="form-ajout-int">
+                    @csrf
                     <div>
-                        <input type="text" placeholder="nom">
+                        <input type="text" name="nom" placeholder="nom">
                     </div>
                     <div>
-                        <input type="text" placeholder="qty">
+                        <input type="text" name="qty" placeholder="qty">
                     </div>
                     <div>
-                        <input type="text" placeholder="utility">
+                        <input type="text" name="utility" placeholder="utility">
                     </div>
                     <input type="submit" value="Ajouter" class="add-int">
                 </form>

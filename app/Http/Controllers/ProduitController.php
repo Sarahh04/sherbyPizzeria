@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use App\Models\Categorie;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\ProduitResource;
+use Illuminate\Http\Response;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Str;
 
 class ProduitController extends Controller
 {
@@ -46,9 +53,34 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        return view('produits/gestionMenu', [
-            'produits' => Produit::all()
-        ]);
+        if ($request->routeIs('gestionProduits')) {
+            return view('produits/gestionMenu', [
+                'produits' => Produit::all()
+            ]);
+        } else {
+
+            $contenuDecode = $request->all();
+
+            try {
+                Produit::create([
+                    'id_produit' => Str::random(6),
+                    'nom' => $contenuDecode['nom'],
+                    'prix' => 10.99,
+                    'delais' => 10,
+                    'quantite' => $contenuDecode['qty'],
+                    'promo_courante' => $contenuDecode['utility'],
+                    'description' => 'bonjour test',
+                    'id_categorie' => 1
+                ]);
+            } catch (QueryException $erreur) {
+                report($erreur);
+                return response()->json(['ERREUR' => 'Le produit n\'a pas été ajouté.'], 500);
+            }
+
+            return view('produits/gestionInventaire', [
+                'produits' => Produit::all()
+            ]);
+        }
     }
 
     /**
