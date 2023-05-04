@@ -5,7 +5,7 @@ function eventListener()
     let closeButton = document.querySelectorAll('#close');
     let deleteButton = document.querySelectorAll('#delete');
     let filterButton = document.getElementById('filtrer');
-    let filterBtn = document.getElementById('submit');
+    let filterBtn = document.querySelectorAll('#submitFiltre');
 
     openButton.forEach(element => {
         element.addEventListener('click',getElement)
@@ -29,7 +29,10 @@ function eventListener()
 
     if(filterBtn != null)
     {
-        filterBtn.addEventListener('click',filtreur);
+        for(let i = 0; i < filterBtn.length; i++)
+        {
+            filterBtn[i].addEventListener('click',filtreur);
+        }
     }
 
 
@@ -113,11 +116,29 @@ async function filtreur(evt)
 	  });
     }
 
+    if(typeFiltre === "filtreClient")
+    {
+        response = await fetch("../filtrerClient", {
+            method  : "post",
+            headers : {
+                        "Content-Type" : "application/x-www-form-urlencoded",
+                        "X-CSRF-Token": document.querySelector('input[name=_token]').value,
+                      },
+            body    : "nom="+nom.value+"&tel="+tel.value+"&courriel="+courriel.value
+          });
+    }
+
     if(response.status === 200)
     {
         div.innerHTML = "";
         let users = Array();
         users = JSON.parse(await response.text());
+
+        if(users.users.length === 0)
+        {
+            div.innerHTML = "Aucun résultat ne correspond à votre recherche";
+            div.setAttribute("class", "text-center")
+        }
 
         for(let i =0 ; i < users.users.length; i++)
         {
@@ -134,8 +155,15 @@ async function filtreur(evt)
             let div4 = document.createElement("div");
             let img3 = document.createElement("img");
 
+            if(typeFiltre === "filtreEmp")
+            {
+                a.setAttribute("href","/employe/"+users.users[i].id );
+            }
 
-           a.setAttribute("href","/employe/"+users.users[i].id );
+            if(typeFiltre === "filtreClient")
+            {
+                a.setAttribute("href","/client/"+users.users[i].id );
+            }
 
             div1.setAttribute("class","flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4");
 
@@ -154,12 +182,29 @@ async function filtreur(evt)
             let tel = document.createTextNode("Téléphone : " + users.users[i].telephone);
             p3.appendChild(tel);
 
-            a1.setAttribute("href", "modificationEmploye/" +  users.users[i].id);
+            if(typeFiltre === "filtreEmp")
+            {
+                a1.setAttribute("href", "modificationEmploye/" +  users.users[i].id);
+            }
+
+            if(typeFiltre === "filtreClient")
+            {
+                a1.setAttribute("href", "/modifier/client/" +  users.users[i].id);
+            }
 
             setAttributes(img2,{src:"img/edit.svg",alt:"edit employe", class:"mt-8 mr-6 img_editPromo"});
 
             setAttributes(div4,{id:users.users[i].id ,class:"hidden"});
-            div4.innerHTML = "deleteEmploye";
+
+            if(typeFiltre === "filtreEmp")
+            {
+                div4.innerHTML = "deleteEmploye";
+            }
+
+            if(typeFiltre === "filtreClient")
+            {
+                div4.innerHTML = "deleteClient";
+            }
 
             setAttributes(img3,{id:"open",src:"img/desactiver.svg",alt:"desactiver employe", class:"mt-8 mr-6 img_editPromo"});
 

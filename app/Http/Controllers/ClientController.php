@@ -19,10 +19,51 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clients = User::Where(['id_role' => 2, 'actif' => 1])->get();
-        return view('client/listeClients',['clients' => $clients]);
+        if($request->routeIs('consulterClient'))
+        {
+            $clients = User::Where(['id_role' => 2, 'actif' => 1])->get();
+            return view('client/listeClients',['clients' => $clients]);
+        }
+
+        if($request->routeIs('filtrerClients'))
+        {
+            $nom = $request->input('nom');
+            $tel = $request->input('tel');
+            $courriel = $request->input('courriel');
+
+            $clients = User::where('id_role' ,'=',2)
+                        ->where( 'actif','=', 1);
+
+
+            if($nom != null )
+            {
+                $clients->where('name','=',$nom);
+            }
+
+            if( $tel != null )
+            {
+                $clients->where('telephone','=',$tel);
+            }
+
+            if( $courriel != null)
+            {
+                $clients->where('email','=',$courriel);
+            }
+
+            $results = $clients->get();
+
+            if($results != null)
+            {
+                return response()->json(['users' => $results], 200);
+            }
+            else
+            {
+                return response()->json("Aucun client trouvé", 200);
+            }
+        }
+
     }
 
     /**

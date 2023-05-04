@@ -57,14 +57,7 @@ class ProfileController extends Controller
 
             $results = $users->get();
 
-            if($results != null)
-            {
-                return response()->json(['users' => $results], 200);
-            }
-            else
-            {
-                return response()->json("Aucun employé trouvé", 200);
-            }
+            return response()->json(['users' => $results], 200);
 
         }
         if ($request->routeIs('indexUser'))
@@ -302,7 +295,7 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
         if($request->routeis("supprimerUnEmploye"))
         {

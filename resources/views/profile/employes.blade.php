@@ -23,7 +23,7 @@
                         <input type="text" id ="filtreNom" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Nom">
                         <input type="text" id ="filtreTel" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Telephone">
                         <input type="text" id ="filtreCourriel" name = "filtreEmp" class = "mr-8 rounded w-1/5" placeholder="Courriel">
-                        <span type="submit" id="submit">
+                        <span type="submit" id="submitFiltre">
                         <img type="image" src="{{ asset('img/filter.svg') }}" alt="trouver un employe" class = " mt-2 img_filtrePromo" />
                         </span>
                     </form>

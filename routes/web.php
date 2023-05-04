@@ -77,6 +77,7 @@ Route::controller(ClientController::class)->group(function () {
     Route::get('/client/{id}', 'show')->name('detailClient');
     Route::post('/enregistrerClient', 'store')->name('enregistrementClient');
     Route::post('/supprimerClient', 'destroy')->name('supprimerUnClient');
+    Route::post('/filtrerClient', 'index')->name('filtrerClients');
 });
 
 require __DIR__ . '/auth.php';
