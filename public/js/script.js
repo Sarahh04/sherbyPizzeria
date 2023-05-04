@@ -24,18 +24,18 @@ function eventListener()
 
     if(filterButton != null)
     {
-        filterButton.addEventListener('submit',stopForm)
+        filterButton.addEventListener('submit',stopForm);
     }
 
     if(filterBtn != null)
     {
-        filterBtn.addEventListener('click',filtreur)
+        filterBtn.addEventListener('click',filtreur);
     }
+
 
 }
 
 eventListener();
-
 
 let idElement;
 let element;
@@ -135,7 +135,7 @@ async function filtreur(evt)
             let img3 = document.createElement("img");
 
 
-            a.setAttribute("href","/employe/"+users.users[i].id );
+           a.setAttribute("href","/employe/"+users.users[i].id );
 
             div1.setAttribute("class","flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4");
 
@@ -164,7 +164,8 @@ async function filtreur(evt)
             setAttributes(img3,{id:"open",src:"img/desactiver.svg",alt:"desactiver employe", class:"mt-8 mr-6 img_editPromo"});
 
             div1.appendChild(div2);
-            div2.appendChild(img1);
+            a.appendChild(img1);
+            div2.appendChild(a);
             div2.appendChild(div3);
             div3.appendChild(p1);
             div3.appendChild(p2);
@@ -173,9 +174,9 @@ async function filtreur(evt)
             div1.appendChild(a1);
             div1.appendChild(div4);
             div1.appendChild(img3);
-            a.appendChild(div1);
 
-            div.insertAdjacentElement("afterbegin", a);
+
+            div.insertAdjacentElement("afterbegin", div1);
 
         }
     }

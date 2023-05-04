@@ -26,11 +26,12 @@
                 <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
                 <div id="divRepere" >
                     @foreach ($users as $user)
-                        <a  href="{{ route('employe', ['id' => $user->id]) }}">
                             <div  class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
                                 <div class = "flex flex-row">
-                                    <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
-                                    <div class=" mr-48">
+                                    <a href="{{ route('employe', ['id' => $user->id]) }}">
+                                        <img type="image" src="{{ asset('img/image.svg') }}" alt="image de l'employe" class = "mr-48 img_imgPromo" />
+                                    </a>
+                                     <div class=" mr-48">
                                         <p>Nom : {{ $user->name }}</p>
                                         <p>Courriel : {{ $user->email }}</p>
                                         <p>Téléphone : {{ $user->telephone }}</p>
@@ -43,7 +44,7 @@
                                 <img id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo">
                             </div>
 
-                        </a>
+
                     @endforeach
                 </div>
 
