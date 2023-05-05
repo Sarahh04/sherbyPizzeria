@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\CategorieProduit;
 
 class Produit extends Model
 {
@@ -21,5 +24,16 @@ class Produit extends Model
         'description',
         'id_categorie'
     ];
+
+    public function categorie(): BelongsTo
+    {
+        // Il faut préciser la classe (le modèle) avec laquelle la relation s’établit.
+        return $this->belongsTo(CategorieProduit::class, 'id_categorie');
+    }
+
+    public function transaction(): BelongsToMany
+    {
+        return $this->belongsToMany(Transaction::class, 'produit_transactions', 'id_transaction', 'id_produit')->withPivot('quantite');
+    }
 }
 

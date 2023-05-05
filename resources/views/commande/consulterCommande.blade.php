@@ -10,7 +10,7 @@
         </h1>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 text-gray-900 space-y-4">
-                <form class="w-full max-w-sm m-auto" method="get" action="/listerCommandes">
+                <form class="w-full max-w-sm m-auto" method="get" action="{{ route('listerCommandes') }}">
                     @csrf
                     <div class="md:flex md:items-center mb-6">
                         <div class="md:w-1/3">

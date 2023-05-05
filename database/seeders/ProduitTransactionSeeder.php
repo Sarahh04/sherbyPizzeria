@@ -62,7 +62,7 @@ class ProduitTransactionSeeder extends Seeder
             'quantite' => 3
             ],
             [
-            'id_produit' => 7,
+            'id_produit' => 9,
             'id_transaction' => 3,
             'quantite' => 2
             ],

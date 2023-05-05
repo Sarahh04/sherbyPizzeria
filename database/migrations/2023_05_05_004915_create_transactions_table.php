@@ -22,6 +22,7 @@ return new class extends Migration
             $table->bigInteger('id_type_transaction')->unsigned();
             $table->bigInteger('no_facture');
             $table->dateTime('date_transaction');
+            $table->string('observation')->nullable();
         });
 
         Schema::table('transactions', function (Blueprint $table) {

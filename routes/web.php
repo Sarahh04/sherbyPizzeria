@@ -34,11 +34,13 @@ Route::middleware('auth')->group(function () {
 Route::controller(TransactionController::class)->group(function () {
     Route::get('/gestionCommandes', 'index')->name('gestionCommandes');
     Route::get('/ajouterCommande', 'create')->name('ajouterCommande');
-    Route::get('/consulterCommande', 'show')->name('consulterCommande');
-    Route::get('/listerCommandes', 'show')->name('listerCommandes');
-    Route::get('/detaillerCommande', 'show')->name('detaillerCommande');
-    Route::get('/extraitCommande', 'show')->name('extraitCommande');
-    Route::get('/editerCommande', 'edit')->name('editerCommande');
+    Route::get('/consulterCommande', 'index')->name('consulterCommande');
+    Route::get('/listerCommandes', 'index')->name('listerCommandes');
+    Route::get('/commande/{id}', 'show')->name('detailCommande');
+    Route::get('/resumeCommande', 'index')->name('resumeCommande');
+    Route::get('/extraitCommande/{id}', 'edit')->name('extraitCommande');
+    Route::get('/editerCommande/{id}', 'show')->name('editerCommande');
+    Route::get('/editerCommande/commande', 'update')->name('enregistrerCommande');
     // Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
 });
 

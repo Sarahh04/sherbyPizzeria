@@ -21,7 +21,7 @@
                         Numéro :
                         </label>
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0" for="qtt_beverage">
-                            1234
+                            {{ $commande->no_facture }}
                         </label>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         Date :
                         </label>
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="qtt_beverage">
-                            01-05-2023
+                            {{ \Carbon\Carbon::parse($commande->date_transaction)->format('d-m-Y') }}
                         </label>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 Nom :
                 </label>
                 <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="qtt_beverage">
-                    Nom du client
+                    {{ $commande->user->name }}
                 </label>
             </div>
 
@@ -54,7 +54,7 @@
                     Telephone :
                 </label>
                 <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="qtt_beverage">
-                    819 123 4567
+                    {{ $commande->user->telephone }}
                 </label>
             </div>
 
@@ -63,7 +63,7 @@
                     Situation :
                 </label>
                 <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="qtt_beverage">
-                    Active
+                    {{ $commande->etat_transaction->nom }}
                 </label>
             </div>
         </div>
@@ -77,56 +77,52 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="border px-4 py-2">Pizza - tout granit - M</td>
-                <td class="border px-4 py-2">2</td>
-                <td class="border px-4 py-2">11.50</td>
-                <td class="border px-4 py-2">23.00</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2">Coke</td>
-                <td class="border px-4 py-2">2</td>
-                <td class="border px-4 py-2">4.50</td>
-                <td class="border px-4 py-2">9.00</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2">Jus d'orange</td>
-                <td class="border px-4 py-2">1</td>
-                <td class="border px-4 py-2">5.50</td>
-                <td class="border px-4 py-2">5.50</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2">Tarte aux pommes</td>
-                <td class="border px-4 py-2">1</td>
-                <td class="border px-4 py-2">6.00</td>
-                <td class="border px-4 py-2">6.00</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2">Sous total</td>
-                <td class="border px-4 py-2">43.50</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2">TPS</td>
-                <td class="border px-4 py-2">2.17</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2">TVQ</td>
-                <td class="border px-4 py-2">4.24</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2"></td>
-                <td class="border px-4 py-2">Total</td>
-                <td class="border px-4 py-2">49.91</td>
-              </tr>
+                @php
+                    $sousTotal = 0;
+                    define("TVQ",0.09975);
+                    define("TPS", 0.05);
+                @endphp
+                @foreach ($elements[0]->produit as $element)
+                    <tr>
+                        <td class="border px-4 py-2">{{ $element->nom }}</td>
+                        <td class="border px-4 py-2">{{ $element->pivot->quantite }}</td>
+                        <td class="border px-4 py-2">{{ $element->prix }}</td>
+                        <td class="border px-4 py-2">{{ number_format(($element->pivot->quantite * $element->prix), 2, '.', '') }}</td>
+                    </tr>
+                    @php
+                        $sousTotal += $element->pivot->quantite * $element->prix;
+                    @endphp
+                @endforeach
+                @php
+                    $tps = $sousTotal * TPS;
+                    $tvq = $sousTotal * TVQ;
+                @endphp
+                <tr>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2">Sous total</td>
+                    <td class="border px-4 py-2">{{ number_format($sousTotal, 2, '.', '') }}</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2">TPS</td>
+                    <td class="border px-4 py-2">{{ number_format($tps, 2, '.', '') }}</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2">TVQ</td>
+                    <td class="border px-4 py-2">{{ number_format($tvq, 2, '.', '') }}</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2"></td>
+                    <td class="border px-4 py-2">Total</td>
+                    <td class="border px-4 py-2">{{ number_format(($sousTotal + $tvq + $tps), 2, '.', '') }}</td>
+                </tr>
             </tbody>
-          </table>
+        </table>
         <div class="md:flex md:items-center my-5">
 
             <button class="md:w-1/3 mx-20 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="reset">
@@ -134,7 +130,7 @@
             </button>
 
             <button class="md:w-1/3 mx-20 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
-                <a href="/editerCommande">Editer</a>
+                <a href="{{ route('editerCommande',['id'=>$commande->id_transaction])}}">Editer</a>
             </button>
 
             <button class="md:w-1/3 mx-20 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
