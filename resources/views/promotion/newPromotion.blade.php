@@ -1,3 +1,9 @@
+{{-- /*****************************************************************************
+ Fichier : newPromotion
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Affiche un formulaire pour l'ajout d'une nouvelle promotion.
+*****************************************************************************/ --}}
+
 <x-app-layout>
     <div class = "flex flex-row w-full justify-center mt-24">
         <h1 class="font-bold text-3xl underline decoration-double">

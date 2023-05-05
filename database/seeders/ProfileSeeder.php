@@ -1,4 +1,9 @@
 <?php
+/*****************************************************************************
+ Fichier : ProfileSeeder
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Crée un enregistrement dans la table users.
+*****************************************************************************/
 
 namespace Database\Seeders;
 

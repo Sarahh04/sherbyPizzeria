@@ -1,10 +1,17 @@
 <?php
+/*****************************************************************************
+ Fichier : ProfileController
+ Auteur : Amélie Fréchette
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ employer.
+*****************************************************************************/
 
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Request\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -13,6 +20,7 @@ use App\Models\Role;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -23,6 +31,35 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->routeIs('filtrerEmployer'))
+        {
+            $nom = $request->input('nom');
+            $tel = $request->input('tel');
+            $courriel = $request->input('courriel');
+
+            $users = User::where('id_role', '<>', 2)
+                        ->where('actif', '=', 1);
+
+            if($nom != null )
+            {
+                $users->where('name','=',$nom);
+            }
+
+            if( $tel != null )
+            {
+                $users->where('telephone','=',$tel);
+            }
+
+            if( $courriel != null)
+            {
+                $users->where('email','=',$courriel);
+            }
+
+            $results = $users->get();
+
+            return response()->json(['users' => $results], 200);
+
+        }
         if ($request->routeIs('indexUser'))
         {
             return view('/indexUser');
@@ -30,7 +67,9 @@ class ProfileController extends Controller
         if ($request->routeIs('employes'))
         {
             return view('profile/employes', [
-                'users' => User::All()
+                'users' => User::where('id_role', '<>', 2)
+                                ->where('actif', '=', 1)
+                                ->get()
             ]);
         }
     }
@@ -59,8 +98,8 @@ class ProfileController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'name' => 'required', 'max:255',
-            'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
-            'telephone' => 'required|regex:/^([0-9]{3}[0-9]{3}[0-9]{4})|([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}|([0-9]{3})[0-9]{3}-[0-9]{4}|[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/|min:10',
+            'email' => ['required', 'regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/', 'max:255', 'unique:'.User::class],
+            'telephone' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
             'adresse' => 'required', 'max:255',
             'naissance' => 'required', 'date',
             'password' => 'required', 'confirmed', Rules\Password::defaults(),
@@ -109,11 +148,15 @@ class ProfileController extends Controller
             $user->date_embauche = $contenuFormulaire['embauche'];
             $user->specimen_cheque = $contenuFormulaire['specimen'];
 
-            $user->save();
+            if ($user->save())
+                $request->session()->now('succes', 'L\'ajout de l\'employé a bien fonctionné.');
+            else
+                $request->session()->now('erreur', 'L\'ajout de l\'employé n\'a pas fonctionné.');
 
-
-            return view('profile/confirmAddEmploye', [
-                'user' => $user
+            return view('profile/employes', [
+                'users' => User::where('id_role', '<>', 2)
+                                ->where('actif', '=', 1)
+                                ->get()
             ]);
         }
 
@@ -142,7 +185,7 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request, int $id): View
+    public function edit(Request $request, ?int $id = null): View
     {
         if($request->routeIs('modificationEmploye')) {
 
@@ -165,22 +208,37 @@ class ProfileController extends Controller
         }
     }
 
+    public function updateProfile(ProfileUpdateRequest $requestP)
+    {
+        $requestP->user()->fill($requestP->validated());
+
+        if ($requestP->user()->isDirty('email')) {
+            $requestP->user()->email_verified_at = null;
+        }
+
+        $requestP->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
     /**
      * Update the user's profile information.
      */
     public function update(Request $request, int $id)
     {
+
         if($request->routeIs('enregistrementEmploye')){
 
             $validation = Validator::make($request->all(), [
-                'name' => 'required', 'max:255',
-                'email' => 'required', 'email', 'max:255', 'unique:'.User::class,
-                'telephone' => 'required',
-                'adresse' => 'required', 'max:255',
-                'naissance' => 'required', 'date',
-                'poste' => 'required', 'max:255',
-                'embauche' => 'required', 'date',
+                'name' => 'required|max:255',
+                'email' => ['required', 'regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/', 'max:255'],
+                'telephone' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
+                'adresse' => 'required|max:255',
+                'naissance' => 'required|date',
+                'poste' => 'required|max:255',
+                'embauche' => 'required|date',
                 'specimen' => 'max:255',
+                'role' => 'required'
             ],
             [
                 'name.required' => 'Veuillez entrer le nom de employé.',
@@ -220,46 +278,58 @@ class ProfileController extends Controller
                 $user->date_embauche = $contenuFormulaire['embauche'];
                 $user->specimen_cheque = $contenuFormulaire['specimen'];
 
-                $user->save();
+                if ($user->save())
+                    $request->session()->now('succes', 'La modification de l\'employé a bien fonctionné.');
+                else
+                    $request->session()->now('erreur', 'La modification de l\'employé n\'a pas fonctionné.');
 
                 return view('profile/employes', [
-                    'users' => User::All()
+                    'users' => User::where('id_role', '<>', 2)
+                                    ->where('actif', '=', 1)
+                                    ->get()
                 ]);
             }
-
-        }
-        else{
-
-            $request->user()->fill($request->validated());
-
-            if ($request->user()->isDirty('email')) {
-                $request->user()->email_verified_at = null;
-            }
-
-            $request->user()->save();
-
-            return Redirect::route('profile.edit')->with('status', 'profile-updated');
         }
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+        if($request->routeis("supprimerUnEmploye"))
+        {
+            $id = $request->input('id');
 
-        $user = $request->user();
+            $user = User::find($id);
+            $user->actif = 0;
 
-        Auth::logout();
+            if ($user->save())
+            {
+                http_response_code(200);
+            }
+            else
+            {
 
-        $user->delete();
+                http_response_code(400);
+            }
+        }
+        else
+        {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current-password'],
+            ]);
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $user = $request->user();
 
-        return Redirect::to('/');
+            Auth::logout();
+
+            $user->delete();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return Redirect::to('/');
+        }
     }
 }

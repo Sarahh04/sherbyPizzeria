@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
@@ -61,6 +61,8 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/employe/{id}', 'show')->name('employe');
     Route::get('/modificationEmploye/{id}', 'edit')->name('modificationEmploye');
     Route::post('/modificationEmploye/{id}', 'update')->name('enregistrementEmploye');
+    Route::post('/supprimerEmploye', 'destroy')->name('supprimerUnEmploye');
+    Route::post('/filtrerEmp', 'index')->name('filtrerEmployer');
 });
 
 Route::controller(DelaiCeuilletteController::class)->group(function () {
@@ -76,6 +78,8 @@ Route::controller(ClientController::class)->group(function () {
     Route::get('/ajouter/client', 'create')->name('ajouterClient');
     Route::get('/client/{id}', 'show')->name('detailClient');
     Route::post('/enregistrerClient', 'store')->name('enregistrementClient');
+    Route::post('/supprimerClient', 'destroy')->name('supprimerUnClient');
+    Route::post('/filtrerClient', 'index')->name('filtrerClients');
 });
 
 require __DIR__ . '/auth.php';

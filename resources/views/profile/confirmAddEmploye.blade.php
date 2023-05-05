@@ -1,3 +1,9 @@
+{{-- /*****************************************************************************
+ Fichier : ConfirmAddEmploye
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Confirme que l'ajout de l'employer a la base de donnée
+ a bien été fait .
+*****************************************************************************/ --}}
 
 <x-app-layout>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

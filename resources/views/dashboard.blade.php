@@ -1,3 +1,10 @@
+{{-- /*****************************************************************************
+ Fichier : dashboard
+ Auteur : Amélie Fréchette
+ Fonctionnalité : C'est la page d'acceuil. Elle affiche les liens qu,il y a dans
+ le nav avec un description de ce que c'est.
+*****************************************************************************/ --}}
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -9,12 +16,12 @@
                     <img src="{{ asset('img/commande.svg') }}" alt="acc_commande" class = "mr-12 img_accCommande">Gestion de commande</p></span>
                 </a>
 
-                    <a href="{{ route('dashboard') }}"><p class = "flex flex-row ml-28 mt-8">
+                    <a href="{{ route('gestionProduits') }}"><p class = "flex flex-row ml-28 mt-8">
                         Gestion du menu<img src="{{ asset('img/menu.png') }}" alt="acc_menu" class = "ml-36 img_accMenu"></p>
                     </a>
 
                 <div class = "flex flex-row">
-                    <a href="{{ route('dashboard') }}"><p class = "flex flex-row mt-8">
+                    <a href="{{ route('gestionInventaire') }}"><p class = "flex flex-row mt-8">
                         <img src="{{ asset('img/inventaire.svg') }}" alt="acc_inventaire" class = "mr-12 img_accInventaire">Gestion de l'inventaire</p>
                     </a>
                 </div>

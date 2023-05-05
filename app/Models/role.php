@@ -1,4 +1,9 @@
 <?php
+/*****************************************************************************
+ Fichier : role
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Classe role des utilisateurs.
+*****************************************************************************/
 
 namespace App\Models;
 

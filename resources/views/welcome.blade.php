@@ -397,8 +397,6 @@
         @if (Route::has('login'))
             <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block">
                 @auth
-                    <a href="{{ url('/dashboard') }}"
-                        class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-500"><i
                             class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i></a>
@@ -409,7 +407,8 @@
 
             <div class="main-container-preview flex flex-row items-center">
                 <div class="flex flex-row fit-content">
-                    <img class="img-preview-page" src="{{ asset('img/logoSherbyPizzeria.png') }}" alt="">
+                    <a href="{{ route('dashboard') }}">
+                        <img class="img-preview-page" src="{{ asset('img/logoSherbyPizzeria.png') }}" alt=""></a>
                     <h1 class="title-preview font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">Sherby
                         Pizza</h1>
                 </div>
@@ -418,7 +417,7 @@
                             class="text-gray-700 dark:text-gray-500"><img src="{{ asset('img/login.svg') }}"
                                 alt=""><span class="login-text">Connectez-vous</span></a>
                     </p>
-                    <p class="login-container"><a href="{{ route('login') }}"
+                    <p class="login-container"><a href="{{ route('gestionProduits') }}"
                             class="text-gray-700 dark:text-gray-500"><img src="{{ asset('img/menu.png') }}"
                                 alt=""><span class="login-text">Voir le menu</span></a>
                     </p>

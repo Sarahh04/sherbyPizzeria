@@ -1,3 +1,9 @@
+{{-- /*****************************************************************************
+ Fichier : navigation
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Affiche le menu de navigation présent sur tout nos pages.
+*****************************************************************************/ --}}
+
 <nav x-data="{ open: false }" class="border-b border-gray-100 nav_all">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

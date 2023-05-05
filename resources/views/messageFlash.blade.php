@@ -1,3 +1,10 @@
+{{-- /*****************************************************************************
+ Fichier : messageFlash
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Afiiche des message de succes ou d'erreur lorsqu'une action
+ est effectuer.
+*****************************************************************************/ --}}
+
 @if (Session::has('info'))
     <div role="alert">
         <div class="bg-blue-500 text-white font-bold rounded-t px-4 py-2">Information</div>
