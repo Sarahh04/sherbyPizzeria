@@ -254,27 +254,6 @@ search.addEventListener("click", fetchSearch);
 
 
 
-async function fetchSearch(e) {
-e.preventDefault();
-console.log(e.target.previousElementSibling);
-let response = await fetch("/gestion/inventaire/"+e.target.previousElementSibling.value, {
-  method: "post",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body:
-    "name="+e.target.previousElementSibling.value+"",
-});
-
-if (response.status === 200) {
-    console.log('test')
-}
- else if (response.status === 400) {
-  alert("failed attempt");
-}
-}
-
-
 
 let switchBtn = document.querySelector('.container-button-modif>button');
 

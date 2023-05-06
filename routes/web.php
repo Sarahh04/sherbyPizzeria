@@ -44,6 +44,27 @@ Route::middleware('auth')->group(function () {
         // Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
     });
 
+
+    Route::controller(ProduitController::class)->group(function () {
+        Route::get('/promotions', 'index')->name('promotions');
+        Route::get('/newPromotion', 'create')->name('newPromotion');
+        Route::get('/gestion/produits', 'store')->name('gestionProduits');
+        Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
+        Route::get('/gestion/inventaire/search', 'update')->name('search');
+        Route::post('/gestion/inventaire/insertion', 'store')->name('insertionInventaire');
+        Route::get('/produit/modif', 'update')->name('modifierProduit');
+        Route::get('/produit/modif/bd', 'update')->name('modifierBdProduit');
+    });
+
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/index', 'index')->name('indexUser');
+        Route::get('/employes', 'index')->name('employes');
+        Route::get('/newEmploye', 'create')->name('newEmploye');
+        Route::post('/confirmAddEmploye', 'store')->name('insertEmploye');
+        Route::get('/employe/{id}', 'show')->name('employe');
+        Route::get('/modificationEmploye/{id}', 'edit')->name('modificationEmploye');
+        Route::post('/modificationEmploye/{id}', 'update')->name('enregistrementEmploye');
+    });
     Route::controller(ProduitController::class)->group(function () {
         Route::get('/promotions', 'index')->name('promotions');
         Route::get('/newPromotion', 'create')->name('newPromotion')->middleware(EnsureUserAdmin::class);

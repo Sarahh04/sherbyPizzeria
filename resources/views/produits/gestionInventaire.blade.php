@@ -2,8 +2,8 @@
 <x-app-layout>
     <article class="search-main">
         <section class="search-container">
-            <form action="" method="POST" class="search-form">
-                <input type="text" class="search-bar">
+            <form action="{{ route('search') }}" method="get" class="search-form">
+                <input type="text" class="search-bar" name="nom">
                 <input type="submit" value="Search inventory" class="search-button">
             </form>
         </section>
@@ -28,7 +28,7 @@
                             <td class="data-inv"></td>
                             <td class="data-inv">
                                 <div class="logo">
-                                    <a href="produit/modif/{{ $item->id_produit }}">
+                                    <a href="/produit/modif">
                                         <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
                                     </a>
                                     <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
@@ -41,15 +41,16 @@
         </section>
         <section class="product-form-container">
             <div class=" form-gestion">
-                <form action="" class="form-ajout-int">
+                <form action="{{ route('insertionInventaire') }}" method="post" class="form-ajout-int">
+                    @csrf
                     <div>
-                        <input type="text" placeholder="nom">
+                        <input type="text" name="nom" placeholder="nom">
                     </div>
                     <div>
-                        <input type="text" placeholder="qty">
+                        <input type="text" name="qty" placeholder="qty">
                     </div>
                     <div>
-                        <input type="text" placeholder="utility">
+                        <input type="text" name="utility" placeholder="utility">
                     </div>
                     <input type="submit" value="Ajouter" class="add-int">
                 </form>
