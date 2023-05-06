@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;//recupere les données d'authentication
 use App\Models\Produit;
 use App\Models\transaction;
 use App\Models\ProduitTransaction;
+use App\Models\Mode_paiement;
 use App\Models\Transaction as ModelsTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -62,7 +63,8 @@ class TransactionController extends Controller
         if ($request->routeIs('ajouterCommande')) {
             return view('commande/ajouterCommande',[
                 'produits' => Produit::All(),
-                'users' => User::All()
+                'users' => User::All(),
+                'modePaiements' => Mode_paiement::All()
             ]);
         }
 
@@ -77,26 +79,41 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
 
-        $commande = Transaction::create([
-            'id_user' => Auth::id(),
+        $commande = json_decode($request->input('commande'));
+        $idClient =  $request->input('idClient');
+        $observation = $request->input('observation');
+        $mPaiement =  $request->input('mPaiement');
+
+
+        $transaction = Transaction::create([
+            'id_user' => $idClient,
             'id_etat_transaction' => 1,
-            'id_mode_payement' => 1,
+            'id_mode_paiement' => $mPaiement,
             'id_type_transaction' => 1,
-            'no_facture' => 7777,
+            'no_facture' => 1000 ,
             'date_transaction' => date("Y-m-d H:i:s"),
-            'observation'=> $request->observation
+            'observation'=> $observation
         ]);
 
-        foreach($request->produit as $produit) {
 
+        for($i = 0; $i < $commande.count(); $i++)
+        {
             $produitTransaction = ProduitTransaction::create([
-                                'id_transaction' => $commande->id_transaction,
-                                'id_produit' => $produit->id_produit,
-                                'quantite' => $produit->pivot->quantite
+                                'id_transaction' => $transaction->id_transaction,
+                                'id_produit' =>$commande[$i] ,
+                                'quantite' => $commande[$i+1]
             ]);
         }
 
+        if($produitTransaction)
+        {
+            return redirect()->route('detailCommande', ['id' => $commande->id_transaction]);
+        }
+
+
     }
+
+
 
     /**
      * Display the specified resource.
@@ -188,12 +205,25 @@ class TransactionController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     *@param  \Illuminate\Http\Request  $request
      * @param  \App\Models\transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(transaction $transaction)
+    public function destroy( Request $request, transaction $transaction)
     {
-        return view('commande/supprimerCommande');
+        $id = $request->input('id');
+
+        $transaction = Transaction::find($id);
+
+
+            if ( $transaction->delete())
+            {
+                http_response_code(200);
+            }
+            else
+            {
+
+                http_response_code(400);
+            }
     }
 }

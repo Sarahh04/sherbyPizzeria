@@ -41,17 +41,17 @@ class ClientController extends Controller
 
             if($nom != null )
             {
-                $clients->where('name','=',$nom);
+                $clients->where('name','like',$nom);
             }
 
             if( $tel != null )
             {
-                $clients->where('telephone','=',$tel);
+                $clients->where('telephone','like',$tel);
             }
 
             if( $courriel != null)
             {
-                $clients->where('email','=',$courriel);
+                $clients->where('email','like',$courriel);
             }
 
             $results = $clients->get();
@@ -211,7 +211,7 @@ class ClientController extends Controller
         else
         {
             $request->session()->flash('erreur', 'La modification du client n\'a pas fonctionné.');
-            redirect()->route('consulterClient');
+            return redirect()->route('consulterClient');
         }
     }
 
@@ -223,20 +223,36 @@ class ClientController extends Controller
      */
     public function destroy(client $client, Request $request)
     {
-        $id = $request->input('id');
-
-        $client = User::find($id);
-        $client->actif = 0;
-
-        if ($client->save())
+        if ($request->routeIs('supprimerLeClient'))
         {
-            http_response_code(200);
+            $id = $request->input('id');
+            $client = User::find($id);
+            if($client != null)
+            {
+                $client->actif = 0;
+            }
+
+            $client->save();
+            return redirect()->route('consulterClient');
         }
         else
         {
+            $id = $request->input('id');
 
-            http_response_code(400);
+            $client = User::find($id);
+            $client->actif = 0;
+
+            if ($client->save())
+            {
+                http_response_code(200);
+            }
+            else
+            {
+
+                http_response_code(400);
+            }
         }
+
 
 
     }

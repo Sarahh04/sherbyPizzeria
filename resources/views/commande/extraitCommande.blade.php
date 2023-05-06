@@ -21,7 +21,7 @@
                             </label>
                         </div>
                             <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="user" >
-                                Nome usuario
+                                Nome utilisateur
                             </label>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -31,7 +31,7 @@
                             </label>
                         </div>
                         <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="user" >
-                                Telephone usuario
+                                Telephone utilisateur
                         </label>
                     </div>
 
