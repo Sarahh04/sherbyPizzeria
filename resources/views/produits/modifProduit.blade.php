@@ -2,33 +2,41 @@
     <article class="main-container-menu">
         <section class="product-form-container" style="flex-basis:100%;">
             <div class=" form-gestion">
-                <form action="" method="get">
-                    <input type="hidden" name="id" value="{{ $id }}">
+                <form action="{{ route('modifierBdProduit') }}" method="POST">
+                    @csrf
                     <div class="nom-prix-container">
                         <div>
-                            <input type="text" placeholder="Nom">
+                            <input type="text" name="nom" placeholder="Nom" value="{{ $produits->nom }}">
                         </div>
                         <div>
-                            <input type="text" placeholder="prix">
+                            <input type="text" name="prix" placeholder="prix" value="{{ $produits->prix }}">
                         </div>
                     </div>
                     <div class="description-container">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Description"></textarea>
+                        <div>
+                            <input type="text" name="description" cols="30" rows="10"
+                                placeholder="Description" value="{{ $produits->description }}"></textarea>
+                        </div>
+
                     </div>
                     <div class="date-in-container">
                         <div>
-                            <input type="date" placeholder="Expiration">
+                            <input type="text" placeholder="delais" name="delais" value="{{ $produits->delais }}">
                         </div>
                         <div>
-                            <select name="ingrediant" id="ingrediant">
-                                @foreach ($produits as $item)
-                                    <option default value="patate">{{ $item->nom }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" placeholder="qty" name="qty" value="{{ $produits->quantite }}">
                         </div>
                     </div>
+                    <div class="description-container">
+                        <select name="categorie" id="">
+                            @foreach ($categories as $element)
+                                <option value="{{ $element->id_categorie }}">{{ $element->nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="submit-container">
-                        <input type="submit" class="add-int" value="Ajouter">
+                        <input type="submit" class="add-int" value="Modifier">
+                        <input type="hidden" name="id" value="{{ $id }}">
                     </div>
                 </form>
             </div>

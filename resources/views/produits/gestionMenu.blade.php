@@ -24,7 +24,7 @@
                             <td>{{ $item->prix }}</td>
                             <td>
                                 <div class="logo">
-                                    <a href="/produit/modif" class="modif-produit">
+                                    <a href="/inventaire/modif/{{ $item->id_produit }}" class="modif-produit">
                                         <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
                                     </a>
                                     <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
@@ -42,29 +42,36 @@
                 </button>
             </div>
             <div class="form-hidden form-gestion">
-                <form action="">
+                <form action="{{ route('insertionInventaire') }}" method="POST">
+                    @csrf
                     <div class="nom-prix-container">
                         <div>
-                            <input type="text" placeholder="Nom">
+                            <input type="text" name="nom" placeholder="Nom">
                         </div>
                         <div>
-                            <input type="text" placeholder="prix">
+                            <input type="text" name="prix" placeholder="prix">
                         </div>
                     </div>
                     <div class="description-container">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Description"></textarea>
+                        <div>
+                            <textarea name="description" cols="30" rows="10" placeholder="Description"></textarea>
+                        </div>
+
                     </div>
                     <div class="date-in-container">
                         <div>
-                            <input type="date" placeholder="Expiration">
+                            <input type="text" placeholder="delais" name="delais">
                         </div>
                         <div>
-                            <select name="ingrediant" id="ingrediant">
-                                @foreach ($produits as $item)
-                                    <option default value="patate">{{ $item->nom }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" placeholder="qty" name="qty">
                         </div>
+                    </div>
+                    <div class="description-container">
+                        <select name="categorie" id="">
+                            @foreach ($categories as $element)
+                                <option value="{{ $element->id_categorie }}">{{ $element->nom }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="submit-container">
                         <input type="submit" class="add-int" value="Ajouter">
