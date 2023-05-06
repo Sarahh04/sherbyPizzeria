@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produit;
 use Illuminate\Http\Request;
-use App\Models\Categorie;
+use App\Models\CategorieProduit;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ProduitResource;
@@ -28,7 +28,8 @@ class ProduitController extends Controller
             ]);
         } else {
             return view('produits/gestionInventaire', [
-                'produits' => Produit::all()
+                'produits' => Produit::all(),
+                'categories' => CategorieProduit::all()
             ]);
         }
     }
@@ -55,7 +56,8 @@ class ProduitController extends Controller
     {
         if ($request->routeIs('gestionProduits')) {
             return view('produits/gestionMenu', [
-                'produits' => Produit::all()
+                'produits' => Produit::all(),
+                'categories' => CategorieProduit::all()
             ]);
         } else {
 
@@ -63,14 +65,13 @@ class ProduitController extends Controller
 
             try {
                 Produit::create([
-                    'id_produit' => Str::random(6),
                     'nom' => $contenuDecode['nom'],
-                    'prix' => 10.99,
-                    'delais' => 10,
+                    'prix' => $contenuDecode['prix'],
+                    'delais' => $contenuDecode['delais'],
                     'quantite' => $contenuDecode['qty'],
-                    'promo_courante' => $contenuDecode['utility'],
-                    'description' => 'bonjour test',
-                    'id_categorie' => 1
+                    'promo_courante' => 0,
+                    'description' => $contenuDecode['description'],
+                    'id_categorie' => $contenuDecode['categorie']
                 ]);
             } catch (QueryException $erreur) {
                 report($erreur);
@@ -78,7 +79,8 @@ class ProduitController extends Controller
             }
 
             return view('produits/gestionInventaire', [
-                'produits' => Produit::all()
+                'produits' => Produit::all(),
+                'categories' => CategorieProduit::all()
             ]);
         }
     }
@@ -115,7 +117,9 @@ class ProduitController extends Controller
     {
         if ($request->routeIs('search')) {
             return view('produits/gestionInventaire', [
-                'produits' => Produit::where('nom', $request->nom)->get()
+                'produits' => Produit::where('nom', $request->nom)->get(),
+                'categories' => CategorieProduit::all()
+
             ]);
         } elseif ($request->routeIs('modifierBdProduit')) {
             $produit = Produit::find($request->id);
@@ -129,12 +133,14 @@ class ProduitController extends Controller
             $produit->save();
 
             return view('produits/gestionInventaire', [
-                'produits' => Produit::all()
+                'produits' => Produit::all(),
+                'categories' => CategorieProduit::all()
             ]);
-        } else {
+        } elseif ($request->routeIs('modifProduits')) {
             return view('produits/modifProduit', [
                 'id' => $request->id,
-                'produits' => Produit::all()
+                'produits' => Produit::all(),
+                'categories' => CategorieProduit::all()
             ]);
         }
     }

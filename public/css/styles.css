@@ -295,7 +295,7 @@
     color: white;
 }
 
-.btnAddNote{
+.btnAddNote {
     margin-left: 6%;
     margin-bottom: 4%;
     border: 1px solid black;
@@ -411,7 +411,7 @@ body {
 .description-container {
     display: flex;
     justify-content: center;
-
+    margin-bottom: 10px;
 }
 
 .form-hidden {
