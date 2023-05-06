@@ -40,7 +40,7 @@ class TransactionController extends Controller
             $contenueForm = $request->all();
 
             return view('commande/resumeCommande',[
-                'user' => User::where('email', '=', $contenueForm['client']);
+                'user' => User::All(),
                 'produits' => Produit::All(),
                 'users'=> User::All() ]);
         }
