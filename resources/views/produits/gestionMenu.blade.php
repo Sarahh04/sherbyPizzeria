@@ -24,7 +24,7 @@
                             <td>{{ $item->prix }}</td>
                             <td>
                                 <div class="logo">
-                                    <a href="produit/modif/{{ $item->id_produit }}">
+                                    <a href="/produit/modif" class="modif-produit">
                                         <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
                                     </a>
                                     <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
@@ -60,7 +60,9 @@
                         </div>
                         <div>
                             <select name="ingrediant" id="ingrediant">
-                                <option default value="patate"></option>
+                                @foreach ($produits as $item)
+                                    <option default value="patate">{{ $item->nom }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
