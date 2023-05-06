@@ -65,13 +65,13 @@ class ProduitController extends Controller
 
             try {
                 Produit::create([
-                    'nom' => $contenuDecode['nom'],
-                    'prix' => $contenuDecode['prix'],
-                    'delais' => $contenuDecode['delais'],
-                    'quantite' => $contenuDecode['qty'],
+                    'nom' => $contenuDecode['nom'] ?? '',
+                    'prix' => $contenuDecode['prix'] ?? 0,
+                    'delais' => $contenuDecode['delais'] ?? '',
+                    'quantite' => $contenuDecode['qty'] ?? 0,
                     'promo_courante' => 0,
-                    'description' => $contenuDecode['description'],
-                    'id_categorie' => $contenuDecode['categorie']
+                    'description' => $contenuDecode['description'] ?? '',
+                    'id_categorie' => $contenuDecode['categorie'] ?? 0
                 ]);
             } catch (QueryException $erreur) {
                 report($erreur);
