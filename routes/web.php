@@ -48,8 +48,10 @@ Route::controller(ProduitController::class)->group(function () {
     Route::get('/newPromotion', 'create')->name('newPromotion');
     Route::get('/gestion/produits', 'store')->name('gestionProduits');
     Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
-    Route::post('/gestion/inventaire/{nom}', 'update')->name('search');
+    Route::get('/gestion/inventaire/search', 'update')->name('search');
     Route::post('/gestion/inventaire/insertion', 'store')->name('insertionInventaire');
+    Route::get('/produit/modif', 'update')->name('modifierProduit');
+    Route::get('/produit/modif/bd', 'update')->name('modifierBdProduit');
 });
 
 Route::controller(ProfileController::class)->group(function () {

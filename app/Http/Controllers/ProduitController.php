@@ -114,8 +114,28 @@ class ProduitController extends Controller
     public function update(Request $request, Produit $produit)
     {
         if ($request->routeIs('search')) {
-            $produit = Produit::find($request->nom);
-            return response()->json($produit);
+            return view('produits/gestionInventaire', [
+                'produits' => Produit::where('nom', $request->nom)->get()
+            ]);
+        } elseif ($request->routeIs('modifierBdProduit')) {
+            $produit = Produit::find($request->id);
+
+            // Update the record's attributes
+            $produit->nom = 'New name';
+            $produit->description = 'New description';
+            $produit->prix = 10.99;
+
+            // Save the changes to the database
+            $produit->save();
+
+            return view('produits/gestionInventaire', [
+                'produits' => Produit::all()
+            ]);
+        } else {
+            return view('produits/modifProduit', [
+                'id' => $request->id,
+                'produits' => Produit::all()
+            ]);
         }
     }
     /**
