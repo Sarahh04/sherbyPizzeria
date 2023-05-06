@@ -26,7 +26,7 @@
                             <td class="data-inv">{{ $item->quantite }}</td>
                             <td class="data-inv">
                                 <div class="logo">
-                                    <a href="/produit/modif">
+                                    <a href="/inventaire/modif/{{ $item->id_produit }}">
                                         <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
                                     </a>
                                     <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">

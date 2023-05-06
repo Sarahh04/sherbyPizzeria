@@ -71,8 +71,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/gestion/produits', 'store')->name('gestionProduits')->middleware(EnsureUserAdmin::class);
         Route::get('/gestion/inventaire', 'index')->name('gestionInventaire')->middleware(EnsureUserAdmin::class);
         Route::post('/gestion/inventaire/search', 'update')->name('search');
-        Route::post('/gestion/inventaire/modif', 'update')->name('modifProduits');
-        Route::post('/gestion/inventaire/modif', 'update')->name('modifierBdProduit');
+        Route::get('/inventaire/modif/{id}', 'update')->name('modifProduits');
+        Route::post('/gestion/inventaire/update', 'update')->name('modifierBdProduit');
     });
 
     Route::controller(DelaiCeuilletteController::class)->group(function () {

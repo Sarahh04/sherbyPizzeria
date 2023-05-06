@@ -124,10 +124,33 @@ class ProduitController extends Controller
         } elseif ($request->routeIs('modifierBdProduit')) {
             $produit = Produit::find($request->id);
 
-            // Update the record's attributes
-            $produit->nom = 'New name';
-            $produit->description = 'New description';
-            $produit->prix = 10.99;
+            // Check if the value is not null before updating
+            if (!is_null($request->nom)) {
+                $produit->nom = $request->nom;
+            }
+
+            if (!is_null($request->prix)) {
+                $produit->prix = $request->prix;
+            }
+
+            if (!is_null($request->delais)) {
+                $produit->delais = $request->delais;
+            }
+
+            if (!is_null($request->qty)) {
+                $produit->quantite = $request->qty;
+            }
+
+            // Set promo_courante to 0 unconditionally
+            $produit->promo_courante = 0;
+
+            if (!is_null($request->description)) {
+                $produit->description = $request->description;
+            }
+
+            if (!is_null($request->categorie)) {
+                $produit->id_categorie = $request->categorie;
+            }
 
             // Save the changes to the database
             $produit->save();
@@ -136,10 +159,10 @@ class ProduitController extends Controller
                 'produits' => Produit::all(),
                 'categories' => CategorieProduit::all()
             ]);
-        } elseif ($request->routeIs('modifProduits')) {
+        } else {
             return view('produits/modifProduit', [
                 'id' => $request->id,
-                'produits' => Produit::all(),
+                'produits' => Produit::find($request->id),
                 'categories' => CategorieProduit::all()
             ]);
         }
