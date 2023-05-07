@@ -11,8 +11,6 @@
                         <button id="delete"
                             class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black"><a
                                 href="/supprimerProduit/{{ $id }}">Supprimer</a></button>
-                        <button id="close"
-                            class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">Fermer</button>
                     </div>
                 </div>
         </section>
