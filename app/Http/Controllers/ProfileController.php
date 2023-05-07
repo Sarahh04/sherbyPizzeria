@@ -42,17 +42,17 @@ class ProfileController extends Controller
 
             if($nom != null )
             {
-                $users->where('name','=',$nom);
+                $users->where('name','like', $nom);
             }
 
             if( $tel != null )
             {
-                $users->where('telephone','=',$tel);
+                $users->where('telephone','like',$tel);
             }
 
             if( $courriel != null)
             {
-                $users->where('email','=',$courriel);
+                $users->where('email','like',$courriel);
             }
 
             $results = $users->get();

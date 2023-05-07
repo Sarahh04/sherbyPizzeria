@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmationNewClient;
+use App\Http\Resources\ClientResource;
+use Illuminate\Http\Response;
 
 class ClientController extends Controller
 {
@@ -130,10 +132,23 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(client $client, int $id)
+    public function show(Request $request, ?int $id = null)
     {
-        $client = User::find($id);
-        return view('client/detailClient',[ 'client' => $client]);
+        if ($request->routeIs('clientApi'))
+        {
+            $client = auth()->user();
+
+            if (empty($client))
+                return response()->json(['ERREUR' => 'Le client demandé est introuvable.'], 400);
+
+            return new ClientResource($client);
+        }
+        else
+        {
+            $client = User::find($id);
+            return view('client/detailClient',[ 'client' => $client]);
+        }
+
     }
 
     /**
