@@ -37,8 +37,10 @@ class TransactionController extends Controller
                 'users'=> User::All() ]);
         }
         if ($request->routeIs('resumeCommande')) {
+            $contenueForm = $request->all();
+
             return view('commande/resumeCommande',[
-                'user' => Transaction::All(),
+                'user' => User::All(),
                 'produits' => Produit::All(),
                 'users'=> User::All() ]);
         }
