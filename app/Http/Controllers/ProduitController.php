@@ -119,7 +119,7 @@ class ProduitController extends Controller
     {
         if ($request->routeIs('search')) {
             return view('produits/gestionInventaire', [
-                'produits' => Produit::where('nom', $request->nom)->get(),
+                'produits' => Produit::where('nom', 'LIKE', '%' . $request->nom . '%')->get(),
                 'categories' => CategorieProduit::all()
 
             ]);
