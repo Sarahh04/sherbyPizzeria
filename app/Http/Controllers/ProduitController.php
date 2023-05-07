@@ -65,13 +65,13 @@ class ProduitController extends Controller
 
             try {
                 Produit::create([
-                    'nom' => $contenuDecode['nom'] ?? '',
+                    'nom' => $contenuDecode['nom'],
                     'prix' => $contenuDecode['prix'] ?? 0,
                     'delais' => $contenuDecode['delais'] ?? '',
-                    'quantite' => $contenuDecode['qty'] ?? 0,
+                    'quantite' => $contenuDecode['qty'],
                     'promo_courante' => 0,
                     'description' => $contenuDecode['description'] ?? '',
-                    'id_categorie' => $contenuDecode['categorie'] ?? 0
+                    'id_categorie' => $contenuDecode['categorie']
                 ]);
             } catch (QueryException $erreur) {
                 report($erreur);
@@ -159,6 +159,12 @@ class ProduitController extends Controller
                 'produits' => Produit::all(),
                 'categories' => CategorieProduit::all()
             ]);
+        } elseif ($request->routeIs('delProduits')) {
+            return view('produits/deleteProduit', [
+                'id' => $request->id,
+                'produits' => Produit::find($request->id),
+                'categories' => CategorieProduit::all()
+            ]);
         } else {
             return view('produits/modifProduit', [
                 'id' => $request->id,
@@ -173,8 +179,26 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produit $produit)
+    public function destroy(Produit $produit, Request $request)
     {
-        //
+
+        if ($request->routeis("supprimerProduit")) {
+
+
+            $user = Produit::find($request->id);
+            $user->delete();
+
+            if ($user->delete()) {
+                http_response_code(200);
+            } else {
+
+                http_response_code(400);
+            }
+
+            return view('produits/gestionInventaire', [
+                'produits' => Produit::all(),
+                'categories' => CategorieProduit::all()
+            ]);
+        }
     }
 }

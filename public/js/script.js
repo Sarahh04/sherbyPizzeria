@@ -1,23 +1,12 @@
-let switchBtn = document.querySelector('.container-button-modif>button');
-
-switchBtn.addEventListener('click', showForm)
-
-function showForm(e){
-let formMenu = document.querySelector('.form-gestion');
-let buttonMenu = document.querySelector('.container-button-modif')
-
-formMenu.classList.toggle('form-hidden');
-buttonMenu.classList.toggle('form-hidden');
-}
-
-function eventListener()
-{
-    let openButton = document.querySelectorAll('#open');
+let openButton = document.querySelectorAll('#open');
     let modal = document.getElementById('modal');
     let closeButton = document.querySelectorAll('#close');
     let deleteButton = document.querySelectorAll('#delete');
     let filterButton = document.getElementById('filtrer');
     let filterBtn = document.querySelectorAll('#submitFiltre');
+function eventListener()
+{
+
 
     openButton.forEach(element => {
         element.addEventListener('click',getElement)
@@ -264,7 +253,17 @@ function stopForm(evt)
 
 
 
+let switchBtn = document.querySelector('.container-button-modif>button');
 
+switchBtn.addEventListener('click', showForm)
+
+function showForm(e){
+let formMenu = document.querySelector('.form-gestion');
+let buttonMenu = document.querySelector('.container-button-modif')
+
+formMenu.classList.toggle('form-hidden');
+buttonMenu.classList.toggle('form-hidden');
+}
 
 
 
