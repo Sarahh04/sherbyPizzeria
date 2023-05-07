@@ -30,9 +30,12 @@ class TransactionController extends Controller
         if ($request->routeIs('consulterCommande')) {
             return view('commande/consulterCommande');
         }
+
         if ($request->routeIs('extraitCommande')) {
+            $commande = $request->all();
+            //return response()->json(['message' => 'Objeto recebido com sucesso!', 'data' => $commande]);
             return view('commande/extraitCommande',[
-                'commandes' => Transaction::All(),
+                'commande' => $commande,
                 'produits' => Produit::All(),
                 'users'=> User::All() ]);
         }
@@ -126,6 +129,7 @@ class TransactionController extends Controller
             ]);
 
         }
+
     }
 
     /**

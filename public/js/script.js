@@ -291,57 +291,214 @@ buttonMenu.classList.toggle('form-hidden');
 /*********************************************************/
 /* Charger les listeners                                 */
 /*********************************************************/
+
 window.onload = function() {
-    listenerSupprimer();
-    listenerEditer();
-    listenerDInsertion();
-    listenerQuantiteItem();
-    //afficherMasquerFormulaireDInsertion();
+
+    //listenerSelectClient();
+    listenerSelectPizza();
+    listenerSelectBeverage();
+    listenerSelectDessert();
 
 };
 
-/*********************************************************/
-/* Gérer la submission d'un ajoute de produit            */
-/*********************************************************/
-function listenerDInsertion() {
-    // Variable pour referencier le bouton submit du formulaire
-    let boutonSubmit = document.getElementById("ajouter_pizza");
-    if(boutonSubmit != null) {
-    // Ajoute un écouteur sur le bouton submit du formulaire
-        boutonSubmit.addEventListener('click', function(e) {
-            e.preventDefault();
-            let idProduitValue = document.getElementById('pizza').value;
-            let quantite = document.getElementById('quantite').value;
-            let taille = document.getElementById('taille').value;
+// function listenerSelectClient() {
+//     let clientElement = document.getElementById('client');
+//     let clientData = clientElement.value;
+//     let options = clientData.split(',');
 
-            requeteAjouterProduit(idProduitValue,quantite,taille);
-        });
+//     clientElement.addEventListener('change', function() {
+//         console.log(options);
+//         document.querySelector("#telephone").value = options[1];
+//     });
+// }
+
+
+/*********************************************************/
+/* Listener des bouton d'ajoute de produits              */
+/*********************************************************/
+function listenerSelectPizza(){
+    let pizzaQttElement = document.getElementById('qtt_pizza');
+
+    pizzaQttElement.addEventListener('change', function() {
+        pizzaQttElement.style.border = "";
+    });
+}
+
+function listenerSelectBeverage(){
+    let beverageQttElement = document.getElementById('qtt_beverage');
+
+    beverageQttElement.addEventListener('change', function() {
+        beverageQttElement.style.border = "";
+    });
+}
+
+function listenerSelectDessert(){
+    let dessertQttElement = document.getElementById('qtt_dessert');
+
+    dessertQttElement.addEventListener('change', function() {
+        dessertQttElement.style.border = "";
+    });
+}
+
+/*********************************************************/
+/* Gérer la construction de la commande                  */
+/*********************************************************/
+function ajouterPizza() {
+    let pizzaElement = document.getElementById('pizza');
+    let pizzaQttElement = document.getElementById('qtt_pizza');
+    let idPizza = pizzaElement.value;
+    let namePizza = pizzaElement.options[pizzaElement.selectedIndex].text;
+    let qttPizza = pizzaQttElement.value;
+
+    if(qttPizza != 0) {
+        let pizza = new Pizza(idPizza,namePizza,qttPizza);
+        commande.pizzas.add(pizza);
+        pizzaQttElement.value = 0;
+        console.log(commande);
+    }
+    else {
+        pizzaQttElement.style.border = "3px solid red";
     }
 }
 
-function requeteAjouterProduit(idProduitValue,quantite,taille) {
-    console.log("Ajouter");
-    requeteAjax(
-        "action=ajouterCommande&id=" + idProduitValue +
-        "&quantite=" + quantite +
-        "&taille=" + taille
-    );
+function ajouterBeverage() {
+    let beverageElement = document.getElementById('beverage');
+    let beverageQttElement = document.getElementById('qtt_beverage');
+    let idBeverage = beverageElement.value;
+    let nameBeverage = beverageElement.options[beverageElement.selectedIndex].text;
+    let qttBeverage = beverageQttElement.value;
+
+    if(qttBeverage != 0) {
+        let beverage = new Beverage(idBeverage,nameBeverage,qttBeverage);
+        commande.beverages.add(beverage);
+        beverageQttElement.value = 0;
+        console.log(commande);
+    }
+    else {
+        beverageQttElement.style.border = "3px solid red";
+    }
 }
 
-function requeteModifierProduit(idProduitValue,produitValue,categorieValue,descriptionValue) {
-    console.log("Editer");
+function ajouterDessert() {
+    let dessertElement = document.getElementById('dessert');
+    let dessertQttElement = document.getElementById('qtt_dessert');
+    let idDessert = dessertElement.value;
+    let nameDessert = dessertElement.options[dessertElement.selectedIndex].text;
+    let qttDessert = dessertQttElement.value;
 
-    requeteAjax(
-        "action=edition&idproduit=" + idProduitValue +
-        "&produit=" + produitValue +
-        "&categorie=" + categorieValue +
-        "&description=" + descriptionValue
-    );
+    if(qttDessert != 0) {
+        let dessert = new Dessert(idDessert,nameDessert,qttDessert);
+        commande.desserts.add(dessert);
+        dessertQttElement.value = 0;
+        console.log(commande);
+    }
+    else {
+        dessertQttElement.style.border = "3px solid red";
+    }
+
 }
 
-window.onload = () => {
-    document.getElementById("bouton_fetch").addEventListener("click", callFetch);
+function ajouterCommande() {
+    let clientElement = document.getElementById('client');
+    let clientData = clientElement.value;
+    let options = clientData.split(',');
+    let idClient = options[0];
+    let nomClient = clientElement.options[clientElement.selectedIndex].text;
+    let phoneClient = options[1];
+
+    let client = new Client(idClient,nomClient,phoneClient);
+    commande.clients.add(client);
+
+    let commentaireElementValue = document.getElementById('note').value;
+    commande.commentaire.add(commentaireElementValue);
+
+    console.log(commande);
+
+    //ajaxCall();
 }
+
+function ajaxCall() {
+    $.ajax({
+        url: '{{ route("extraitCommande") }}',
+        type: 'POST',
+        data: commande,
+        success: function(response) {
+        console.log(response);
+        }
+    });
+}
+
+/*********************************************************/
+/* Créer les classes Pizzas, Beverage, Dessert et Cart   */
+/*********************************************************/
+class Client {
+    constructor(id, nom, telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.telephone = telephone;
+    }
+}
+class Pizza {
+    constructor(id, nom, quantite) {
+        this.id = id;
+        this.nom = nom;
+        this.quantite = quantite;
+    }
+}
+
+class Beverage {
+    constructor(id, nom, quantite) {
+        this.id = id;
+        this.nom = nom;
+        this.quantite = quantite;
+    }
+}
+
+class Dessert {
+    constructor(id, nom, quantite) {
+        this.id = id;
+        this.nom = nom;
+        this.quantite = quantite;
+    }
+}
+
+// class Commentaire {
+//     constructor(commentaire) {
+//         this.commentaire = this.commentaire;
+//     }
+// }
+
+class Commande {
+    constructor(){
+        this.pizzas = new Set();
+        this.beverages = new Set();
+        this.desserts = new Set();
+        this.clients = new Set();
+        this.commentaire = new Set();
+    }
+}
+
+let commande = new Commande();
+
+
+// function requeteAjouterProduit(idProduitValue,quantite,taille) {
+//     console.log("Ajouter");
+//     requeteAjax(
+//         "action=ajouterCommande&id=" + idProduitValue +
+//         "&quantite=" + quantite
+//     );
+// }
+
+// function requeteModifierProduit(idProduitValue,produitValue,categorieValue,descriptionValue) {
+//     console.log("Editer");
+
+//     requeteAjax(
+//         "action=edition&idproduit=" + idProduitValue +
+//         "&produit=" + produitValue +
+//         "&categorie=" + categorieValue +
+//         "&description=" + descriptionValue
+//     );
+// }
 
 
 /*******************************************************/

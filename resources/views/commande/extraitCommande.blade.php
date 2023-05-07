@@ -21,7 +21,7 @@
                             </label>
                         </div>
                             <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="user" >
-                                {{ $commandes[0]->user->name }}
+                                Nome usuario
                             </label>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -31,26 +31,32 @@
                             </label>
                         </div>
                         <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="user" >
-                            {{$commandes[0]->user->telephone}}
+                                Telephone usuario
                         </label>
                     </div>
 
-                    @foreach ($commandes[0]->produit as $produit)
+                    @foreach ($users as $user)
+                    <pre>
+                        print_r($user);
+                    </pre>
                     <div class="md:flex md:items-center mb-6">
                         <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                                {{ $produit->categorie->nom }} :
+                                {{-- {{ $produit->categorie->nom }} : --}}
+                                Produit
                             </label>
                         </div>
                         <div class="md:w-2/3 flex">
                             <label class="md:w-1/3 block text-gray-500 md:text-left mb-1 md:mb-0 pr-4" for="beverage">
-                                {{ $produit->nom }}
+                                {{-- {{ $produit->nom }} --}}
+                                Nom produit
                             </label>
                             <label class="md:w-1/3 block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                                 Quantité :
                             </label>
                             <label class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4" for="qtt_beverage">
-                                {{ $produit->pivot->quantite }}
+                                {{-- {{ $produit->pivot->quantite }} --}}
+                                1
                             </label>
                         </div>
                     </div>
