@@ -374,6 +374,31 @@ body {
     height: 60vh;
     margin: 35px;
     overflow-y: scroll;
+    border-radius: 10px;
+}
+
+.product-menu-container * {
+    border-radius: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .product-form-container {
@@ -381,8 +406,11 @@ body {
     margin: 35px;
 }
 
-input {
-    border-radius: 5px;
+input,
+select,
+option,
+button {
+    border-radius: 5px !important;
 }
 
 .container-button-modif {
