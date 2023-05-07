@@ -5,7 +5,6 @@
                 <ul>
                     <li>Regulier</li>
                     <li>Promotion</li>
-                    <li>limiter</li>
                     <li>indisponible</li>
                 </ul>
             </div>
