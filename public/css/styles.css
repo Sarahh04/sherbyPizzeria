@@ -381,7 +381,9 @@ body {
     margin: 35px;
 }
 
-
+input {
+    border-radius: 5px;
+}
 
 .container-button-modif {
     width: 100%;
