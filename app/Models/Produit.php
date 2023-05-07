@@ -22,7 +22,8 @@ class Produit extends Model
         'quantite',
         'promo_courante',
         'description',
-        'id_categorie'
+        'id_categorie',
+        'dispo'
     ];
 
     public function categorie(): BelongsTo
@@ -36,4 +37,3 @@ class Produit extends Model
         return $this->belongsToMany(Transaction::class, 'produit_transactions', 'id_transaction', 'id_produit')->withPivot('quantite');
     }
 }
-

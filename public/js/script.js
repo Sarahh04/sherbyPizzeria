@@ -1,11 +1,12 @@
-function eventListener()
-{
-    let openButton = document.querySelectorAll('#open');
+let openButton = document.querySelectorAll('#open');
     let modal = document.getElementById('modal');
     let closeButton = document.querySelectorAll('#close');
     let deleteButton = document.querySelectorAll('#delete');
     let filterButton = document.getElementById('filtrer');
     let filterBtn = document.querySelectorAll('#submitFiltre');
+function eventListener()
+{
+
 
     openButton.forEach(element => {
         element.addEventListener('click',getElement)
@@ -247,14 +248,11 @@ function stopForm(evt)
 //////////////// Fetch inventory search bar //////////////////////
 
 
-/*let search = document.querySelector(".search-button");
 
 
-search.addEventListener("click", fetchSearch);
+var url = "{{ route('gestionProduits') }}";
 
-
-
-
+if(window.location.href === 'http://127.0.0.1:8000/gestion/produits'){
 let switchBtn = document.querySelector('.container-button-modif>button');
 
 switchBtn.addEventListener('click', showForm)
@@ -265,7 +263,9 @@ let buttonMenu = document.querySelector('.container-button-modif')
 
 formMenu.classList.toggle('form-hidden');
 buttonMenu.classList.toggle('form-hidden');
-}*/
+}
+
+}
 
 /*********************************************************/
 /* Charger les listeners                                 */

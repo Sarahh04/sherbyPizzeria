@@ -70,7 +70,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/newPromotion', 'create')->name('newPromotion')->middleware(EnsureUserAdmin::class);
         Route::get('/gestion/produits', 'store')->name('gestionProduits')->middleware(EnsureUserAdmin::class);
         Route::get('/gestion/inventaire', 'index')->name('gestionInventaire')->middleware(EnsureUserAdmin::class);
-        Route::post('/gestion/inventaire/{nom}', 'update')->name('search');
+        Route::post('/gestion/inventaire/search', 'update')->name('search');
+        Route::get('/inventaire/modif/{id}', 'update')->name('modifProduits');
+        Route::get('/inventaire/del/{id}', 'update')->name('delProduits');
+        Route::post('/gestion/inventaire/update', 'update')->name('modifierBdProduit');
+        Route::get('/supprimerProduit/{id}', 'destroy')->name('supprimerProduit')->middleware(EnsureUserAdmin::class);
+        Route::get('/gestion/filter/promo', 'update')->name('produitPromo');
+        Route::get('/gestion/filter/indispo', 'update')->name('produitIndispo');
     });
 
     Route::controller(DelaiCeuilletteController::class)->group(function () {
