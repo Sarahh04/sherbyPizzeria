@@ -27,12 +27,20 @@
                             <input type="text" placeholder="qty" name="qty" value="{{ $produits->quantite }}">
                         </div>
                     </div>
-                    <div class="description-container">
-                        <select name="categorie" id="">
-                            @foreach ($categories as $element)
-                                <option value="{{ $element->id_categorie }}">{{ $element->nom }}</option>
-                            @endforeach
-                        </select>
+                    <div class="nom-prix-container">
+                        <div>
+                            <select name="categorie" id="">
+                                @foreach ($categories as $element)
+                                    <option value="{{ $element->id_categorie }}">{{ $element->nom }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <select name="dispo" id="">
+                                <option value="disponible">Disponible</option>
+                                <option value="indisponible">Indisponible</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="submit-container">
                         <input type="submit" class="add-int" value="Modifier">

@@ -56,7 +56,7 @@ class ProduitController extends Controller
     {
         if ($request->routeIs('gestionProduits')) {
             return view('produits/gestionMenu', [
-                'produits' => Produit::all(),
+                'produits' =>  Produit::where('dispo', '!=', 'indisponible')->get(),
                 'categories' => CategorieProduit::all(),
                 'color' => 1
             ]);
@@ -72,7 +72,8 @@ class ProduitController extends Controller
                     'quantite' => $contenuDecode['qty'],
                     'promo_courante' => 0,
                     'description' => $contenuDecode['description'] ?? '',
-                    'id_categorie' => $contenuDecode['categorie']
+                    'id_categorie' => $contenuDecode['categorie'],
+                    'dispo' => $contenuDecode['dispo']
                 ]);
             } catch (QueryException $erreur) {
                 report($erreur);
@@ -165,6 +166,10 @@ class ProduitController extends Controller
 
             if (!is_null($request->categorie)) {
                 $produit->id_categorie = $request->categorie;
+            }
+
+            if (!is_null($request->dispo)) {
+                $produit->dispo = $request->dispo;
             }
 
             // Save the changes to the database
