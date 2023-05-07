@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/inventaire/del/{id}', 'update')->name('delProduits');
         Route::post('/gestion/inventaire/update', 'update')->name('modifierBdProduit');
         Route::get('/supprimerProduit/{id}', 'destroy')->name('supprimerProduit')->middleware(EnsureUserAdmin::class);
+        Route::get('/gestion/filter/promo', 'update')->name('produitPromo');
+        Route::get('/gestion/filter/indispo', 'update')->name('produitIndispo');
     });
 
     Route::controller(DelaiCeuilletteController::class)->group(function () {

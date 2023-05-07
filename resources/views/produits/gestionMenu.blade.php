@@ -3,9 +3,12 @@
         <section class="product-menu-container">
             <div class="navigation-menu">
                 <ul>
-                    <li>Regulier</li>
-                    <li>Promotion</li>
-                    <li>indisponible</li>
+                    <li @if ($color === 1) class="red"@else class="" @endif><a
+                            href="{{ route('gestionProduits') }}">Regulier</a></li>
+                    <li @if ($color === 2) class="red"@else class="" @endif><a
+                            href="{{ route('produitPromo') }}">Promotion</a></li>
+                    <li @if ($color === 3) class="red"@else class="" @endif><a
+                            href="{{ route('produitIndispo') }}">indisponible</a></li>
                 </ul>
             </div>
             <table class="GeneratedTable">

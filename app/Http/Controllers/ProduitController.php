@@ -57,7 +57,8 @@ class ProduitController extends Controller
         if ($request->routeIs('gestionProduits')) {
             return view('produits/gestionMenu', [
                 'produits' => Produit::all(),
-                'categories' => CategorieProduit::all()
+                'categories' => CategorieProduit::all(),
+                'color' => 1
             ]);
         } else {
 
@@ -119,6 +120,20 @@ class ProduitController extends Controller
             return view('produits/gestionInventaire', [
                 'produits' => Produit::where('nom', $request->nom)->get(),
                 'categories' => CategorieProduit::all()
+
+            ]);
+        } elseif ($request->routeIs('produitPromo')) {
+            return view('produits/gestionMenu', [
+                'produits' => Produit::where('promo_courante', '>', 0)->get(),
+                'categories' => CategorieProduit::all(),
+                'color' => 2
+
+            ]);
+        } elseif ($request->routeIs('produitIndispo')) {
+            return view('produits/gestionMenu', [
+                'produits' => Produit::where('dispo', 'indisponible')->get(),
+                'categories' => CategorieProduit::all(),
+                'color' => 3
 
             ]);
         } elseif ($request->routeIs('modifierBdProduit')) {
