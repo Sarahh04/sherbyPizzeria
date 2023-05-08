@@ -34,7 +34,7 @@
                 </thead>
                 <tbody>
                     @foreach ($produits as $item)
-                        <tr>
+                        <tr id="divRepere">
                             <td class="data-inv">{{ $item->nom }}</td>
                             <td class="data-inv">{{ $item->quantite }}</td>
                             <td class="data-inv">
