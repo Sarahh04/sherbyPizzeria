@@ -80,7 +80,8 @@ class ProduitController extends Controller
                     'description' => $contenuDecode['description'] ?? '',
                     'id_categorie' => $contenuDecode['categorie'],
                     'dispo' => $contenuDecode['dispo'],
-                    'vedette' => false
+                    'vedette' => false,
+                    'temps_indispo' => null
                 ]);
             } catch (QueryException $erreur) {
                 report($erreur);

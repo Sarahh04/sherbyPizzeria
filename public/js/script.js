@@ -254,7 +254,7 @@ function stopForm(evt)
 
 var url = "{{ route('gestionProduits') }}";
 
-if(window.location.href === 'http://127.0.0.1:8000/gestion/produits'){
+
 let switchBtn = document.querySelector('.container-button-modif>button');
 
 switchBtn.addEventListener('click', showForm)
@@ -267,7 +267,7 @@ formMenu.classList.toggle('form-hidden');
 buttonMenu.classList.toggle('form-hidden');
 }
 
-}
+
 
 /*********************************************************/
 /* Charger les listeners                                 */
