@@ -35,8 +35,8 @@ class ProduitController extends Controller
         }
         $currentTime = now();
         DB::table('produits')
-            ->where('availability_date', '<=', $currentTime)
-            ->update(['availability_date' => null]);
+            ->where('temps_indispo', '<=', $currentTime)
+            ->update(['temps_indispo' => null]);
     }
 
     /**
@@ -63,8 +63,8 @@ class ProduitController extends Controller
 
             $currentTime = now();
             DB::table('produits')
-                ->where('availability_date', '<=', $currentTime)
-                ->update(['availability_date' => null]);
+                ->where('temps_indispo', '<=', $currentTime)
+                ->update(['temps_indispo' => null]);
 
             return view('produits/gestionMenu', [
                 'produits' =>  Produit::where('dispo', '!=', 'indisponible')->whereNull('temps_indispo')->get(),
@@ -94,8 +94,8 @@ class ProduitController extends Controller
 
             $currentTime = now();
             DB::table('produits')
-                ->where('availability_date', '<=', $currentTime)
-                ->update(['availability_date' => null]);
+                ->where('temps_indispo', '<=', $currentTime)
+                ->update(['temps_indispo' => null]);
 
             return view('produits/gestionInventaire', [
                 'produits' => Produit::all(),
