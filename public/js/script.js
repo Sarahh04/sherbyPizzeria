@@ -87,6 +87,8 @@ async function deleteElement()
                       },
             body    : "id="+idElement
           });
+
+          element.parentElement.parentElement.remove()
     }
 
     if (response.status === 200)
