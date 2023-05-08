@@ -56,7 +56,7 @@ class ProduitController extends Controller
     {
         if ($request->routeIs('gestionProduits')) {
             return view('produits/gestionMenu', [
-                'produits' =>  Produit::where('dispo', '!=', 'indisponible')->get(),
+                'produits' =>  Produit::where('dispo', '!=', 'indisponible')->whereNull('temps_indispo')->get(),
                 'categories' => CategorieProduit::all(),
                 'color' => 1
             ]);
@@ -73,7 +73,8 @@ class ProduitController extends Controller
                     'promo_courante' => 0,
                     'description' => $contenuDecode['description'] ?? '',
                     'id_categorie' => $contenuDecode['categorie'],
-                    'dispo' => $contenuDecode['dispo']
+                    'dispo' => $contenuDecode['dispo'],
+                    'vedette' => false
                 ]);
             } catch (QueryException $erreur) {
                 report($erreur);
@@ -132,7 +133,7 @@ class ProduitController extends Controller
             ]);
         } elseif ($request->routeIs('produitIndispo')) {
             return view('produits/gestionMenu', [
-                'produits' => Produit::where('dispo', 'indisponible')->get(),
+                'produits' => Produit::where('dispo', 'indisponible')->orWhereNotNull('temps_indispo')->get(),
                 'categories' => CategorieProduit::all(),
                 'color' => 3
 
