@@ -5,12 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use App\Models\CategorieProduit;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\ProduitResource;
-use Illuminate\Http\Response;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class ProduitController extends Controller
