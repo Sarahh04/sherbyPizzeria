@@ -24,7 +24,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pizza fromage seule',
                 'id_categorie' => 1,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pizza Peperoni',
@@ -34,7 +36,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pizza fromage avec peperoni',
                 'id_categorie' => 1,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pizza Quatre Fromage',
@@ -44,7 +48,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pizza aux quatre fromages (mozzarella, Gruyère, Maasdam et Estepe)',
                 'id_categorie' => 1,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pizza Poulet',
@@ -54,7 +60,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pizza aux poulet (mozzarella, poulet, ognion et cream cheese)',
                 'id_categorie' => 1,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pizza Tout Granit',
@@ -64,7 +72,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pizza tout granit (mozzarella, peperoni, ognion, champignon et piment vert)',
                 'id_categorie' => 1,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pizza Végétarien',
@@ -74,7 +84,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pizza végétarien (mozzarella, ognion, olives, champignon et piment vert)',
                 'id_categorie' => 1,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Coca',
@@ -84,7 +96,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Cannete de coca 355 ml',
                 'id_categorie' => 2,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pepsi',
@@ -94,7 +108,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Cannete de Pepsi 355 ml',
                 'id_categorie' => 2,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Canada Dry',
@@ -104,7 +120,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Cannete de canada dry 355 ml',
                 'id_categorie' => 2,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Jus de Pomme',
@@ -114,7 +132,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Cannete de jus de pomme Minut Maid 341 ml',
                 'id_categorie' => 3,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Jus d\'Orange',
@@ -124,7 +144,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Cannete de jus de orange Minut Maid 341 ml',
                 'id_categorie' => 3,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Jus Mix de Fruits',
@@ -134,7 +156,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Cannete de mix de fruits Frutopia 341 ml',
                 'id_categorie' => 3,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Petit gateau',
@@ -144,7 +168,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Petit gateau aux chocolat rempli de chocolat foundant avec une boule de glace à la crème',
                 'id_categorie' => 4,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Tiramisù',
@@ -154,7 +180,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Dessert italien classique avec des biscuits au rhum imbibés de café, une crème pâtissière crémeuse au mascarpone et de la crème fouettée.',
                 'id_categorie' => 4,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Tarte aux pommes',
@@ -164,7 +192,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Petit tarte aux pommes.',
                 'id_categorie' => 4,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Tarte aux citrons',
@@ -174,7 +204,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Petit tarte aux citrons.',
                 'id_categorie' => 4,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pizza au chocolat',
@@ -184,7 +216,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Petit pizza au chocolat.',
                 'id_categorie' => 4,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Mozzarela',
@@ -194,7 +228,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de mozzarela',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Gruyère',
@@ -204,7 +240,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de gruyère',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Maasdam',
@@ -214,7 +252,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de maasdam',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Estepe',
@@ -224,7 +264,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de estepe',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Cream cheese',
@@ -234,7 +276,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de cream cheese',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Peperoni',
@@ -244,7 +288,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de peperoni',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Ognion',
@@ -254,7 +300,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de ognion',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Piment vert',
@@ -264,7 +312,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de piment vert',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Champignon',
@@ -274,7 +324,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de champignon',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Poulet',
@@ -284,7 +336,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire de poulet',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Olives',
@@ -294,7 +348,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Portion supplémentaire d\'olives',
                 'id_categorie' => 5,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pièce de mozzarela',
@@ -304,7 +360,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pièce de mozzarela avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pièce de gruyère',
@@ -314,7 +372,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pièce de gruyère avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pièce de maasdam',
@@ -324,7 +384,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pièce de massdam avec 5 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pièce de estepe',
@@ -334,7 +396,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pièce d\'estepe avec 5 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Packet de cream cheese',
@@ -344,7 +408,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Packet de cream cheese avec 15 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Pièce de peperoni',
@@ -354,7 +420,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Pièce de peperoni avec 2 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Sac d\'ognion',
@@ -364,7 +432,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Sac d\'ognion avec 20 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de piment vert',
@@ -374,7 +444,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de piment vert avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte champignon',
@@ -384,7 +456,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte champignon avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de poulet',
@@ -394,7 +468,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de poulet rôti avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Seaux d\'olives',
@@ -404,7 +480,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Seaux d\'olives avec 20 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Sac de farine de blé blanc',
@@ -414,7 +492,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Sac de farine de blé blanc avec 20 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Sac de farine de blé entière',
@@ -424,7 +504,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Sac de farine de blé entière avec 20 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Sac de sucre',
@@ -434,7 +516,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Sac de sucre avec 20 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Sac de sel',
@@ -444,7 +528,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Sac de sucre avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Seaux d\'oil d\'olive',
@@ -454,7 +540,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Seaux d\'oil d\'olive avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de levure à pizza',
@@ -464,7 +552,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de levure à pizza avec 5 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de levure à pâte',
@@ -474,7 +564,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de levure à pâte avec 5 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte d\'oeufs',
@@ -484,7 +576,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte d\'oeufs avec 300 oeufs',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de boeuf',
@@ -494,7 +588,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de boeuf avec 36 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de lait',
@@ -504,7 +600,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de lait avec 24 litres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de citron',
@@ -514,7 +612,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de citron avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de pommes',
@@ -524,7 +624,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de pommes avec 20 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
             [
                 'nom' => 'Boîte de chocolat',
@@ -534,7 +636,9 @@ class ProduitSeeder extends Seeder
                 'promo_courante' => 0,
                 'description' => 'Boîte de lait avec 10 livres',
                 'id_categorie' => 6,
-                'dispo' => 'disponible'
+                'dispo' => 'disponible',
+                'vedette' => false,
+                'temps_indispo' => null
             ],
         ]);
     }

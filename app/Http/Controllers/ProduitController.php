@@ -11,6 +11,7 @@ use App\Http\Resources\ProduitResource;
 use Illuminate\Http\Response;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class ProduitController extends Controller
 {
@@ -32,6 +33,10 @@ class ProduitController extends Controller
                 'categories' => CategorieProduit::all()
             ]);
         }
+        $currentTime = now();
+        DB::table('produits')
+            ->where('availability_date', '<=', $currentTime)
+            ->update(['availability_date' => null]);
     }
 
     /**
@@ -55,8 +60,14 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
         if ($request->routeIs('gestionProduits')) {
+
+            $currentTime = now();
+            DB::table('produits')
+                ->where('availability_date', '<=', $currentTime)
+                ->update(['availability_date' => null]);
+
             return view('produits/gestionMenu', [
-                'produits' =>  Produit::where('dispo', '!=', 'indisponible')->get(),
+                'produits' =>  Produit::where('dispo', '!=', 'indisponible')->whereNull('temps_indispo')->get(),
                 'categories' => CategorieProduit::all(),
                 'color' => 1
             ]);
@@ -73,12 +84,18 @@ class ProduitController extends Controller
                     'promo_courante' => 0,
                     'description' => $contenuDecode['description'] ?? '',
                     'id_categorie' => $contenuDecode['categorie'],
-                    'dispo' => $contenuDecode['dispo']
+                    'dispo' => $contenuDecode['dispo'],
+                    'vedette' => false
                 ]);
             } catch (QueryException $erreur) {
                 report($erreur);
                 return response()->json(['ERREUR' => 'Le produit n\'a pas été ajouté.'], 500);
             }
+
+            $currentTime = now();
+            DB::table('produits')
+                ->where('availability_date', '<=', $currentTime)
+                ->update(['availability_date' => null]);
 
             return view('produits/gestionInventaire', [
                 'produits' => Produit::all(),
@@ -132,7 +149,7 @@ class ProduitController extends Controller
             ]);
         } elseif ($request->routeIs('produitIndispo')) {
             return view('produits/gestionMenu', [
-                'produits' => Produit::where('dispo', 'indisponible')->get(),
+                'produits' => Produit::where('dispo', 'indisponible')->orWhereNotNull('temps_indispo')->get(),
                 'categories' => CategorieProduit::all(),
                 'color' => 3
 
@@ -170,6 +187,10 @@ class ProduitController extends Controller
 
             if (!is_null($request->dispo)) {
                 $produit->dispo = $request->dispo;
+            }
+
+            if (!is_null($request->temps)) {
+                $produit->temps_indispo = $request->temps;
             }
 
             // Save the changes to the database
