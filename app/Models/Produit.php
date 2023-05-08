@@ -24,6 +24,7 @@ class Produit extends Model
         'description',
         'id_categorie',
         'dispo',
+        'vedette',
         'temps_indispo'
     ];
 
