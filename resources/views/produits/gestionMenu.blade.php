@@ -23,7 +23,7 @@
                     @foreach ($produits as $item)
                         <tr id="divRepere">
                             <td class="data-inv">{{ $item->nom }}</td>
-                            <td class="data-inv">{{ $item->quantite }}</td>
+                            <td class="data-inv">{{ $item->prix }}</td>
                             <td class="data-inv">
                                 <div class="logo">
                                     <a href="/inventaire/modif/{{ $item->id_produit }}">
