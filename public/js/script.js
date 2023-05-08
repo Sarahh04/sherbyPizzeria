@@ -1,9 +1,10 @@
 let openButton = document.querySelectorAll('#open');
-    let modal = document.getElementById('modal');
-    let closeButton = document.querySelectorAll('#close');
-    let deleteButton = document.querySelectorAll('#delete');
-    let filterButton = document.getElementById('filtrer');
-    let filterBtn = document.querySelectorAll('#submitFiltre');
+let modal = document.getElementById('modal');
+let closeButton = document.querySelectorAll('#close');
+let deleteButton = document.querySelectorAll('#delete');
+let filterButton = document.getElementById('filtrer');
+let filterBtn = document.querySelectorAll('#submitFiltre');
+
 function eventListener()
 {
 
@@ -87,10 +88,12 @@ async function deleteElement()
                       },
             body    : "id="+idElement
           });
-    }
 
+          element.parentElement.parentElement.remove()
+    }
     else if(type === "deleteCommande")
     {
+
         response = await fetch("../supprimerCommande", {
             method  : "post",
             headers : {
@@ -264,7 +267,7 @@ function stopForm(evt)
 
 var url = "{{ route('gestionProduits') }}";
 
-if(window.location.href === 'http://127.0.0.1:8000/gestion/produits'){
+
 let switchBtn = document.querySelector('.container-button-modif>button');
 
 switchBtn.addEventListener('click', showForm)
@@ -277,7 +280,7 @@ formMenu.classList.toggle('form-hidden');
 buttonMenu.classList.toggle('form-hidden');
 }
 
-}
+
 
 /*********************************************************/
 /* Charger les listeners                                 */
@@ -292,173 +295,97 @@ window.onload = function() {
 
 };
 
-function listenerSelectClient() {
-    let clientElement = document.getElementById('client');
-    let clientData = clientElement.value;
-    let options = clientData.split(',');
+let SelectPizza = document.getElementById("elementSelectionner");
+let boutonAjouter = document.querySelectorAll('#ajouterElement');
+let boutonAjouterC = document.getElementById('ajouterCommande');
 
-    clientElement.addEventListener('change', function() {
-        document.querySelector("#telephone").value = options[1];
+if(boutonAjouter != null)
+{
+    boutonAjouter.forEach(element => {
+        element.addEventListener('click',ajouterElement);
     });
 }
 
-
-/*********************************************************/
-/* Listener des bouton d'ajoute de produits              */
-/*********************************************************/
-function listenerSelectPizza(){
-    let pizzaQttElement = document.getElementById('qtt_pizza');
-
-    pizzaQttElement.addEventListener('change', function() {
-        pizzaQttElement.style.border = "";
-    });
+if (SelectPizza != null)
+{
+    SelectPizza.addEventListener('change',changeQuantite);
 }
 
-function listenerSelectBeverage(){
-    let beverageQttElement = document.getElementById('qtt_beverage');
-
-    beverageQttElement.addEventListener('change', function() {
-        beverageQttElement.style.border = "";
-    });
+if(boutonAjouterC != null)
+{
+    boutonAjouterC.addEventListener('click',ajouterCommande);
 }
 
-function listenerSelectDessert(){
-    let dessertQttElement = document.getElementById('qtt_dessert');
 
-    dessertQttElement.addEventListener('change', function() {
-        dessertQttElement.style.border = "";
-    });
-}
-
-/*********************************************************/
-/* Gérer la construction de la commande                  */
-/*********************************************************/
-function ajouterPizza() {
-    let pizzaElement = document.getElementById('pizza');
-    let pizzaQttElement = document.getElementById('qtt_pizza');
-    let idPizza = pizzaElement.value;
-    let namePizza = pizzaElement.options[pizzaElement.selectedIndex].text;
-    let qttPizza = pizzaQttElement.value;
-
-    if(qttPizza != 0) {
-        let pizza = new Pizza(idPizza,namePizza,qttPizza);
-        commande.pizzas.add(pizza);
-        pizzaQttElement.value = 0;
+function changeQuantite(evt)
+{
+    let option;
+    let qteE;
+    let qte;
+    selectQt = document.getElementById('selectQt');
+    qteE = JSON.parse( evt.target.value);
+    longueur = selectQt.children.length;
+    for(let i = 0; i < longueur; i++)
+    {
+        selectQt.removeChild(selectQt[i]);
     }
-    else {
-        pizzaQttElement.style.border = "3px solid red";
+    if(qteE.quantite == 0)
+    {
+        option = document.createElement("option");
+        qte = document.createTextNode(0);
+        option.appendChild(qte);
+        selectQt.insertAdjacentElement("afterbegin", option);
     }
-}
+    for(let i = 0; i < parseInt(qteE.quantite); i++)
+    {
+        option = document.createElement("option");
+        qte = document.createTextNode(i);
+        option.appendChild(qte);
+        selectQt.insertAdjacentElement("afterbegin", option);
 
-function ajouterBeverage() {
-    let beverageElement = document.getElementById('beverage');
-    let beverageQttElement = document.getElementById('qtt_beverage');
-    let idBeverage = beverageElement.value;
-    let nameBeverage = beverageElement.options[beverageElement.selectedIndex].text;
-    let qttBeverage = beverageQttElement.value;
-
-    if(qttBeverage != 0) {
-        let beverage = new Beverage(idBeverage,nameBeverage,qttBeverage);
-        commande.beverages.add(beverage);
-        beverageQttElement.value = 0;
-    }
-    else {
-        beverageQttElement.style.border = "3px solid red";
-    }
-}
-
-function ajouterDessert() {
-    let dessertElement = document.getElementById('dessert');
-    let dessertQttElement = document.getElementById('qtt_dessert');
-    let idDessert = dessertElement.value;
-    let nameDessert = dessertElement.options[dessertElement.selectedIndex].text;
-    let qttDessert = dessertQttElement.value;
-
-    if(qttDessert != 0) {
-        let dessert = new Dessert(idDessert,nameDessert,qttDessert);
-        commande.desserts.add(dessert);
-        dessertQttElement.value = 0;
-    }
-    else {
-        dessertQttElement.style.border = "3px solid red";
     }
 
+
 }
 
-function ajouterCommande() {
-    let clientElement = document.getElementById('client');
-    let clientData = clientElement.value;
-    let options = clientData.split(',');
-    let idClient = options[0];
-    let nomClient = clientElement.options[clientElement.selectedIndex].text;
-    let phoneClient = options[1];
-
-    let client = new Client(idClient,nomClient,phoneClient);
-    commande.clients.add(client);
-
-    let commentaireElementValue = document.getElementById('note').value;
-    commande.commentaire.add(commentaireElementValue);
-
-    console.log(commande);
-    var donnees = JSON.stringify(commande);
 
 
 
-    // $.ajax({
-    //     url: '{{ route("extraitCommande") }}',
-    //     type: 'POST',
-    //     data: {data: donnees},
-    //     success: function(result){
-    //         console.log(result);
-    //     },
-    //     error: function(jqXHR, textStatus, errorThrown) {
-    //     // Retorno caso algum erro ocorra
-    //     }
-    // });
+let commande = Array();
+
+function ajouterElement(evt)
+{
+    quantiteE = evt.target.previousElementSibling.value;
+    element = JSON.parse(evt.target.previousElementSibling.parentElement.previousElementSibling.value);
+
+    div = document.getElementById("panier");
+    p1 = document.createElement("p");
+    textElement = document.createTextNode("- " + element.nom + "-" + quantiteE);
+    p1.appendChild(textElement);
+    div.insertAdjacentElement("beforeend",p1);
+
+    arrayProduit = Array();
+    arrayProduit.push(element.id_produit,quantiteE);
+    commande.push(arrayProduit);
 }
 
-/*********************************************************/
-/* Créer les classes Pizzas, Beverage, Dessert et Cart   */
-/*********************************************************/
-class Client {
-    constructor(id, nom, telephone) {
-        this.id = id;
-        this.nom = nom;
-        this.telephone = telephone;
-    }
-}
-class Pizza {
-    constructor(id, nom, quantite) {
-        this.id = id;
-        this.nom = nom;
-        this.quantite = quantite;
-    }
+async function ajouterCommande()
+{
+    let observation = document.getElementById('note');
+    let modeP = document.getElementById('mPaiement');
+    let client = document.getElementById('client');
+    client = JSON.parse(client.value);
+    alert(JSON.stringify(commande))
+    response = await fetch("../insererCommande", {
+		method  : "post",
+		headers : {
+					"Content-Type" : "application/x-www-form-urlencoded",
+                    "X-CSRF-Token": document.querySelector('input[name=_token]').value,
+				  },
+		body    : "observation="+observation.value+"&idClient="+client+"&commande="+JSON.stringify(commande)+"&mPaiement="+modeP.value
+	  });
+
+
+
 }
 
-class Beverage {
-    constructor(id, nom, quantite) {
-        this.id = id;
-        this.nom = nom;
-        this.quantite = quantite;
-    }
-}
-
-class Dessert {
-    constructor(id, nom, quantite) {
-        this.id = id;
-        this.nom = nom;
-        this.quantite = quantite;
-    }
-}
-
-class Commande {
-    constructor(){
-        this.pizzas = new Set();
-        this.beverages = new Set();
-        this.desserts = new Set();
-        this.clients = new Set();
-        this.commentaire = new Set();
-    }
-}
-
-let commande = new Commande();

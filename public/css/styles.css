@@ -328,7 +328,7 @@ table.GeneratedTable th {
 }
 
 table.GeneratedTable thead {
-    background-color: #ff0000;
+    background-color: #EA0F08;
 }
 
 .main-container-menu {
@@ -365,7 +365,7 @@ body {
 }
 
 .red {
-    background-color: #ff0000;
+    background-color: #EA0F08;
 }
 
 .product-menu-container {
@@ -424,8 +424,12 @@ button {
 .container-button-modif>button {
     width: 200px;
     height: 80px;
-    background-color: #DC1F33;
+    background-color: #EA0F08;
     color: #ffffff;
+}
+
+input[type="date"] {
+    margin-left: 10px;
 }
 
 .nom-prix-container {

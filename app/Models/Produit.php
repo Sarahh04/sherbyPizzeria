@@ -27,7 +27,9 @@ class Produit extends Model
         'promo_courante',
         'description',
         'id_categorie',
-        'dispo'
+        'dispo',
+        'vedette',
+        'temps_indispo'
     ];
 
     public function categorie(): BelongsTo

@@ -34,7 +34,7 @@
                 </thead>
                 <tbody>
                     @foreach ($produits as $item)
-                        <tr>
+                        <tr id="divRepere">
                             <td class="data-inv">{{ $item->nom }}</td>
                             <td class="data-inv">{{ $item->quantite }}</td>
                             <td class="data-inv">
@@ -42,9 +42,8 @@
                                     <a href="/inventaire/modif/{{ $item->id_produit }}">
                                         <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
                                     </a>
-                                    <a href="/inventaire/del/{{ $item->id_produit }}" class="modif-produit">
-                                        <img src="{{ asset('img/desactiver.svg') }}" alt="">
-                                    </a>
+                                    <div id="{{ $item->id_produit }}" class="hidden">deleteProduit</div>
+                                    <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
                                 </div>
                             </td>
                         </tr>
@@ -75,7 +74,7 @@
                             <input type="text" placeholder="delais" name="delais">
                         </div>
                         <div>
-                            <input type="text" placeholder="qty" name="qty(required)">
+                            <input type="text" placeholder="qty" name="qty">
                         </div>
                     </div>
                     <div class="nom-prix-container">

@@ -16,11 +16,9 @@
         <h1 class="font-bold text-center text-3xl underline decoration-double mb-20">
             {{ __('Lister commandes') }}
         </h1>
-        {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> --}}
-            {{-- <pre>
-                @php(print_r($commandes_utilisateur_connecte))
-            </pre> --}}
+
             <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
+            <div id="divRepere" >
             @foreach ($commandes as $commande)
 
             <a  href="{{ route('detailCommande',['id'=>$commande->id_transaction])}}">

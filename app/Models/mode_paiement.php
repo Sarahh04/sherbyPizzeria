@@ -15,4 +15,11 @@ class Mode_paiement extends Model
     protected $table = 'mode_paiements';
     protected $primaryKey = 'id_mode_paiement';
     public $timestamps = false;
+
+    protected $fillable = [
+        'nom',
+        'description',
+
+    ];
+
 }

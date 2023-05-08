@@ -49,26 +49,6 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(ProduitController::class)->group(function () {
         Route::get('/promotions', 'index')->name('promotions');
-        Route::get('/newPromotion', 'create')->name('newPromotion');
-        Route::get('/gestion/produits', 'store')->name('gestionProduits');
-        Route::get('/gestion/inventaire', 'index')->name('gestionInventaire');
-        Route::get('/gestion/inventaire/search', 'update')->name('search');
-        Route::post('/gestion/inventaire/insertion', 'store')->name('insertionInventaire');
-        Route::get('/produit/modif', 'update')->name('modifierProduit');
-        Route::get('/produit/modif/bd', 'update')->name('modifierBdProduit');
-    });
-
-    Route::controller(ProfileController::class)->group(function () {
-        Route::get('/index', 'index')->name('indexUser');
-        Route::get('/employes', 'index')->name('employes');
-        Route::get('/newEmploye', 'create')->name('newEmploye');
-        Route::post('/confirmAddEmploye', 'store')->name('insertEmploye');
-        Route::get('/employe/{id}', 'show')->name('employe');
-        Route::get('/modificationEmploye/{id}', 'edit')->name('modificationEmploye');
-        Route::post('/modificationEmploye/{id}', 'update')->name('enregistrementEmploye');
-    });
-    Route::controller(ProduitController::class)->group(function () {
-        Route::get('/promotions', 'index')->name('promotions');
         Route::get('/newPromotion', 'create')->name('newPromotion')->middleware(EnsureUserAdmin::class);
         Route::get('/gestion/produits', 'store')->name('gestionProduits')->middleware(EnsureUserAdmin::class);
         Route::get('/gestion/inventaire', 'index')->name('gestionInventaire')->middleware(EnsureUserAdmin::class);
@@ -76,7 +56,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/inventaire/modif/{id}', 'update')->name('modifProduits');
         Route::get('/inventaire/del/{id}', 'update')->name('delProduits');
         Route::post('/gestion/inventaire/update', 'update')->name('modifierBdProduit');
-        Route::get('/supprimerProduit/{id}', 'destroy')->name('supprimerProduit')->middleware(EnsureUserAdmin::class);
+        Route::post('/supprimerProduit', 'destroy')->name('supprimerProduit')->middleware(EnsureUserAdmin::class);
         Route::get('/gestion/filter/promo', 'update')->name('produitPromo');
         Route::get('/gestion/filter/indispo', 'update')->name('produitIndispo');
     });
@@ -95,6 +75,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/client/{id}', 'show')->name('detailClient');
         Route::post('/enregistrerClient', 'store')->name('enregistrementClient');
         Route::post('/supprimerClient', 'destroy')->name('supprimerUnClient')->middleware(EnsureUserAdmin::class);
+        Route::post('/supprimerClient', 'destroy')->name('supprimerLeClient')->middleware(EnsureUserAdmin::class);
         Route::post('/filtrerClient', 'index')->name('filtrerClients');
     });
 
@@ -110,6 +91,17 @@ Route::middleware('auth')->group(function () {
         Route::post('/filtrerEmp', 'index')->name('filtrerEmployer')->middleware(EnsureUserAdmin::class);
     });
 });
-
-
+Route::controller(TransactionController::class)->group(function () {
+    Route::get('/gestionCommandes', 'index')->name('gestionCommandes');
+    Route::get('/ajouterCommande', 'create')->name('ajouterCommande');
+    Route::get('/consulterCommande', 'index')->name('consulterCommande');
+    Route::post('/insererCommande', 'store')->name('insertCommande');
+    Route::get('/listerCommandes', 'index')->name('listerCommandes');
+    Route::get('/commande/{id}', 'show')->name('detailCommande');
+    Route::get('/resumeCommande', 'index')->name('resumeCommande');
+    Route::get('/extraitCommande/{id}', 'edit')->name('extraitCommande');
+    Route::get('/editerCommande/{id}', 'show')->name('editerCommande');
+    Route::get('/editerCommande/commande', 'update')->name('enregistrerCommande');
+    Route::post('/supprimerCommande', 'destroy')->name('supprimerCommande');
+});
 require __DIR__ . '/auth.php';

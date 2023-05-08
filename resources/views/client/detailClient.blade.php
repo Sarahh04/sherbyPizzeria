@@ -27,7 +27,7 @@
                                 Retour
                             </button>
                         </a>
-                        <div>
+                        <div class="flex flex-row">
                             <a href="{{route('modifierClient',['id' => $client->id])}}">
                                 <button type="submit" name="confirmTime" value="Confirmer" >
                                     <div class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
@@ -35,12 +35,15 @@
                                     </div>
                                 </button>
                             </a>
-
-                            <button type="submit" id="open" name="annuler" value="Annuler" >
-                                <div class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
-                                    Supprimer
-                                </div>
-                            </button>
+                            <form method="post" action="{{route('supprimerLeClient')}}">
+                                @csrf
+                                <button type="submit" name="annuler" >
+                                    <input type="hidden" value="{{ $client->id}}" name="id">
+                                    <div class="py-1 px-3 text-white bg-rouge rounded border border-solid border-black">
+                                        Supprimer
+                                    </div>
+                                </button>
+                            </form>
                         </div>
 
                     </div>
