@@ -88,10 +88,7 @@ class ProduitController extends Controller
                 return response()->json(['ERREUR' => 'Le produit n\'a pas été ajouté.'], 500);
             }
 
-            $currentTime = now();
-            DB::table('produits')
-                ->where('temps_indispo', '<=', $currentTime)
-                ->update(['temps_indispo' => null]);
+
 
             return view('produits/gestionInventaire', [
                 'produits' => Produit::all(),

@@ -74,7 +74,7 @@
                             <input type="text" placeholder="delais" name="delais">
                         </div>
                         <div>
-                            <input type="text" placeholder="qty" name="qty(required)">
+                            <input type="text" placeholder="qty" name="qty">
                         </div>
                     </div>
                     <div class="nom-prix-container">
