@@ -42,6 +42,15 @@
                             </select>
                         </div>
                     </div>
+                    <div class="description-container">
+                        <div>
+                            <label for="">Temps d'indisponibilité<input type="date" name="temps"
+                                    id="" placeholder="Temps d'indisponibilité"></label>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
                     <div class="submit-container">
                         <input type="submit" class="add-int" value="Modifier">
                         <input type="hidden" name="id" value="{{ $id }}">

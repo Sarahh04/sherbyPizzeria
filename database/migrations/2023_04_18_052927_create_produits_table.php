@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('description');
             $table->bigInteger('id_categorie')->unsigned();
             $table->string('dispo');
+            $table->boolean('vedette');
+            $table->timestamp('temps_indispo')->nullable();
         });
 
         Schema::table('produits', function (Blueprint $table) {
