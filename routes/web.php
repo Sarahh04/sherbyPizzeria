@@ -38,23 +38,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/listerCommandes', 'index')->name('listerCommandes');
         Route::get('/commande/{id}', 'show')->name('detailCommande');
         Route::get('/resumeCommande', 'index')->name('resumeCommande');
-        Route::get('/extraitCommande/{id}', 'edit')->name('extraitCommande');
+        Route::get('/extraitCommande', 'index')->name('extraitCommande');
+        Route::get('/extraitCommande/{id}', 'show')->name('extraitCommande');
         Route::get('/editerCommande/{id}', 'show')->name('editerCommande');
         Route::get('/editerCommande/commande', 'update')->name('enregistrerCommande');
-        // Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
+        Route::get('/supprimerCommande/{id}', 'destroy')->name('supprimerCommande');
+        Route::get('/filtrerCommandes', 'index')->name('filtrerCommandes');
     });
-Route::controller(TransactionController::class)->group(function () {
-    Route::get('/gestionCommandes', 'index')->name('gestionCommandes');
-    Route::get('/ajouterCommande', 'create')->name('ajouterCommande');
-    Route::get('/consulterCommande', 'index')->name('consulterCommande');
-    Route::get('/listerCommandes', 'index')->name('listerCommandes');
-    Route::get('/commande/{id}', 'show')->name('detailCommande');
-    Route::get('/resumeCommande', 'index')->name('resumeCommande');
-    Route::get('/extraitCommande', 'index')->name('extraitCommande');
-    Route::get('/editerCommande/{id}', 'show')->name('editerCommande');
-    Route::get('/editerCommande/commande', 'update')->name('enregistrerCommande');
-    // Route::get('/supprimerCommande', 'destroy')->name('supprimerCommande');
-});
 
 
     Route::controller(ProduitController::class)->group(function () {

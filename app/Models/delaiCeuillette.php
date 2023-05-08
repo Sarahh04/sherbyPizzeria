@@ -1,4 +1,10 @@
 <?php
+/*****************************************************************************
+ Fichier : DelaiCeullette
+ Auteur : Hugo Pouliot
+ Fonctionnalité : Classe de delais (represente le temps pour rendre disponilble
+ la demmande du client).
+*****************************************************************************/
 
 namespace App\Models;
 

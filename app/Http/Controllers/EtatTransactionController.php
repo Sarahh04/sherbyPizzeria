@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : EtatTransictionController
+ Auteur : Claudio Cruz
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ états de commandes.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\etat_transaction;

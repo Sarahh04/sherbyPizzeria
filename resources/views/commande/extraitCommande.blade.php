@@ -1,3 +1,9 @@
+<!--/*****************************************************************************
+ Fichier : extraitCommande
+ Auteur : Claudio Cruz
+ Fonctionnalité : View por afficher le resultat d'un ajoute ou modification d'une
+ commande avant de le consister sur la base de données.
+*****************************************************************************/-->
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">
@@ -14,6 +20,9 @@
             <div class="p-6 text-gray-900 space-y-4">
                 <form class="w-full max-w-m m-auto" method="get" action="/extraitCommande">
                     @csrf
+                    <pre>
+                        @php(print_r($commande));
+                    </pre>
                     <div class="md:flex md:items-center mb-6">
                         <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="user" >
@@ -35,10 +44,8 @@
                         </label>
                     </div>
 
-                    @foreach ($users as $user)
-                    <pre>
-                        print_r($user);
-                    </pre>
+                    @foreach ($produits as $produit)
+
                     <div class="md:flex md:items-center mb-6">
                         <div class="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">

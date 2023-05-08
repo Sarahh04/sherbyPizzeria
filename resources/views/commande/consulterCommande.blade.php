@@ -1,3 +1,8 @@
+<!--/*****************************************************************************
+ Fichier : consulterCommande
+ Auteur : Claudio Cruz
+ Fonctionnalité : View por rechercher des commandes.
+*****************************************************************************/-->
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">
@@ -10,7 +15,7 @@
         </h1>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 text-gray-900 space-y-4">
-                <form class="w-full max-w-sm m-auto" method="get" action="{{ route('listerCommandes') }}">
+                <form class="w-full max-w-sm m-auto" action="{{ route('listerCommandes') }}">
                     @csrf
                     <div class="md:flex md:items-center mb-6">
                         <div class="md:w-1/3">
@@ -19,7 +24,7 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="no_commande" type="text" name="no_commande" placeholder="Num commande">
+                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="FiltreNoCommande" type="text" name="filtreCommande" placeholder="Num commande">
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -29,7 +34,7 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="dt_debut" type="text" name="dt_debut" placeholder="Date début">
+                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="filtreDateDebut" type="text" name="filtreCommande" placeholder="Date début">
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -39,7 +44,7 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="dt_fin" type="text" name="dt_fin" placeholder="Date fin">
+                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="filtreDateFin" type="text" name="filtreCommande" placeholder="Date fin">
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -49,7 +54,7 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="user" type="text" name="user" placeholder="Nom du client">
+                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="filtreClient" type="text" name="filtreCommande" placeholder="Nom du client">
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -59,9 +64,10 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="prix" type="text" name="prix" placeholder="819 123 4567">
+                            <input class="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="fitrePhone" type="text" name="filtreCommande" placeholder="819 123 4567">
                         </div>
                     </div>
+
                     <div class="md:flex md:items-end">
                         <div class="md:w-1/3">
                             <button class="shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="reset">
@@ -80,3 +86,5 @@
         </div>
     </div>
 </x-app-layout>
+
+

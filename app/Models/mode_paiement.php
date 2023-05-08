@@ -1,5 +1,9 @@
 <?php
-
+/*****************************************************************************
+ Fichier : Mode_paiement
+ Auteur : Amélie Fréchette
+ Fonctionnalité : Classe d'association de produit et transaction.
+*****************************************************************************/
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

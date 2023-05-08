@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : ClientController
+ Auteur : Sarah Diakite
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ clients.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\client;

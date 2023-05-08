@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : TypeTransactionController
+ Auteur : Claudio Cruz
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ types de commandes.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\type_transaction;

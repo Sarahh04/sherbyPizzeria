@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : ProduitTransactionController
+ Auteur : Claudio Cruz
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification de
+ la table de junction entre le produit et la commande.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\ProduitTransaction;

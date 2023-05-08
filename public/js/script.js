@@ -89,6 +89,18 @@ async function deleteElement()
           });
     }
 
+    else if(type === "deleteCommande")
+    {
+        response = await fetch("../supprimerCommande", {
+            method  : "post",
+            headers : {
+                        "Content-Type" : "application/x-www-form-urlencoded",
+                        "X-CSRF-Token": document.querySelector('input[name=_token]').value,
+                      },
+            body    : "id="+idElement
+          });
+    }
+
     if (response.status === 200)
 	{
         modal.classList.add('hidden');
@@ -273,23 +285,22 @@ buttonMenu.classList.toggle('form-hidden');
 
 window.onload = function() {
 
-    //listenerSelectClient();
+    listenerSelectClient();
     listenerSelectPizza();
     listenerSelectBeverage();
     listenerSelectDessert();
 
 };
 
-// function listenerSelectClient() {
-//     let clientElement = document.getElementById('client');
-//     let clientData = clientElement.value;
-//     let options = clientData.split(',');
+function listenerSelectClient() {
+    let clientElement = document.getElementById('client');
+    let clientData = clientElement.value;
+    let options = clientData.split(',');
 
-//     clientElement.addEventListener('change', function() {
-//         console.log(options);
-//         document.querySelector("#telephone").value = options[1];
-//     });
-// }
+    clientElement.addEventListener('change', function() {
+        document.querySelector("#telephone").value = options[1];
+    });
+}
 
 
 /*********************************************************/
@@ -333,7 +344,6 @@ function ajouterPizza() {
         let pizza = new Pizza(idPizza,namePizza,qttPizza);
         commande.pizzas.add(pizza);
         pizzaQttElement.value = 0;
-        console.log(commande);
     }
     else {
         pizzaQttElement.style.border = "3px solid red";
@@ -351,7 +361,6 @@ function ajouterBeverage() {
         let beverage = new Beverage(idBeverage,nameBeverage,qttBeverage);
         commande.beverages.add(beverage);
         beverageQttElement.value = 0;
-        console.log(commande);
     }
     else {
         beverageQttElement.style.border = "3px solid red";
@@ -369,7 +378,6 @@ function ajouterDessert() {
         let dessert = new Dessert(idDessert,nameDessert,qttDessert);
         commande.desserts.add(dessert);
         dessertQttElement.value = 0;
-        console.log(commande);
     }
     else {
         dessertQttElement.style.border = "3px solid red";
@@ -392,19 +400,21 @@ function ajouterCommande() {
     commande.commentaire.add(commentaireElementValue);
 
     console.log(commande);
+    var donnees = JSON.stringify(commande);
 
-    //ajaxCall();
-}
 
-function ajaxCall() {
-    $.ajax({
-        url: '{{ route("extraitCommande") }}',
-        type: 'POST',
-        data: commande,
-        success: function(response) {
-        console.log(response);
-        }
-    });
+
+    // $.ajax({
+    //     url: '{{ route("extraitCommande") }}',
+    //     type: 'POST',
+    //     data: {data: donnees},
+    //     success: function(result){
+    //         console.log(result);
+    //     },
+    //     error: function(jqXHR, textStatus, errorThrown) {
+    //     // Retorno caso algum erro ocorra
+    //     }
+    // });
 }
 
 /*********************************************************/
@@ -441,12 +451,6 @@ class Dessert {
     }
 }
 
-// class Commentaire {
-//     constructor(commentaire) {
-//         this.commentaire = this.commentaire;
-//     }
-// }
-
 class Commande {
     constructor(){
         this.pizzas = new Set();
@@ -458,68 +462,3 @@ class Commande {
 }
 
 let commande = new Commande();
-
-
-// function requeteAjouterProduit(idProduitValue,quantite,taille) {
-//     console.log("Ajouter");
-//     requeteAjax(
-//         "action=ajouterCommande&id=" + idProduitValue +
-//         "&quantite=" + quantite
-//     );
-// }
-
-// function requeteModifierProduit(idProduitValue,produitValue,categorieValue,descriptionValue) {
-//     console.log("Editer");
-
-//     requeteAjax(
-//         "action=edition&idproduit=" + idProduitValue +
-//         "&produit=" + produitValue +
-//         "&categorie=" + categorieValue +
-//         "&description=" + descriptionValue
-//     );
-// }
-
-
-/*******************************************************/
-/* Gérer la requete ajax                               */
-/*******************************************************/
-
-function requeteAjax(data) {
-    console.log(data);
-    var xhttp = new XMLHttpRequest();
-    let idInsert = 'id';
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4) {
-            if (this.status === 200){
-                xhttp.onload = function() {
-                    let data = this.responseText;
-                    //console.log(data);
-                    let jsonData = JSON.parse(data);
-                    remplirFormulaire(jsonData);
-                }
-            }
-            else if (this.status === 201) {
-                alert("L’insertion a été fait avec succès !");
-                let idInsert = this.responseText;
-                console.log(idInsert);
-                afficherProduitInsere(idInsert);
-                masquerAfficherFormulaireDInsertion();
-            }
-            else if (this.status === 202) {
-                alert("L'exclusion a été fait avec succès !");
-
-            }
-            else if (this.status === 204) {
-                alert("La modification a été fait avec succès !");
-
-            }
-            else if (this.status === 400)
-                //inserer le code de reponse da requete si elle ne marche pas
-                alert("L’insertion a été échoué !");
-        }
-    };
-
-    xhttp.open("POST", "./index.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(data);
-}

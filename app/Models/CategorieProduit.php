@@ -1,4 +1,9 @@
 <?php
+/*****************************************************************************
+ Fichier : CategorieProduit
+ Auteur : Hugo Pouliot
+ Fonctionnalité : Classe Categories de Produits.
+*****************************************************************************/
 
 namespace App\Models;
 

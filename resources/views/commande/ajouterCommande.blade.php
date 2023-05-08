@@ -1,3 +1,8 @@
+<!--/*****************************************************************************
+ Fichier : ajouterCommande
+ Auteur : Claudio Cruz
+ Fonctionnalité : View por faire l'ajout d'un nouvel commande.
+*****************************************************************************/-->
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-gray-900 leading-tight">
@@ -66,25 +71,6 @@
                                         <option>{{ $i }}</option>
                                     @endfor
                                 </select>
-                                {{-- <div class="md:w-2/3 px-3 flex my-5">
-                                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="grid-password">
-                                        Taille :
-                                    </label><br />
-                                    <div class="md:flex w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <input type="radio" id="type1" name="choix" value="question"/>
-                                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4 h-12 ml-3" for="type1">
-                                            P
-                                        </label>
-                                        <input type="radio" id="type2" name="choix" value="commentaire"/>
-                                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4 ml-3" for="type2">
-                                            M
-                                        </label>
-                                        <input type="radio" id="type3" name="choix" value="commentaire"/>
-                                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4 ml-3" for="type2">
-                                            G
-                                        </label>
-                                    </div>
-                                </div> --}}
 
                                 <img onclick="ajouterPizza()" class="block h-9 w-auto fill-current text-gray-800" type="image" src="{{ asset('image/ajouter-icon.png') }}" alt="ajouter pizza" >
                             </div>
@@ -172,9 +158,9 @@
                                 <a href="/gestionCommandes">Retourner</a>
                             </button>
                             {{-- <a href="/gestionCommandes">Retourner</a> --}}
-                            <button onclick="ajouterCommande()" class="md:w-1/3 mx-10 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                            <button  onclick="ajouterCommande" class="md:w-1/3 mx-10 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
                                 Ajouter
-                                {{-- <a href="/resumeCommande">Ajouter</a> --}}
+                                {{-- <a href="/extraitCommande">Ajouter</a> --}}
                             </button>
                         </div>
                     </div>

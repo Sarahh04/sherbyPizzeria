@@ -1,4 +1,9 @@
 <?php
+/*****************************************************************************
+ Fichier : Client
+ Auteur : Sarah Diakite
+ Fonctionnalité : Classe de client.
+*****************************************************************************/
 
 namespace App\Models;
 

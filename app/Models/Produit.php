@@ -1,5 +1,9 @@
 <?php
-
+/*****************************************************************************
+ Fichier : Produit
+ Auteur : Claudio Cruz
+ Fonctionnalité : Classe de transaction produit
+*****************************************************************************/
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

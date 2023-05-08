@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : ModePaiementController
+ Auteur : Amélie Fréchette
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ modes de paiement.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\mode_paiement;
