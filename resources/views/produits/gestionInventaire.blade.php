@@ -42,9 +42,8 @@
                                     <a href="/inventaire/modif/{{ $item->id_produit }}">
                                         <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
                                     </a>
-                                    <a href="/inventaire/del/{{ $item->id_produit }}" class="modif-produit">
-                                        <img src="{{ asset('img/desactiver.svg') }}" alt="">
-                                    </a>
+                                    <div id="{{ $item->id_produit }}" class="hidden">delete produit</div>
+                                    <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
                                 </div>
                             </td>
                         </tr>

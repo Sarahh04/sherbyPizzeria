@@ -21,17 +21,16 @@
                 </thead>
                 <tbody>
                     @foreach ($produits as $item)
-                        <tr>
-                            <td>{{ $item->nom }}</td>
-                            <td>{{ $item->prix }}</td>
-                            <td>
+                        <tr id="divRepere">
+                            <td class="data-inv">{{ $item->nom }}</td>
+                            <td class="data-inv">{{ $item->quantite }}</td>
+                            <td class="data-inv">
                                 <div class="logo">
-                                    <a href="/inventaire/modif/{{ $item->id_produit }}" class="modif-produit">
+                                    <a href="/inventaire/modif/{{ $item->id_produit }}">
                                         <img src="{{ asset('image/editer-icon.png') }}" alt="" srcset="">
                                     </a>
-                                    <a href="/inventaire/del/{{ $item->id_produit }}" class="modif-produit">
-                                        <img src="{{ asset('img/desactiver.svg') }}" alt="">
-                                    </a>
+                                    <div id="{{ $item->id_produit }}" class="hidden">delete produit</div>
+                                    <img id="open" src="{{ asset('img/desactiver.svg') }}" alt="">
                                 </div>
                             </td>
                         </tr>
