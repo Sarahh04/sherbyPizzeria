@@ -428,6 +428,10 @@ button {
     color: #ffffff;
 }
 
+input[type="date"] {
+    margin-left: 10px;
+}
+
 .nom-prix-container {
     display: flex;
     justify-content: center;
