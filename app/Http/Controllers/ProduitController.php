@@ -191,6 +191,8 @@ class ProduitController extends Controller
 
             if (!is_null($request->temps)) {
                 $produit->temps_indispo = $request->temps;
+            } else {
+                $produit->temps_indispo = null;
             }
 
             // Save the changes to the database
