@@ -96,15 +96,15 @@ class ClientController extends Controller
         {
             $validation = Validator::make($request->all(), [
                 'nom' => 'required',
+                'courriel' => 'required',
                 'telephone' => 'required',
                 'adresse' => 'required',
-                'courriel' => 'required',
                 'mdp' => 'required',
                 ], [
                 'nom.required' => 'Veuillez entrer un nom de client.',
+                'courriel.required' => 'Veuillez entrer un courriel pour le client.',
                 'telephone.required' => 'Veuillez entrer un telephone pour le client.',
                 'adresse.required' => 'Veuillez inscrire une adresse pour le client.',
-                'courriel.required' => 'Veuillez entrer un courriel pour le client.',
                 'mdp.required' => 'Veuillez entrer un mot de passe.'
                 ]);
                 if ($validation->fails()) {
@@ -116,10 +116,10 @@ class ClientController extends Controller
                 try {
                     User::create([
                     'name' => $contenuDecode['nom'],
-                    'id_role' => 2,
+                    'email' => $contenuDecode['courriel'],
                     'telephone' => $contenuDecode['telephone'],
                     'adresse' => $contenuDecode['adresse'],
-                    'email' => $contenuDecode['courriel'],
+                    'id_role' => 2,
                     'password' => Hash::make($contenuDecode['mdp'])
                 ]);
                 } catch (QueryException $erreur) {
