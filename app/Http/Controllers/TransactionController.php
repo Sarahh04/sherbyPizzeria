@@ -131,8 +131,7 @@ class TransactionController extends Controller
         }
 
     }
-
-    /**
+        /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -140,6 +139,40 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->routeIs('transactionApi'))
+        {
+            $validation = Validator::make($request->all(), [
+                'id_user' => 'required',
+                'id_mode_paiement' => 'required',
+                'no_facture' => 'required',
+                'date_transaction' => 'required',
+                ], [
+                'id_user.required' => 'Veuillez entrer un nom de client.',
+                'id_mode_paiement.required' => 'Veuillez entrer mode de paiement.',
+                'date_transaction.required' => 'Veuillez entrer la date de transaction.'
+                ]);
+                if ($validation->fails()) {
+                    return response()->json(['ERREUR' => $validation->errors()], 400);
+                }
+
+                $contenuDecode = $validation->validated();
+
+                try {
+                    Transaction::create([
+                    'id_user' => $contenuDecode['id_user'],
+                    'id_etat_transaction' => 1,
+                    'id_mode_paiement' => $contenuDecode['id_mode_paiement'],
+                    'id_type_transaction' => 1,
+                    'date_transaction' => date(Y/m/d),
+                ]);
+                } catch (QueryException $erreur) {
+                report($erreur);
+                return response()->json(['ERREUR' => 'La transaction n\'a pas été ajouté.'], 500);
+                }
+
+                return response()->json(['SUCCES' => 'La transaction a bien été ajouté.'], 200);
+
+        }
 
         $commande = json_decode($request->input('commande'));
         $idClient =  $request->input('idClient');

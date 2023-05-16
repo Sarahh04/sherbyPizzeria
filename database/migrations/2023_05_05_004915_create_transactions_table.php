@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('id_etat_transaction')->unsigned();
             $table->bigInteger('id_mode_paiement')->unsigned();
             $table->bigInteger('id_type_transaction')->unsigned();
-            $table->bigInteger('no_facture');
+            $table->bigInteger('no_facture')->nullable();
             $table->dateTime('date_transaction');
             $table->string('observation')->nullable();
         });
