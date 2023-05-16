@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmationNewClient;
 use App\Http\Resources\ClientResource;
 use Illuminate\Http\Response;
+use Illuminate\Database\QueryException;
 
 class ClientController extends Controller
 {
@@ -86,42 +87,83 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'tel' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
-            'adresse' => 'required',
-            'courriel' => 'required|regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/',
-            'points' => 'required',
-        ], [
-            // Vous pouvez écrire un message d’erreur distinct par règle de validation fournie plus haut.
-            'tel.required' => 'Veuillez entrer un numéro de téléphone.',
-            'tel.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
-            'courriel.required' => 'Veuillez entrer un courriel.',
-            'courriel.regex' => 'Le courriel ne respecte pas le format attendu.',
-            'nom.required' => 'Veuillez entrer un nom.',
-            'adresse.required' => 'Veuillez entrer une adresse.',
-            'ponts.required' => 'Veuillez attribuer des points.',
-        ]);
+        if ($request->routeIs('addClientApi'))
+        {
+            $validation = Validator::make($request->all(), [
+                'nom' => 'required',
+                'telephone' => 'required',
+                'adresse' => 'required',
+                'courriel' => 'required',
+                'mdp' => 'required',
+                ], [
+                'nom.required' => 'Veuillez entrer un nom de client.',
+                'telephone.required' => 'Veuillez entrer un telephone pour le client.',
+                'adresse.required' => 'Veuillez inscrire une adresse pour le client.',
+                'courriel.required' => 'Veuillez entrer un courriel pour le client.',
+                'mdp.required' => 'Veuillez entrer un mot de passe.'
+                ]);
+                if ($validation->fails()) {
+                    return response()->json(['ERREUR' => $validation->errors()], 400);
+                }
 
-        if ($validation->fails())
-            return back()->withErrors($validation->errors())->withInput();
+                $contenuDecode = $validation->validated();
 
-        $contenuFormulaire = $validation->validated();
+                try {
+                    User::create([
+                    'name' => $contenuDecode['nom'],
+                    'id_role' => 2,
+                    'telephone' => $contenuDecode['telephone'],
+                    'adresse' => $contenuDecode['adresse'],
+                    'email' => $contenuDecode['courriel'],
+                    'password' => Hash::make($contenuDecode['mdp'])
+                ]);
+                } catch (QueryException $erreur) {
+                report($erreur);
+                return response()->json(['ERREUR' => 'Le client n\'a pas été ajouté.'], 500);
+                }
 
-        $user = User::create([
-            'name' => $request->nom,
-            'email' => $request->courriel,
-            'telephone' => $request->tel,
-            'adresse' => $request->adresse,
-            'password' => Hash::make("abc123456"),
-            'poste' => "client",
-            'id_role' => 2
-        ]);
+                return response()->json(['SUCCES' => 'Le client a bien été ajouté.'], 200);
 
-        $clients = User::Where(['id_role' => 2, 'actif' => 1])->get();
+        }
+        else
+        {
+            $validation = Validator::make($request->all(), [
+                'tel' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
+                'adresse' => 'required',
+                'courriel' => 'required|regex:/^[\w\W]+@[a-z0-9]*\.[a-z0-9]*$/',
+                'points' => 'required',
+            ], [
+                // Vous pouvez écrire un message d’erreur distinct par règle de validation fournie plus haut.
+                'tel.required' => 'Veuillez entrer un numéro de téléphone.',
+                'tel.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
+                'courriel.required' => 'Veuillez entrer un courriel.',
+                'courriel.regex' => 'Le courriel ne respecte pas le format attendu.',
+                'nom.required' => 'Veuillez entrer un nom.',
+                'adresse.required' => 'Veuillez entrer une adresse.',
+                'ponts.required' => 'Veuillez attribuer des points.',
+            ]);
 
-        Mail::to($request->user())->send(new ConfirmationNewClient($user));
+            if ($validation->fails())
+                return back()->withErrors($validation->errors())->withInput();
 
-        return view('client/listeClients',['clients' => $clients]);
+            $contenuFormulaire = $validation->validated();
+
+            $user = User::create([
+                'name' => $request->nom,
+                'email' => $request->courriel,
+                'telephone' => $request->tel,
+                'adresse' => $request->adresse,
+                'password' => Hash::make("abc123456"),
+                'poste' => "client",
+                'id_role' => 2
+            ]);
+
+            $clients = User::Where(['id_role' => 2, 'actif' => 1])->get();
+
+            Mail::to($request->user())->send(new ConfirmationNewClient($user));
+
+            return view('client/listeClients',['clients' => $clients]);
+        }
 
 
     }

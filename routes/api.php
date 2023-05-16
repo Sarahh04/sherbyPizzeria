@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(ClientController::class)->group(function() {
     Route::get('/clientInfo', 'show')->name('clientApi')->middleware('auth:sanctum');
+    Route::post('/addClient', 'store')->name('addClientApi');
 });
 
 Route::post('/token', [RegisteredUserController::class, 'show'])->name('token');
