@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : NoteDossierController
+ Auteur : Sarah Diakite
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ notes de dossier de clients.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\note_dossier;

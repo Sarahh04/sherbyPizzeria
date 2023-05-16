@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : ProduitController
+ Auteur : Hugo Pouliot
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ produits.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\Produit;

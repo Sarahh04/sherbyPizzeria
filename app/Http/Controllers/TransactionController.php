@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : TransictionController
+ Auteur : Claudio Cruz
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ commandes.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;//recupere les données d'authentication
@@ -9,9 +14,11 @@ use App\Models\ProduitTransaction;
 use App\Models\Mode_paiement;
 use App\Models\Transaction as ModelsTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use DateTime;
 
 class TransactionController extends Controller
@@ -24,22 +31,77 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
         if ($request->routeIs('listerCommandes')) {
+
+            if($request->FiltreNoCommande != null){
+                $commande = $request->input('FiltreNoCommande');
+            }
             return view('commande/listerCommandes',[
                 'commandes' => Transaction::All(),
                 'users'=> User::All() ]);
         }
+
         if ($request->routeIs('consulterCommande')) {
             return view('commande/consulterCommande');
         }
 
+        if($request->routeIs('filtrerCommandes'))
+        {
+            $nom = $request->input('nom');
+            $tel = $request->input('tel');
+            $noCommande = $request->input('noCommande');
+            $dateDebut = $request->input("date_transaction");
+            $dateFin = $request->input("date_transaction");
+
+            $commandes = Transaction::All();
+
+            if($nom != null )
+            {
+                $commandes->where('name','=',$nom);
+            }
+
+            if( $tel != null )
+            {
+                $commandes->where('telephone','=',$tel);
+            }
+
+            if( $noCommande != null)
+            {
+                $commandes->where('no_facture','=',$noCommande);
+            }
+
+            if($dateDebut != null)
+            {
+                $commandes->where('date_transaction','>=',$dateDebut);
+            }
+
+            if($dateFin != null)
+            {
+                $commandes->where('date_transaction','<=',$dateFin);
+            }
+
+            $results = $commandes->get();
+
+            if($results != null)
+            {
+                return response()->json(['commandes' => $results], 200);
+            }
+            else
+            {
+                return response()->json("Aucune commande trouvé", 200);
+            }
+        }
+
         if ($request->routeIs('extraitCommande')) {
-            $commande = $request->all();
-            //return response()->json(['message' => 'Objeto recebido com sucesso!', 'data' => $commande]);
+
+            $data = $request->$_POST['data'];
+            //$data = json_decode($request->input('data'));
+
             return view('commande/extraitCommande',[
-                'commande' => $commande,
+                'commande' => $data,
                 'produits' => Produit::All(),
                 'users'=> User::All() ]);
         }
+
         if ($request->routeIs('resumeCommande')) {
             $contenueForm = $request->all();
 
@@ -149,6 +211,16 @@ class TransactionController extends Controller
 
         }
 
+        if ($request->routeIs('extraitCommande')) {
+
+            $data = $request->all();
+
+            return view('commande/extraitCommandeId',[
+                'commande' => $data,
+                'produits' => Produit::All(),
+                'users'=> User::All() ]);
+        }
+
     }
 
     /**
@@ -177,8 +249,26 @@ class TransactionController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        $validation = Validator::make($request->all(), [
+            'tel' => ['required', 'regex:/^([0-9]{3}[0-9]{3}[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}\.[0-9]{3}\.[0-9]{4}$|^([0-9]{3})[0-9]{3}-[0-9]{4}$|^[(][0-9]{3}[)][0-9]{3}(-|\.)[0-9]{4})$/i'],
+            'nom' => 'required',
+            'observation' => 'max:250',
+            'quantite' => 'regex:/^[1-9][0-9]*$/gm]',
+            ], [
+            // Vous pouvez écrire un message d’erreur distinct par règle de validation fournie plus haut.
+            'tel.required' => 'Veuillez entrer un numéro de téléphone.',
+            'tel.regex' => 'Le numéro de téléphone ne respecte pas le format attendu.',
+            'nom.required' => 'Veuillez entrer un nom.',
+            'observation.max' => 'Votre commentaire de ne peut pas dépasser 250 caractères.',
+            'quantite.regex' => 'Veuillez attribuer des points.',
+        ]);
 
-        $commande = Transaction::find($id);
+        if ($validation->fails())
+        return back()->withErrors($validation->errors())->withInput();
+
+        $contenuFormulaire = $validation->validated();
+
+        $commande = Transaction::find($contenuFormulaire['id']);
 
         $elements = Transaction::with('produit')
                     ->where('id_transaction','=',$id)
@@ -186,7 +276,7 @@ class TransactionController extends Controller
 
         foreach($elements->produit as $produit) {
 
-            $produitTransaction = ProduitTransaction::find('id_transaction');
+            $produitTransaction = ProduitTransaction::find('id');
 
             $produitTransaction->id_produit = $commande['id_produit'];
             $produitTransaction->quantite = $commande['quantite'];
@@ -226,4 +316,5 @@ class TransactionController extends Controller
                 http_response_code(400);
             }
     }
+
 }

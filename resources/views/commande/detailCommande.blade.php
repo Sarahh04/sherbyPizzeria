@@ -1,3 +1,8 @@
+<!--/*****************************************************************************
+ Fichier : detailCommande
+ Auteur : Claudio Cruz
+ Fonctionnalité : View por afficher les details d'une commande.
+*****************************************************************************/-->
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">

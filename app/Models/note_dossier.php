@@ -1,5 +1,9 @@
 <?php
-
+/*****************************************************************************
+ Fichier : Note_dossier
+ Auteur : Sarah Diakite
+ Fonctionnalité : Classe Note_dossier.
+*****************************************************************************/
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

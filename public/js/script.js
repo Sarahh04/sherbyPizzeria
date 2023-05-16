@@ -288,7 +288,7 @@ buttonMenu.classList.toggle('form-hidden');
 
 window.onload = function() {
 
-    //listenerSelectClient();
+    listenerSelectClient();
     listenerSelectPizza();
     listenerSelectBeverage();
     listenerSelectDessert();

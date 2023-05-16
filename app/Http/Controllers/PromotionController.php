@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : PromotionController
+ Auteur : Hugo Pouliot
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ promotions.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\Promotion;

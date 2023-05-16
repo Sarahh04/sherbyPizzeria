@@ -1,3 +1,8 @@
+<!--/*****************************************************************************
+ Fichier : gestionCommande
+ Auteur : Claudio Cruz
+ Fonctionnalité : View de bien venue des fonctionalités de la commande.
+*****************************************************************************/-->
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">

@@ -1,3 +1,8 @@
+<!--/*****************************************************************************
+ Fichier : listerCommande
+ Auteur : Claudio Cruz
+ Fonctionnalité : View por faire l'affichage de une liste de commandes.
+*****************************************************************************/-->
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-sp text-gray-900 leading-tight">
@@ -15,6 +20,7 @@
             <div class="border-b-4 border-solid border-gray-950 mb-12"></div>
             <div id="divRepere" >
             @foreach ($commandes as $commande)
+
             <a  href="{{ route('detailCommande',['id'=>$commande->id_transaction])}}">
                 <div class="flex flex-row justify-center border-2 border-solid border-gray-950 mx-36 py-10 mb-4">
                     <div class="flex flex-row">
@@ -27,17 +33,16 @@
                     </div>
 
                     <a href="{{ route('editerCommande', ['id' => $commande->id_transaction]) }}" >
-                        <img  type="image" src="{{ asset('img/edit.svg') }}" alt="edit employe" class = "mt-8 mr-6 img_editPromo">
-                    <a href="{{ route('detailCommande', ['id' => $commande->id_transaction]) }}" ></a>
-                    <div id="{{$commande->id_transaction}}"  class="hidden">deleteCommande</div>
-                        <img id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver employe" class = "mt-6 img_desactivePromo"></a>
+                        <img  type="image" src="{{ asset('img/edit.svg') }}" alt="edit commande" class = "mt-8 mr-6 img_editPromo"></a>
+                        <a href="{{ route('detailCommande', ['id' => $commande->id_transaction]) }}" ></a>
+                        <div id="{{$commande->id_transaction}}"  class="hidden">deleteClient</div>
+                        <img onclick="deleteElement()" id="open" type="image" src="{{ asset('img/desactiver.svg') }}" alt="desactiver commande" class = "mt-6 img_desactivePromo"></a>
                 </div>
-
             </a>
 
             @endforeach
             </div>
-            </div>
+
 
             <div class="flex flex-row justify-center mx-36 py-0 mb-2">
                 <button class="md:w-1/5 mx-10 my-10 shadow bg-red-800 hover:bg-stone-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="reset">

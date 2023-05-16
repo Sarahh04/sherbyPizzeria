@@ -1,5 +1,11 @@
 <?php
 
+/*****************************************************************************
+ Fichier : ProduitTransaction
+ Auteur : Claudio Cruz
+ Fonctionnalité : Classe d'association de produit et transaction.
+*****************************************************************************/
+
 namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 

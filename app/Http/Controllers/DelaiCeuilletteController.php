@@ -1,5 +1,10 @@
 <?php
-
+/*****************************************************************************
+ Fichier : DelaiCeuilletteController
+ Auteur : Hugo Pouliot
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ delais.
+*****************************************************************************/
 namespace App\Http\Controllers;
 
 use App\Models\delaiCeuillette;

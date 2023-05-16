@@ -1,5 +1,9 @@
 <?php
-
+/*****************************************************************************
+ Fichier : Type_Transaction
+ Auteur : Claudio Cruz
+ Fonctionnalité : Classe de type de paiement.
+*****************************************************************************/
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

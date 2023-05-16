@@ -1,5 +1,9 @@
 <?php
-
+/*****************************************************************************
+ Fichier : Etat_Transaction
+ Auteur : Claudio Cruz
+ Fonctionnalité : Classe d'etat de transaction.
+*****************************************************************************/
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -1,4 +1,9 @@
 <?php
+/*****************************************************************************
+ Fichier : Transaction
+ Auteur : Claudio Cruz
+ Fonctionnalité : Classe de transaction (represente les commandes).
+*****************************************************************************/
 
 namespace App\Models;
 

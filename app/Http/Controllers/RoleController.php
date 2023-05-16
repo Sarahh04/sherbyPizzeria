@@ -1,4 +1,10 @@
 <?php
+/*****************************************************************************
+ Fichier : RoleController
+ Auteur : Amélie Fréchette
+ Fonctionnalité : permet de gerer l'affichage, l'ajout et la modification des
+ employer.
+*****************************************************************************/
 
 namespace App\Http\Controllers;
 

@@ -1,3 +1,8 @@
+<!--/*****************************************************************************
+ Fichier : listerClient
+ Auteur : Sarah Diakite
+ Fonctionnalité : View por afficher la liste de clients.
+*****************************************************************************/-->
 <x-app-layout>
     <div class = "flex flex-row w-full justify-center mt-24">
         <h1 class="font-bold text-3xl underline ml-52">
