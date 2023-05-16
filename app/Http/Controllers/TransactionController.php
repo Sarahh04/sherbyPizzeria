@@ -254,6 +254,14 @@ class TransactionController extends Controller
                 'users'=> User::All() ]);
         }
 
+        if ($request->routeIs('commandesApi')) {
+            $commandes = Transaction::all();
+
+            if (empty($commandes))
+                return response()->json(['ERREUR' => 'Les commandes demandé sont introuvable.'], 400);
+
+            return new TransactionResource($commandes);
+        }
     }
 
     /**

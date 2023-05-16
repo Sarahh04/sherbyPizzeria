@@ -110,6 +110,15 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
+        if ($request->routeIs('produitsApi'))
+        {
+            $produits = Produit::all();
+
+            if (empty($produits))
+                return response()->json(['ERREUR' => 'Les produits demandé sont introuvable.'], 400);
+
+            return new ProduitResource($produits);
+        }
     }
 
     /**
