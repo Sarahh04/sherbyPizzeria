@@ -12,9 +12,10 @@ class ProduitResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request):array
     {
         return [
+            'id_produit' => $this->id_produit,
             'nom' => $this->nom,
             'prix' => $this->prix,
             'delais' => $this->delais,

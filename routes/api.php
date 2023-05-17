@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,12 +39,12 @@ Route::controller(ClientController::class)->group(function() {
 
 Route::controller(TransactionController::class)->group(function() {
     Route::post('/addTransaction', 'store')->name('transactionApi')->middleware('auth:sanctum');
-    Route::get('/commandes', 'show')->name('commandesApi')->middleware('auth:sanctum');
+    Route::get('/commandes', 'index')->name('commandesApi');
 });
 
 
 Route::controller(ProduitController::class)->group(function() {
-    Route::get('/produits', 'show')->name('produitsApi')->middleware('auth:sanctum');
+    Route::get('/produits', 'show')->name('produitsApi');
 });
 
 

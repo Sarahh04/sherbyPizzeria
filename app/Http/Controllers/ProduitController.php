@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\CategorieProduit;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\ProduitResource;
 
 class ProduitController extends Controller
 {
@@ -108,16 +109,12 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function show(Produit $produit)
+    public function show(Produit $produit,Request $request)
     {
         if ($request->routeIs('produitsApi'))
         {
-            $produits = Produit::all();
 
-            if (empty($produits))
-                return response()->json(['ERREUR' => 'Les produits demandé sont introuvable.'], 400);
-
-            return new ProduitResource($produits);
+            return ProduitResource::collection(Produit::all());
         }
     }
 

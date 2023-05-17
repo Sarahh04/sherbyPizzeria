@@ -20,6 +20,7 @@ use Illuminate\View\View;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use DateTime;
+use App\Http\Resources\TransactionResource;
 
 class TransactionController extends Controller
 {
@@ -109,6 +110,11 @@ class TransactionController extends Controller
                 'user' => User::All(),
                 'produits' => Produit::All(),
                 'users'=> User::All() ]);
+        }
+        if ($request->routeIs('commandesApi')) {
+
+
+            return TransactionResource::collection(Transaction::all());
         }
         else{
             return view('commande/gestionCommandes');
@@ -254,14 +260,7 @@ class TransactionController extends Controller
                 'users'=> User::All() ]);
         }
 
-        if ($request->routeIs('commandesApi')) {
-            $commandes = Transaction::all();
 
-            if (empty($commandes))
-                return response()->json(['ERREUR' => 'Les commandes demandé sont introuvable.'], 400);
-
-            return new TransactionResource($commandes);
-        }
     }
 
     /**

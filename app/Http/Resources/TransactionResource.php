@@ -12,10 +12,10 @@ class TransactionResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request):array
     {
         return [
-            'id_user' => $this->$id_user,
+            'id_user' => $this->id_user,
             'id_etat_transaction' => $this->id_etat_transaction,
             'id_mode_paiement' => $this->d_mode_paiement,
             'id_type_transaction' => $this->id_type_transaction,
