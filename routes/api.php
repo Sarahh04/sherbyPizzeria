@@ -40,6 +40,7 @@ Route::controller(ClientController::class)->group(function() {
 Route::controller(TransactionController::class)->group(function() {
     Route::post('/addTransaction', 'store')->name('transactionApi')->middleware('auth:sanctum');
     Route::get('/commandes', 'index')->name('commandesApi');
+    Route::get('/produitsCommandes', 'index')->name('produitsCommandesApi');
 });
 
 

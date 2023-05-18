@@ -270,7 +270,11 @@ var url = "{{ route('gestionProduits') }}";
 
 let switchBtn = document.querySelector('.container-button-modif>button');
 
-switchBtn.addEventListener('click', showForm)
+if(switchBtn != null)
+{
+    switchBtn.addEventListener('click', showForm)
+}
+
 
 function showForm(e){
 let formMenu = document.querySelector('.form-gestion');
