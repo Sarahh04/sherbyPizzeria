@@ -292,10 +292,10 @@ buttonMenu.classList.toggle('form-hidden');
 
 window.onload = function() {
 
-    listenerSelectClient();
-    listenerSelectPizza();
-    listenerSelectBeverage();
-    listenerSelectDessert();
+    //listenerSelectClient();
+    //listenerSelectPizza();
+    //listenerSelectBeverage();
+    //listenerSelectDessert();
 
 };
 
@@ -379,7 +379,7 @@ async function ajouterCommande()
     let modeP = document.getElementById('mPaiement');
     let client = document.getElementById('client');
     client = JSON.parse(client.value);
-    alert(JSON.stringify(commande))
+
     response = await fetch("../insererCommande", {
 		method  : "post",
 		headers : {
